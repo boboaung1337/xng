@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSCP Master Cheat Sheet</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #1e1e1e;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #d4d4d4;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+
+        #sidebar {
+            width: 310px;
+            background: #252526;
+            border-right: 1px solid #3e3e42;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 12px 20px 16px;
+            z-index: 10;
+            flex-shrink: 0;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        /* Custom scrollbar for sidebar */
+        #sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        #sidebar::-webkit-scrollbar-track {
+            background: #1e1e1e;
+            border-radius: 3px;
+        }
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #4e4e52;
+            border-radius: 3px;
+        }
+        #sidebar::-webkit-scrollbar-thumb:hover {
+            background: #6e6e72;
+        }
+
+        .cyber-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #569cd6;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #569cd6;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .cyber-title span {
+            font-size: 0.65rem;
+            background: #264f78;
+            padding: 2px 8px;
+            border-radius: 30px;
+            color: #9cdcfe;
+        }
+
+        #buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex: 1;
+        }
+
+        .cyber-btn {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #d4d4d4;
+            padding: 8px 10px;
+            text-align: left;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.15s;
+            white-space: normal;
+            word-break: break-word;
+            line-height: 1.3;
+        }
+        .cyber-btn:hover {
+            background: #2d2d30;
+            color: white;
+        }
+        .cyber-btn.active {
+            background: #264f78;
+            color: white;
+            border-left: 3px solid #4ec9b0;
+            border-radius: 6px;
+        }
+
+        #content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 32px;
+            background: #1e1e1e;
+            scroll-behavior: smooth;
+        }
+        #content-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+        #content-wrapper::-webkit-scrollbar-track {
+            background: #252526;
+        }
+        #content-wrapper::-webkit-scrollbar-thumb {
+            background: #424242;
+            border-radius: 8px;
+        }
+
+        .main-header {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #569cd6;
+            margin-bottom: 20px;
+            border-left: 5px solid #4ec9b0;
+            padding-left: 18px;
+            letter-spacing: -0.3px;
+        }
+
+        .sub-header {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #dcdcaa;
+            margin-top: 28px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .sub-header::before {
+            content: "❯";
+            font-size: 1.1rem;
+            color: #4ec9b0;
+        }
+
+        .note-command {
+            background: #252526;
+            border-left: 4px solid #4ec9b0;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            font-size: 0.8rem;
+            color: #9cdcfe;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-radius: 8px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            line-height: 1.5;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .note-command:hover {
+            background: #2d2d30;
+            border-left-color: #569cd6;
+            transform: translateX(2px);
+        }
+        .note-command::after {
+            content: "";
+            position: absolute;
+            right: 14px;
+            bottom: 6px;
+            font-size: 0.6rem;
+            color: #6a9955;
+            font-family: 'Inter', monospace;
+            opacity: 0.6;
+        }
+
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            right: 32px;
+            background: #264f78;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(8px);
+            display: none;
+            z-index: 1100;
+            border-left: 3px solid #4ec9b0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .show {
+            display: block !important;
+            animation: fadeSlide 0.22s ease-out;
+        }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .empty-state {
+            color: #858585;
+            text-align: center;
+            margin-top: 15vh;
+            font-size: 1rem;
+            font-family: 'Inter', monospace;
+            background: #252526;
+            padding: 42px;
+            border-radius: 8px;
+            border: 1px dashed #3e3e42;
+        }
+
+        .cyber-footer {
+            margin-top: 40px;
+            padding-top: 16px;
+            font-size: 0.7rem;
+            color: #6a9955;
+            text-align: center;
+            border-top: 1px solid #3e3e42;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            background: #252526;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        th {
+            background: #264f78;
+            color: #9cdcfe;
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            padding: 6px 12px;
+            border-bottom: 1px solid #3e3e42;
+            color: #ce9178;
+        }
+        .comment { color: #6a9955; }
+        .phase {
+            background: #1a2d3e;
+            border-left: 4px solid #569cd6;
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<nav id="sidebar">
+    <div class="cyber-title">
+        🤖XNG🤖 <span>☠️1337☠️</span>
+    </div>
+    <div id="buttons"></div>
+    <div style="margin-top: 16px; font-size:0.65rem; text-align:center; color:#6a9955; flex-shrink: 0;"></div>
+</nav>
+
+<main id="content-wrapper">
+    <div id="note">
+        <div class="empty-state">⎯  SELECT A MODULE FROM THE SIDEBAR  ⎯</div>
+    </div>
+    <footer class="cyber-footer">
+        🥷
+    </footer>
+</main>
+
+<div id="toast">✓ command copied</div>
+
+<script>
+    let notesData = [];
+    let currentNote = null;
+
+    function decodeBase64(str) {
+        try {
+            return decodeURIComponent(escape(atob(str)));
+        } catch (e) {
+            try { return atob(str); } catch (err) { return str; }
+        }
+    }
+
+    fetch('notes.json?v=' + Date.now())
+        .then(res => res.json())
+        .then(data => {
+            notesData = data;
+            generateButtons(data);
+        })
+        .catch(err => {
+            console.error("Error loading notes.json:", err);
+            document.getElementById('note').innerHTML = `<div class="empty-state">⚠️ Could not load notes.json. Make sure the file exists in the same directory.</div>`;
+        });
+
+    function generateButtons(data) {
+        const buttonDiv = document.getElementById('buttons');
+        buttonDiv.innerHTML = '';
+        data.forEach((note, index) => {
+            const btn = document.createElement('button');
+            btn.className = 'cyber-btn';
+            btn.innerText = note.button_name;
+            btn.onclick = (e) => {
+                document.querySelectorAll('.cyber-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                showNote(note);
+            };
+            buttonDiv.appendChild(btn);
+        });
+        if (data.length) showNote(data[0]);
+    }
+
+    function showNote(note) {
+        currentNote = note;
+        renderView(note.contents, note.note_header);
+    }
+
+    function renderView(contents, header) {
+        const noteDiv = document.getElementById('note');
+        let html = `<h2 class='main-header'>${escapeHTML(header || 'MODULE')}</h2>`;
+        
+        contents.forEach(section => {
+            const decodedCmd = decodeBase64(section.content);
+            const subHeader = section.sub_header || '';
+            html += `
+                <h3 class='sub-header'>${escapeHTML(subHeader)}</h3>
+                <div class='note-command' onclick='copyToClipboard(this)'>${escapeHTML(decodedCmd)}</div>`;
+        });
+        
+        noteDiv.innerHTML = html;
+    }
+
+    function copyToClipboard(el) {
+        let text = el.innerText.replace('', '').trim();
+        navigator.clipboard.writeText(text).then(() => {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 1800);
+        });
+    }
+
+    function escapeHTML(str) {
+        return str.replace(/[&<>]/g, m => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;'
+        })[m]);
+    }
+</script>
+</body>
+</html>
