@@ -1,37 +1,4 @@
-# Python Script Commands & Explanations
 
-## 📦 Installation & Setup
-
-```bash
-# Download the script
-wget https://raw.githubusercontent.com/yourusername/oscp-cheat-sheet/main/notes_manager.py
-
-# Make it executable
-chmod +x notes_manager.py
-
-# Test it works
-python3 notes_manager.py list
-```
-
----
-
-## 📚 Basic Commands
-
-### 1. List All Notes
-```bash
-python3 notes_manager.py list
-```
-**Explanation**: Displays all button names, their headers, and how many content items each has. Useful for seeing what's currently in your notes.json.
-
-### 2. Show Specific Note
-```bash
-# Show without decoding (shows base64)
-python3 notes_manager.py show "Reverse Shell"
-
-# Show with decoded commands (shows actual commands)
-python3 notes_manager.py show "Reverse Shell" --decode
-```
-**Explanation**: Views the contents of a specific note. Use `--decode` to see the actual commands instead of base64 encoded text.
 
 ---
 
