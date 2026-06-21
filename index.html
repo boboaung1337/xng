@@ -14,9 +14,11 @@
             padding: 0;
             background: #1e1e1e;
             color: #d4d4d4;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', Courier, monospace;
             line-height: 1.5;
             font-size: 14px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         @media only screen {
             body {
@@ -44,6 +46,7 @@
             line-height: 1.2;
             font-weight: 600;
             margin-bottom: 0;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         h1 strong,
@@ -60,27 +63,30 @@
             color: #569cd6;
             border-left: 5px solid #4ec9b0;
             padding-left: 18px;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         h1 {
             font-size: 1.875rem;
             margin-top: 1.875rem;
             color: #dcdcaa;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        /* H2 headings - like "Host Discovery" */
         h2 {
             font-size: 1.5rem;
             margin-top: 1.5rem;
             color: #4ec9b0;
             border-bottom: 2px solid #4ec9b0;
             padding-bottom: 6px;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         h3 {
             font-size: 1.25rem;
             margin-top: 1.25rem;
             color: #dcdcaa;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .source {
@@ -194,6 +200,7 @@
             line-height: 1.3;
             padding: 0.125rem;
             color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .table_of_contents-indent-1 {
@@ -235,6 +242,7 @@
             line-height: 1.5;
             min-height: 1.5em;
             text-align: left;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         th {
@@ -261,6 +269,7 @@
         ul > li {
             list-style: disc;
             color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         ul.to-do-list {
@@ -303,6 +312,7 @@
         ol > li {
             padding-left: 0.2em;
             color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .mono ol {
@@ -345,6 +355,7 @@
         .page-description {
             margin-bottom: 2em;
             color: #858585;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .simple-table {
@@ -467,6 +478,7 @@
             margin-top: 0.5em;
             margin-bottom: 0.5em;
             color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .image {
@@ -477,21 +489,37 @@
             text-align: center;
         }
 
-        /* ----- CODE BLOCKS ----- */
+        /* ===================================================== */
+        /* ===== NXC TERMINAL OUTPUT STYLE (code/pre blocks) ==== */
+        /* ===================================================== */
+        /* Background kept near-black like a real terminal.       */
+        /* Foreground colors mapped to NetExec's ANSI conventions:*/
+        /*   cyan   -> protocol/target prefix (SMB/LDAP + host)   */
+        /*   green  -> success / [+] / Pwn3d! / valid creds       */
+        /*   red    -> failure / [-] / errors                     */
+        /*   yellow -> warnings / signing disabled / findings     */
+        /*   magenta-> module headers / extra output               */
+        /*   white  -> default banner / informational text         */
+        /* ===================================================== */
+
         .code,
         code {
-            background: #1e1e1e !important;
+            background: #000000 !important;
             border-radius: 4px;
             padding: 0.15em 0.4em;
-            font-size: 87%;
+            font-size: 90%;
             tab-size: 2;
-            color: #d4d4d4 !important;
-            font-family: 'Courier New', monospace;
+            color: #f2f2f2 !important;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 400 !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         code {
-            color: #d4d4d4 !important;
-            background: #1e1e1e !important;
+            color: #f2f2f2 !important;
+            background: #000000 !important;
+            font-weight: 400 !important;
         }
 
         .code {
@@ -499,7 +527,7 @@
             border-left: 4px solid #4ec9b0;
             margin-bottom: 16px;
             border-radius: 6px;
-            background: #1e1e1e !important;
+            background: #000000 !important;
             overflow-x: auto;
         }
 
@@ -512,101 +540,95 @@
             background: none !important;
             padding: 0;
             font-size: 100%;
-            color: #d4d4d4 !important;
+            color: #f2f2f2 !important;
+            font-weight: 400 !important;
         }
 
         pre {
-            background: #1e1e1e !important;
+            background: #000000 !important;
             border-radius: 6px;
             padding: 1.2em 1.2em;
             border-left: 4px solid #4ec9b0;
             margin-bottom: 16px;
             overflow-x: auto;
-            font-family: 'Courier New', monospace;
+            font-family: 'Courier New', Courier, monospace;
             font-size: 14px;
-            line-height: 1.5;
-            color: #d4d4d4;
+            line-height: 1.7;
+            color: #f2f2f2;
+            font-weight: 400 !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .code code,
         pre code,
         pre[class*="language-"] code,
         code[class*="language-"] {
-            color: #d4d4d4 !important;
+            color: #f2f2f2 !important;
             font-size: 14px !important;
-            line-height: 1.5;
-            font-weight: 400;
-            font-family: 'Courier New', monospace !important;
+            line-height: 1.7;
+            font-weight: 400 !important;
+            font-family: 'Courier New', Courier, monospace !important;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         pre[class*="language-"] {
-            background: #1e1e1e !important;
+            background: #000000 !important;
             border-radius: 6px;
             padding: 1.2em 1.2em;
             border-left: 4px solid #4ec9b0;
             margin-bottom: 16px;
         }
 
-        /* ----- SYNTAX HIGHLIGHTING FOR COMMENTS ----- */
-        /* Comments like "# Ping sweep" and "# SMB discovery" */
-        .token.comment,
-        .token.prolog,
-        .token.doctype,
-        .token.cdata,
-        .hljs-comment,
-        .hljs-meta {
-            color: #6a9955 !important;
-            font-style: normal;
-        }
-
-        /* Regular code text */
+        /* ===== KALI TERMINAL STYLE (bright white, high contrast) ===== */
+        /* Matches default Kali xterm/qterminal: light grey-white text  */
+        /* on near-black background. Comments (# description lines)    */
+        /* are colored orange, like Bash syntax highlighting in a      */
+        /* terminal editor. Everything else stays flat white.          */
         .token.punctuation,
-        .hljs-punctuation {
-            color: #d4d4d4 !important;
-        }
-
+        .hljs-punctuation,
         .token.property,
         .token.tag,
         .token.boolean,
         .token.number,
         .token.constant,
         .token.symbol,
-        .token.deleted {
-            color: #b5cea8 !important;
-        }
-
+        .token.deleted,
         .token.selector,
         .token.attr-name,
         .token.string,
         .token.char,
         .token.builtin,
-        .token.inserted {
-            color: #ce9178 !important;
-        }
-
+        .token.inserted,
         .token.operator,
         .token.entity,
         .token.url,
         .language-css .token.string,
-        .style .token.string {
-            color: #d4d4d4 !important;
-        }
-
+        .style .token.string,
         .token.atrule,
         .token.attr-value,
-        .token.keyword {
-            color: #569cd6 !important;
-        }
-
+        .token.keyword,
         .token.function,
-        .token.class-name {
-            color: #dcdcaa !important;
-        }
-
+        .token.class-name,
         .token.regex,
         .token.important,
         .token.variable {
-            color: #d16969 !important;
+            color: #f2f2f2 !important;
+            font-style: normal;
+            font-weight: 400 !important;
+        }
+
+        /* Comments (# description lines) -> orange */
+        .token.comment,
+        .token.prolog,
+        .token.doctype,
+        .token.cdata,
+        .hljs-comment,
+        .hljs-meta {
+            color: #e5934a !important;
+            font-style: normal;
+            font-weight: 400 !important;
         }
 
         blockquote {
@@ -615,6 +637,7 @@
             padding-left: 1em;
             border-left: 3px solid #4ec9b0;
             color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         blockquote.quote-large {
@@ -639,6 +662,7 @@
             height: 1.75em;
             white-space: nowrap;
             color: #569cd6;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .bookmark-text {
@@ -669,18 +693,20 @@
             overflow: hidden;
             max-height: 4.5em;
             word-break: break-word;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .bookmark-href {
             font-size: 0.75em;
             margin-top: 0.25em;
             color: #6a9955;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .sans { font-family: 'Courier New', monospace; }
-        .code { font-family: 'Courier New', monospace; }
-        .serif { font-family: 'Courier New', monospace; }
-        .mono { font-family: 'Courier New', monospace; }
+        .sans { font-family: 'Courier New', Courier, monospace; }
+        .code { font-family: 'Courier New', Courier, monospace; font-weight: 400; }
+        .serif { font-family: 'Courier New', Courier, monospace; }
+        .mono { font-family: 'Courier New', Courier, monospace; font-weight: 400; }
 
         .highlight-default { color: #d4d4d4; }
         .highlight-gray { color: #858585; fill: #858585; }
