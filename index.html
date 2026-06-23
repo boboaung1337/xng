@@ -1724,6 +1724,7 @@ Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False
 powershell -Command "Set-MpPreference -DisableRealtimeMonitoring $true"
 Set-MpPreference -DisableRealTimeMonitoring $true
 Add-MpPreference -ExclusionPath "C:\Windows\Temp"
+    #enable rdp
 reg add "HKLM\System\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
 netsh advfirewall set rule group="remote desktop" new enable=Yes
 net localgroup "Remote Desktop Users" &lt;USER&gt; /add
