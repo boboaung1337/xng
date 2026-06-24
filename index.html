@@ -1208,7 +1208,11 @@ type $env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.tx
 
 # Password Hunting
 findstr /si password *.txt *.xml *.ini *.config 2>nul
+
+dir /s /b *pass* *cred* *vnc* *.config 2>nul
+dir /s/b  *.txt *.log
 dir /s *pass* == *cred* == *vnc* == *.config*
+    
 cmdkey /list
 
 # Hidden in Plain View
