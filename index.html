@@ -1221,6 +1221,7 @@ Get-ChildItem -Recurse -Path N:\ -Include *cred* -File
 Get-ChildItem -Recurse -Path N:\ | Select-String "cred" -List
 Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyContinue
 Get-ChildItem -Path C:\xampp -Include *.txt,*.ini -File -Recurse -ErrorAction SilentlyContinue
+Get-ChildItem -Path C:\Users -Include *.txt,*.ini,*.pdf,*.kdbx -Recurse -ErrorAction SilentlyContinue
 Get-ChildItem -Path C:\Users\dave\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue
 
 
