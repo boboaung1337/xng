@@ -1185,6 +1185,7 @@ Get-Service | Where-Object { $_.Status -eq "Running" }
 
 # Scheduled Tasks
 schtasks /query /fo LIST /v
+schtasks /query /fo LIST /v /TN "FTP Backup"
 Get-ScheduledTask | where {$_.TaskPath -notlike "\Microsoft*"} | ft TaskName,TaskPath,State
 
 # Running processes & services
