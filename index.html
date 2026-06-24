@@ -1098,7 +1098,9 @@ ldapsearch -x -H ldap://&lt;IP&gt:389 -b "dc=htb,dc=local"
 
     
 # windapsearch
-./windapsearch.py -d $TARGET_DOMAIN --dc-ip $TARGET_IP -U
+windapsearch.py -d $TARGET_DOMAIN --dc-ip $TARGET_IP -U
+windapsearch.py -d htb.local --dc-ip 10.10.10.161 -U
+windapsearch.py -d htb.local --dc-ip 10.10.10.161 --custom "objectClass=*"
 impacket-GetADUsers $TARGET_DOMAIN/ -dc-ip $TARGET_IP -debug</code></pre>
 
   <h3 id="rpc">RPC / DNS / SNMP</h3>
