@@ -1078,6 +1078,17 @@ ldapsearch -x -H ldap://&lt;IP&gt; -D "user@domain.htb" -w 'pass' -b "dc=domain,
 # LAPS passwords
 ldapsearch -x -H ldap://&lt;IP&gt; -D "user@domain" -w 'pass' -b "dc=domain,dc=local" "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
 
+https://www.hackingarticles.in/active-directory-enumeration-ldeep/
+
+https://www.thehacker.recipes/ad/recon/ldap
+
+ldapsearch -x -H 'ldap://&lt;IP&gt' -D 'SVC_TGS' -w 'GPPstillStandingStrong2k18' -b "dc=active,dc=htb" -s sub "(&(objectCategory=person)(objectClass=user)(!(useraccountcontrol:1.2.840.113556.1.4.803:=2)))" samaccountname | grep sAMAccountName
+
+ldapsearch -x -H 'ldap://&lt;IP&gt' -D 'SVC_TGS' -w 'GPPstillStandingStrong2k18' -b "dc=active,dc=htb" -s sub "(&(objectCategory=person)(objectClass=user)(!(useraccountcontrol:1.2.840.113556.1.4.803:=2))(serviceprincipalname=*/*))" serviceprincipalname | grep -B 1 servicePrincipalName
+
+ldapsearch -x -H ldap://&lt;IP&gt:389 -b "dc=htb,dc=local"
+
+    
 # windapsearch
 ./windapsearch.py -d $TARGET_DOMAIN --dc-ip $TARGET_IP -U
 impacket-GetADUsers $TARGET_DOMAIN/ -dc-ip $TARGET_IP -debug</code></pre>
