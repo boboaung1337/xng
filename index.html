@@ -637,6 +637,7 @@ dav:/&lt;WEBDAV_DIRECTORY&gt;/ C:/ put &lt;FILE&gt;</code></pre>
   <h2 id="mssql">🗄️ MSSQL</h2>
   <pre class="code"><code># Connect
 impacket-mssqlclient domain/user:pass@&lt;IP&gt; -windows-auth
+impacket-mssqlclient svc_sql:'expl1ot@&lt;IP&gt; -windows-auth
 sqsh -S &lt;IP&gt; -U &lt;USERNAME&gt; -P &lt;PASSWORD&gt;
 
 # if 1, admin true
