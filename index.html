@@ -194,13 +194,13 @@
   <!-- ===== MASTER PIECE ===== -->
   <h2 id="host-discovery">🖥️ MASTER PIECE</h2>
   <pre class="code"><code># ----
-nxc smb <MS01-IP> --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+nxc smb &lt;MS01-IP&gt; --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
 
-nxc smb <MS02-IP> --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+nxc smb &lt;MS02-IP&gt; --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
 
-nxc smb <DC01-IP> --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+nxc smb &lt;DC01-IP&gt; --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
 
-nxc smb <DC01-IP> --generate-krb5-file /tmp/krb5.tmp && sudo mv /tmp/krb5.tmp /etc/krb5.conf
+nxc smb &lt;DC01-IP&gt; --generate-krb5-file /tmp/krb5.tmp && sudo mv /tmp/krb5.tmp /etc/krb5.conf
 
 sudo fixtime -i MS01 
 sudo fixtime -i DC01 (after pivot)
@@ -213,7 +213,7 @@ smbmap -H MS01
 
 enum4linux -a MS01
 
-impacket-GetADUsers -all active.htb/svc_tgs:GPPstillStandingStrong2k18 -dc-ip <IP>
+impacket-GetADUsers -all active.htb/svc_tgs:GPPstillStandingStrong2k18 -dc-ip &lt;IP&gt;
 
 kerbrute userenum -d oscp.exam --dc $IP /usr/share/wordlists/seclists/Usernames/xato-net-10-million-usernames.txt
 
@@ -223,11 +223,11 @@ boxc MS01 -u SVC_TGS -p GPPstillStandingStrong2k18
 
 boxc MS01 -u users.txt -p pass.txt
 
-impacket-smbclient <IP>
+impacket-smbclient &lt;IP&gt;
 
 smbclient //<IP>/Replication -N -c "prompt OFF; recurse ON; mget *"
 
-impacket-smbclient SVC_TGS:'GPPstillStandingStrong2k18'@<IP></code></pre>
+impacket-smbclient SVC_TGS:'GPPstillStandingStrong2k18'@&lt;IP&gt;</code></pre>
 
   <!-- ===== HOST DISCOVERY ===== -->
   <h2 id="host-discovery">🖥️ Host Discovery</h2>
