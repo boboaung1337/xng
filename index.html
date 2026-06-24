@@ -1306,6 +1306,8 @@ Move-Item -Path "C:\source\file.exe" -Destination "D:\destination\file.exe" -For
 .\accesschk.exe /accepteula -quvw "C:\PATH\TO\FILE\FILE.exe"
 .\accesschk.exe /accepteula -uwcqv &lt;USERNAME&gt; &lt;SERVICE&gt;
 .\accesschk.exe /accepteula -uwdq C:\
+.\accesschk.exe -uqws Everyone C:\
+.\accesschk.exe -ucqv *
 
 # DLL Hijacking
 # Compile: x86_64-w64-mingw32-gcc payload.cpp --shared -o payload.dll
