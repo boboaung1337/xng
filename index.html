@@ -1785,6 +1785,8 @@ xfreerdp3 /v:&lt;IP&gt; /u:&lt;USER&gt; /p:'&lt;PASSWORD&gt;' /cert:ignore +clip
 xfreerdp /v:&lt;IP&gt; /u:&lt;USER&gt; /p:'&lt;PASSWORD&gt;' /dynamic-resolution +clipboard
 xfreerdp /v:&lt;IP&gt; /u:&lt;USER&gt; /d:&lt;DOMAIN&gt; /pth:'&lt;HASH&gt;' /dynamic-resolution +clipboard
 
+net share public=c:\Users\Public /GRANT:Everyone,FULL
+    
 # PowerShell Remoting
 $SecurePassword = ConvertTo-SecureString '&lt;PASSWORD&gt;' -AsPlainText -Force
 $Cred = New-Object System.Management.Automation.PSCredential('&lt;USERNAME&gt;', $SecurePassword)
