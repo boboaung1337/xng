@@ -1178,6 +1178,15 @@ onesixtyone -c /usr/share/seclists/Discovery/SNMP/snmp.txt &lt;IP&gt;
 hydra -P /usr/share/wordlists/seclists/Discovery/SNMP/common-snmp-community-strings.txt snmp://192.168.162.149
 hydra -P /usr/share/wordlists/seclists/Discovery/SNMP/common-snmp-community-strings.txt snmp://192.168.135.156
 
+
+sudo apt update && sudo apt install snmp-mibs-downloader -y
+
+sudo download-mibs
+
+sudo sed -i 's/mibs :/# mibs :/g' /etc/snmp/snmp.conf
+
+snmpwalk -v2c -c public 192.168.141.149 NET-SNMP-EXTEND-MIB::nsExtendObjects
+    
 snmpwalk -v2c -c public 192.168.162.149 NET-SNMP-EXTEND-MIB::nsExtendObjects
 snmpwalk -v2c -c public 192.168.135.156 NET-SNMP-EXTEND-MIB::nsExtendObjects
 snmpwalk -v2c -c public &lt;IP&gt;
