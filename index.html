@@ -1093,6 +1093,8 @@ certipy-ad shadow auto -account "MSA_HEALTH$" -k -dc-ip 10.xxxxx -dc-host DC01.L
 
   <h3 id="bloodhound">BloodHound</h3>
   <pre class="code"><code># Collection (Python)
+https://www.kali.org/tools/bloodhound/
+    
 bloodhound-python -d domain.htb -u user -p 'pass' -c All --zip -ns &lt;DC_IP&gt;
 nxc ldap &lt;DC_IP&gt; -u user -p pass --bloodhound -c All --dns-server &lt;DC_IP&gt;
 bloodyad -d checkpoint.htb --host dc01.checkpoint.htb -u alex.turner -p Checkpoint2024! get bloodhound
