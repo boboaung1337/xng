@@ -1808,8 +1808,12 @@ interface_create --name ligolo
 tunnel_start --tun ligolo
 ifconfig
 route_add --name ligolo --route &lt;SUBNET&gt;/24
+route_add --name ligolo --route 240.0.0.1/32
 
+listener_add --addr 0.0.0.0:4444 --to 127.0.0.1:4444 --tcp
+listener_add --addr 0.0.0.0:8888 --to 127.0.0.1:80 --tcp
 # Double pivot - expose ligolo port via listener
+
 listener_add --addr 0.0.0.0:11601 --to 127.0.0.1:11601 --tcp
 ./agent.exe -connect &lt;MS01_IP&gt;:11601 -ignore-cert
 listener_add --addr 0.0.0.0:9999 --to 127.0.0.1:9999 --tcp
