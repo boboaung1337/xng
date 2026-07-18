@@ -356,6 +356,16 @@ mkdir .ssh
 chmod 700 .ssh
 chmod 600 .ssh/authorized_keys
 
+And connect over SSH with either the -k or the -o GSSAPIAuthentication=yes option to tell it to use Kerberos:
+
+ssh -k f.frizzle@frizzdc.frizz.htb
+
+dump id_rsa file to know user
+
+chmod 600 id_rsa
+
+ssh-keygen -y -f id_rsa 
+
 # legacy / automation
 sshpass -p 'password1' ssh USER@&lt;IP&gt; -p 7744
 ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no -o StrictHostKeyChecking=no USER@&lt;IP&gt;
